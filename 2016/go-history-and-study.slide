@@ -1,0 +1,465 @@
+Go 语言发展历程及学习实践
+
+2016.10.13
+
+黄庆兵
+
+网易蜂巢
+
+me@bingohuang.com
+http://github.com/bingohuang
+
+* 目录
+- Go 发展历程
+- Go Team
+- Go 版本历程
+- Go 学习实践
+
+* 编程语言的历史与现状
+- 2000年前
+  - 单机时代
+  - C 语言
+  - 成功原因：简单、对机器的绝佳抽象
+- 2000年至2015年
+  - Java 语言
+  - 成功原因：机器性能的提升，软件规模与复杂度提高
+- 未来预测
+  - Java 语言的份额继续下滑，最终被 C 和 Go 语言超越
+  - C    语言将长居编程榜第二的位置，有望在 Go 取代 Java 前重获语言榜第一的宝座
+  - Go   语言最终会取代 Java 居于编程榜之首
+  - 成功原因：Go 以 C 语言为原型，以降低心智负担为设计理念，易学习，高品质，大道至简，目标解放程序员
+
+* Go 发展历程
+- 在2007年9月 Go 作为 20% 项目开始设计和实现
+  - 创始者三剑客：Ken Thompson, Rob Pike 和 Robert Griesemer
+  - 而后加入的人：Russ Cox, Ian Lance Taylor, Brad Fitzpatrick, Andrew Gerrand 等
+  - 有Google这个显赫的爹
+- 2009年11月开源，对外正式发布，社区非常活跃，当年就当选 TIOBE 年度语言
+- 2012年发布第一个稳定版本 Go1
+  - Go 1   (3月  2012)
+  - Go 1.1 (5月  2013)
+  - Go 1.2 (12月 2013)
+  - Go 1.3 (6月  2014)
+  - Go 1.4 (12月 2014)
+  - Go 1.5 (8月  2015)
+  - Go 1.6 (2月  2016)
+  - Go 1.7 (8月  2016)
+- 2016: Go 是否能问再次问鼎 TIOBE 本年度语言？
+
+* TIOBE 2016年10月榜 TOP20 编程语言榜单
+.image go-history/TIOBE-201610-top20.png 550 600
+
+* TIOBE 年度编程语言（2003-2015）
+.image go-history/TIOBE-2013-2016-MVP.png 550 600
+
+* TIOBE Top10 指数走势（2002-2016）
+.image go-history/TIOBE-2012-2016-trend.png 550 1000
+
+* Go Team
+
+* Go Team - 三个泰斗级的人物
+- Ken Thompson 肯·汤普逊 https://en.wikipedia.org/wiki/Ken_Thompson
+  - 设计了B语言、C语言。创建了Unix和Plan 9操作系统，UTF-8的主要设计者。1943年出生，1983年图灵奖得主。Go的共同作者。
+- Rob Pike 罗勃·派克 https://en.wikipedia.org/wiki/Rob_Pike 大名 Robert C- Pike
+  - Unix小组成员，参与Plan 9、Inferno操作系统。UTF-8编码的创立者之一，Go 的主要设计者。
+  《The Unix Programming Environment》及《The Practice of Programming》作者之一。
+  1956年出生，在Google的电子邮箱是 r@google.com
+- Robert Griesemer 罗伯特·格瑞史莫
+  - 曾设计了Chrome浏览器的JavaScript V8引擎，协助制作Java的HotSpot编译器
+.image go-history/goteam-3-creators.png 200 390
+
+* Go Team - 几个独当一面的人物
+- Russ Cox：http://swtch.com/~rsc/
+  - 参与Plan 9操作系统开发。Google Code Search项目负责人
+- Ian Lance Taylor：https://airs.com/ian/
+  - gcc 社区的活跃人物。gold连接器和gcc过程间优化LTO的主要设计者，Zembu公司的创始人。
+- Brad Fitzpatrick：https://en.wikipedia.org/wiki/Rob_Pike
+  - LiveJournal 创始人，著名开源项目memcached的作者
+- Andrew Gerrand：http://www.gophercon.in/blog/2015/02/17/andrew/
+  - 澳大利亚人，本科专业摄影，艺术学位，2010年2月加入Google和Go team，多次担任发言人
+
+* Go Team - “炉边谈话”
+.image go-history/goteam-members.png
+- Google I/O 2012 - Meet the Go Team
+  https://www.youtube.com/watch?v=sln-gJaURzk
+- Google I/O 2013 - Fireside Chat with the Go Team
+  https://www.youtube.com/watch?v=p9VUCp98ay4
+
+* Go 的创立故事
+
+* Go 的创立故事
+.image go-history/compiling.png 550 700
+
+* Go 的创立故事
+- 让我们回到2007年，正是金秋9月，Rob Pike三位大牛，正在为Google庞大的C++程序做一些比较琐碎但是核心的工作
+- Rob 在Google庞大的分布式编译集群上编译，都需要花45分钟，不能忍受!
+- 有一次，C++标准委员的Google员工为他们做演讲，在一个小时的演讲中，他们又听到了35种计划中的新特性
+- 他们实在受不了C++了！C++的特性还不够多吗？Rob 想过改造C++，但非常困难，就算侥幸成功收益也非常小
+- 演讲结束后，三剑客又回到办公室，就在Rob做C++编译的45分钟当中，Rob和Robert说服了Ken，决定一起做一些事情！
+- 那就是再也不用C++，于是有了 Go！
+
+* Go 最初的设计
+- 然后他们找了块白板，在上面写下希望能有哪些功能。
+- 之后在邮件上交流，以下是摘选：
+  - Robert：以C语言为原型，修补部分明显的缺陷，去掉垃圾功能，添加一些缺失的功能。
+
+  - Rob：命名为“Go”，好处有很多，这名字非常简短，容易拼写。工具可以叫做：goc、gol、goa。
+    如果有可交互的调试器/解释器也可以简单地叫它“Go”，后缀名用.go。
+
+  - Robert：定义空接口语法：interface{}。所有接口都通过这个实现，因此可以用它代替void*。
+- 很多语言特色在最初的几天就确定下来，但没有一开始设计出所有功能，比如之后花了一年时间才确定了array和slice
+- 约定：只有三人都认可的功能才会加入 Go 当中。有些功能可能要一年或更多的讨论才能被加入。
+- 查看 git log：
+  - git log --before={2008-03-03} --reverse
+
+* Go 语言起源
+.image go-history/go-origin.png 550 550
+
+* Go 主要特性列表
+  - 垃圾回收（GC）
+
+  - 轻量级线程（goroutine）和消息通信（channel）
+
+  - 反射（reflect）
+
+  - 字母大小写设置可见性（letter case sets visibility）
+
+  - 函数多返回值、更好的错误处理规范
+
+  - 匿名函数和闭包
+
+  - 类型（type）和接口（interface）接口只有方法（没有数据）
+
+  - 包（package）（无循环依赖）
+
+  - 更丰富的内置类型：slice、string、map等
+
+  - 更丰富的标准库
+
+* Go 的设计理念
+- Rob Pike - Less is exponentially more！——大道至简
+  https://commandcenter.blogspot.com/2012/06/less-is-exponentially-more.html
+- Andrew Gerrand - https://talks.golang.org/2014/go4gophers.slide#74
+  New features can weaken existing features.      新功能可能损害已存在的功能
+  Features multiply complexity.                   功能乘倍增加复杂度
+  Complexity defeats orthogonality.               复杂度破坏正交性
+  Orthogonality is vital: it enables composition. 正交性至关重要：有它才有组合
+- 如果说C++和Java是关于类的层次和分类，那么Go的核心思想就是组合(composition)
+- Go就是基于组合与联结的语言，它是为大型程序设计的
+- 有趣的是：Go从头到尾都是以替代C++为目标来设计的，却少有吸引到C++程序员，大部分都是从Python和Ruby转过来的
+
+* Go 的版本历程
+
+* Go 已发布的版本
+- Go 1   (3月  2012)
+- Go 1.1 (5月  2013)
+- Go 1.2 (12月 2013)
+- Go 1.3 (6月  2014)
+- Go 1.4 (12月 2014)
+- Go 1.5 (8月  2015)
+- Go 1.6 (2月  2016)
+- Go 1.7 (8月  2016)
+
+* Go 1.8
+2月 2017
+
+* Go 1.9
+8月 2017
+
+* Go 2.0
+2月 2018
+
+- 哇！！！
+- 泛型！
+- 移动端全面支持及爆发！
+
+* 让人兴奋不已!?!?
+
+* 不好意思。
+
+* 我错了。
+
+* Go 1.8
+2月 2017
+
+* Go 1.9
+8月 2017
+
+* Go 1.10
+2月 2018
+
+* Go 1.11
+8月 2018
+
+* So。。。什么时候 Go 2 会出来呢？
+
+* 官方说法
+- No plans    遥遥无期
+- Maybe never 就这么着
+
+* Gopher - Sad
+.image go-history/gopher-1.png  550 700
+
+* Gopher - Angry
+.image go-history/gopher-2.png  550 700
+
+* Gopher - Hug
+.image go-history/gopher-3.png  550 700
+
+
+* Go 的版本变化
+
+* Go 1
+  - append([]byte, string…)
+  - disallow close on receive-only channels
+  - composite literal type ellison
+  - goroutines during init
+  - the rune type
+  - the error type (interface type in global scope!)
+  - delete(m, k)
+  - random map iteration order
+  - struct equality
+  - copying structs with unexported fields
+
+因为Go1是第一个稳定版本，变化固然不少，但关注这些细节并不重要，你只需要知道他会保持兼容稳定。
+
+* Go 1.1
+- 语言变化:如下
+- 支持方法值(Method values)
+  •p.Write
+    等价于:func(b []byte) (int, error) {return p.Write(b) }
+  •区别于方法表达式(Method expressions):
+    (*Foo).Write,结果类型为 func(p *Foo, b []byte) (int, error)
+- int,uint 类型长度调整
+  •自 Go1.1 后,int,uint 的尺寸统一是 64bits,即使是在 32bits 平 台下。
+- go1.1 编译条件
+  •在 go1.1 或以上的版本 编译: //  build go1.1
+
+* Go 1.1
+- 性能
+  - 更多内联(inline):append, 接口类型转换
+  - 全新实现 map,更小的内存占用和CPU开销
+  - GC 性能优化
+  - 网络库性能优化:减少上下文切换
+- 标准库/工具
+  - 一些尚未稳定的库从标准库移除
+    • 迁移到 code.google.com/p/go.exp 或 code.google.com/p/go.text 中
+  - 新增的包(package)
+    • go/format • net/http/cookiejar • runtime/race
+- 详细信息
+  - http://tip.golang.org/doc/go1.1
+
+* Go 1.2
+- 语法变化
+  - 三下标切片(Three-index slices):array[begin:end:endcap]
+  - cgo 支持 C++
+- 性能
+  - 标准库 compress/bzip2, crypto/des, encoding/json 性能优化
+- 标准库/工具
+  - 新增的包(package):encoding, image/color/palette
+  - godoc, vet 工具从 go 发布中移出,迁移到
+    • code.google.com/p/go.tools/cmd/godoc
+    • code.google.com/p/go.tools/cmd/vet
+  - 测试覆盖率
+    • code.google.com/p/go.tools/cmd/cover
+- 详细信息
+  - http://tip.golang.org/doc/go1.2
+
+* Go 1.3
+- 语法变化:无
+- 实现细节:如下
+- GC
+  • Go1.3以前,垃圾回收对指针的判断是经验性的:如果某个整数值恰 巧是一个合法的指针,那么它会被当做指针处理
+  • Go1.3调整为精确GC,这会导致以前的有些编程手法失效:
+    - 如果有人意图把指针存储到uintptr而不是unsafe.Pointer,那么这块内存无法保证不被回收
+    - 使用unsafe.Pointer存储整数也不会是一个好主意,因为这会干扰GC对真相的理解
+- map的遍历次序 - combadvisor的bug为例
+  • Go1标准指出:对map的多次遍历不应该假设有同样的次序
+  • 为了避免这样的假设发生,Go1.0遍历map选择起点时用了随机数
+  • Go1.1用重新实现map后,小map的遍历没有引入随机数;Go1.3重新 引入,以消灭此类潜在bug
+- cgo 变化:C类型不再允许跨包访问
+  • 例如,如果某个函数有 *C.FILE 参数,那么这个函数无法在其他包中使用(会编译失败)
+  - 如果认为此代码是合理的,可将其调整为 unsafe.Pointer
+
+* Go 1.3
+- 性能
+  - 大大降低 defer 的内存开销
+
+  - 引入并行 GC 算法,大幅度改善 GC 效率
+
+  - 竞争检测算法(race detector) 大幅提速
+
+  - 优化 regexp 包,改善大部分简单正则表达式的性能
+
+- 标准库/工具
+  - 新增的包(package):debug/plan9obj
+
+* Go 1.4
+- 语法变化
+  - 增加一种非常小概率使用的for range语法
+    for range x { ... } 等价于 for _ = range x {...}
+  - 不再自动对 **T 进行解引用(dereference)
+    •对 var x **T,以前可直接用 x.Fn() 调用 T 的方法
+    - 现在需要明确写 (*x).Fn()
+  - 引入 internal package 概念
+    •在 Go1.4 只对主路径($GOROOT)有效,未来会全面应用到$GOPATH
+  - 引入 canonical import paths (权威导入路径) 概念
+    •package pdf // import "rsc.io/pdf"
+- 实现细节
+  - 开始支持 Android (编译出binary或.so)
+  - 运行时(runtime)
+    •大部分用Go重写(以前是C),好处:更加精确的GC
+    •放弃了分段栈(segmented stack)
+
+* Go 1.5
+- 语法变化
+  - map 字面量简化写法
+    var x = map[Point]int{
+      {1.0, 2.1}: 1,
+      {2.3, 4.5}: 2,
+    }
+- 实现细节
+  - 自举:不再有C,所有代码(包括编译器、链接器和运行时)都用Go和少量汇编实现
+  - GC:重写GC,进一步降低GC的latency
+  - GOMAXPROCS 默认是 CPU 数(以前是1)
+  - vendor支持：需要设置 GO15VENDOREXPERIMENT
+  - 开始支持 iOS
+    •为此 Go team 还提交了第一个 Go 写的 AppStore 应用 Ivy
+
+* Go 1.6
+- 语法变化:无
+- 实现细节:如下
+- 更多的平台支持
+  - 支持的操作系统：
+    - Windows, OSX (darwin), Android, iOS, NaCl, DragonflyBSD, FreeBSD
+    - Linux, NetBSD, OpenBSD, Plan 9, Solaris/Illumos
+  - 支持的架构：
+    - Intel (386 and amd64), arm (ARMv5, v6, v7), arm64
+    - 64 bit PowerPC (big and little endian), 64 bit MIPS (big and little endian)
+- GC更精确
+- 内建HTTP/2支持
+- template包
+- 性能更好
+
+* Go 1.7
+- 语法变化:无
+- 实现细节:如下
+- 更快更小的生成二进制文件
+- vendor默认支持：不在需要设置 GO15VENDOREXPERIMENT
+
+* Go 1.x
+- 万丈高楼平地起
+- 语法稳定
+- 几乎没有增加什么显眼的语法特性,变化主要 围绕:
+  • 降低心智负担
+  • 细节完善
+  • 工程化
+- Go本身的迭代的核心是实现优化,围绕:
+  - 性能,性能,性能!
+    • 性能优化,尤其是GC
+
+  - 更多平台的移植
+
+  - 更进一步的标准化,强化社区约定
+
+* Go 语言未来发展的判断
+- 关于语言特性
+  - Go语言4年发布了7个大版本,语言特性没有实质性的变化,是不思进取,还是深思熟虑?
+
+  - 判断:别说4年,未来10年也不要指望Go语言特性有重大变化 (泛型是唯一变数,但引入的可能性不是很大)。
+  - 与其说是不思 进取,还不如说是自信(对需求透彻理解后的强烈自信)。
+
+- 关于Go语言的演进方向
+  - 3到5年内,Go的主攻方向仍然是服务端开发
+  • 比如内建 http 2.0 的支持 (更多的支持会以独立的开源库方式 提供,未必直接包含在 Go 的发布包)
+  • 尽管Go已经开始支持桌面端(Mobile)开发,但这仍然只是探索性和经验性的
+
+- 站在10年的维度,Go语言会在桌面端(Mobile)大放异彩, 占据重要地位
+
+* Go 趋势图
+.image go-history/go-trend-1.png  550 1000
+
+* Go 趋势图
+.image go-history/go-trend-2.png  550 1000
+
+* Go 学习实践
+
+* 学习 Go 的八大理由
+- 理由一：学习曲线低
+  - 类C语法
+  - GC内置
+  - 工程工具
+- 理由二：效率高
+  - 接近C的运行效率
+  - 接近PHP的开发效率
+- 理由三：出生名门，血统纯正
+  - 诞生于几位泰山北斗之手
+  - 出生于Google这个名门
+- 理由四：自由高校
+  - 组合的思想
+  - 无侵入式的接口
+
+* 学习 Go 的八大理由
+- 理由五：强大的标准库
+  - 互联网应用
+  - 系统编程
+  - 网络编程
+- 理由六：部署方便
+  - 二进制文件
+  - copy部署
+- 理由七：简单的并发
+  - 降低心智的并发
+  - 简易的数据同步
+- 理由八：稳定性
+  - 强大的编译检查
+  - 严格的编码规范
+  - 完整的软件生命周期工具
+
+* 学习方式
+- 官方文档
+  - 学习基本语法和命令操作
+  - Go Tour
+  - How to Write Go Code
+  - Go By Example
+- 视频教程：
+  - 无闻的《Go 编程基础》
+  - 郝林的《Go 语言第一课》
+  - 进阶：Go 系统开发、web开发
+- 书籍资料：
+  - Go Team的《The Go Programming》电子版+英文书籍
+  - 许式伟的《Go 语言编程》电子版+书籍
+  - astaxie的《Go Web 编程》开源+书籍
+  - 郝林的《Go 并发编程》书籍
+  - 雨痕的《Go 1.5源码剖析》开源+书籍
+
+* 学习方式
+- 开发工具：Intellij IDEA、Atom、Sublime、Vim
+- 参考资料：
+  - Go Tour: http://tour.golang.org/
+  - How to Write Go Code: http://golang.org/doc/code.html
+  - Go By Example: http://gobyexample.com/
+  - 《Go 编程基础》: http://study.163.com/course/introduction.htm?courseId=306002#/courseDetail
+  - ...
+
+* 如何实践：编程实践+社区开源
+* Go 的开源项目
+- 重点说说云计算和微服务
+- 1、基础框架:Docker,Kubernetes,CoreOS
+- 2、服务发现及数据库:Etcd,Consul,TiDB
+- 3、负载均衡:Caddy
+- 4、服务网关:tyk,fabio,vulcand
+- 5、消息队列:NSQ,Nats
+- 6、CI/CD:Drone
+- 7、监控与告警:cAdvisor,Open-Falcon,Prometheus
+- 8、日志与审计:Beats
+- 9、web框架:Beego,reval
+- 10、配置服务：mgmt
+
+* Go 在网易云的实践
+- 网易蜂巢: Docker, Kubernetes, Etcd, 工具
+- 网易对象存储：
+- 网易视频云:
+- 网易云信:
+- 网易云的开源仓库：http://github.com/163yun
+.image go-history/163yun.png 200 332
+- 欢迎一起来开源实践!
