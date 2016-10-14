@@ -335,6 +335,7 @@ https://github.com/163yun
     •对 var x **T,以前可直接用 x.M() 调用 T 的方法
     - 现在需要明确写 (*x).M()
 .play -edit go-history/testforpoint.go /START/,/STOP/
+: http://zoomq.qiniudn.com/ZQScrapBook/ZqFLOSS/data/20100325212133/
 
 :  - 引入 internal package 概念
 : 在 Go1.4 只对主路径($GOROOT)有效,未来会全面应用到$GOPATH
@@ -396,6 +397,7 @@ https://github.com/163yun
   - 将原来的golang.org/x/net/context包挪入了标准库中
 - 详细信息
   - http://tip.golang.org/doc/go1.7
+: http://tonybai.com/2016/06/21/some-changes-in-go-1-7/
 
 * Go 1.x 总结
 - 万丈高楼平地起，语法基本保持稳定
