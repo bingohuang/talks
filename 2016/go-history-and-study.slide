@@ -7,13 +7,15 @@ Go 语言发展历程及学习实践
 网易蜂巢
 
 me@bingohuang.com
-http://github.com/bingohuang
+http://bingohuang.com
+https://github.com/163yun
 
 * 目录
 - Go 发展历程
 - Go Team
 - Go 版本历程
 - Go 学习实践
+.image go-history/gopher-logo.png 300 _
 
 * 编程语言的历史与现状
 - 2000年前
@@ -47,13 +49,13 @@ http://github.com/bingohuang
 - 2016: Go 是否能问再次问鼎 TIOBE 本年度语言？
 
 * TIOBE 2016年10月榜 TOP20 编程语言榜单
-.image go-history/TIOBE-201610-top20.png 550 600
+.image go-history/TIOBE-201610-top20.png 550 _
 
 * TIOBE 年度编程语言（2003-2015）
-.image go-history/TIOBE-2013-2016-MVP.png 550 600
+.image go-history/TIOBE-2013-2016-MVP.png 550 _
 
 * TIOBE Top10 指数走势（2002-2016）
-.image go-history/TIOBE-2012-2016-trend.png 550 1000
+.image go-history/TIOBE-2012-2016-trend.png 510 _
 
 * Go Team
 
@@ -66,7 +68,7 @@ http://github.com/bingohuang
   1956年出生，在Google的电子邮箱是 r@google.com
 - Robert Griesemer 罗伯特·格瑞史莫
   - 曾设计了Chrome浏览器的JavaScript V8引擎，协助制作Java的HotSpot编译器
-.image go-history/goteam-3-creators.png 200 390
+.image go-history/goteam-3-creators.png 200 _
 
 * Go Team - 几个独当一面的人物
 - Russ Cox：http://swtch.com/~rsc/
@@ -79,7 +81,7 @@ http://github.com/bingohuang
   - 澳大利亚人，本科专业摄影，艺术学位，2010年2月加入Google和Go team，多次担任发言人
 
 * Go Team - “炉边谈话”
-.image go-history/goteam-members.png
+.image go-history/goteam-members.png 200 _
 - Google I/O 2012 - Meet the Go Team
   https://www.youtube.com/watch?v=sln-gJaURzk
 - Google I/O 2013 - Fireside Chat with the Go Team
@@ -88,7 +90,7 @@ http://github.com/bingohuang
 * Go 的创立故事
 
 * Go 的创立故事
-.image go-history/compiling.png 550 700
+.image go-history/compiling.png 550 _
 
 * Go 的创立故事
 - 让我们回到2007年，正是金秋9月，Rob Pike三位大牛，正在为Google庞大的C++程序做一些比较琐碎但是核心的工作
@@ -113,7 +115,7 @@ http://github.com/bingohuang
   - git log --before={2008-03-03} --reverse
 
 * Go 语言起源
-.image go-history/go-origin.png 550 550
+.image go-history/go-origin.png 550 _
 
 * Go 主要特性列表
   - 垃圾回收（GC）
@@ -198,13 +200,13 @@ http://github.com/bingohuang
 - Maybe never 就这么着
 
 * Gopher - Sad
-.image go-history/gopher-1.png  550 700
+.image go-history/gopher-1.png  550 _
 
 * Gopher - Angry
-.image go-history/gopher-2.png  550 700
+.image go-history/gopher-2.png  550 _
 
 * Gopher - Hug
-.image go-history/gopher-3.png  550 700
+.image go-history/gopher-3.png  550 _
 
 
 * Go 的版本变化
@@ -395,7 +397,7 @@ http://github.com/bingohuang
 - 理由三：出生名门，血统纯正
   - 诞生于几位泰山北斗之手
   - 出生于Google这个名门
-- 理由四：自由高校
+- 理由四：自由高效
   - 组合的思想
   - 无侵入式的接口
 
@@ -406,7 +408,7 @@ http://github.com/bingohuang
   - 网络编程
 - 理由六：部署方便
   - 二进制文件
-  - copy部署
+  - copy 部署
 - 理由七：简单的并发
   - 降低心智的并发
   - 简易的数据同步
@@ -439,27 +441,31 @@ http://github.com/bingohuang
   - How to Write Go Code: http://golang.org/doc/code.html
   - Go By Example: http://gobyexample.com/
   - 《Go 编程基础》: http://study.163.com/course/introduction.htm?courseId=306002#/courseDetail
-  - ...
+  - ... TODO
 
 * 如何实践：编程实践+社区开源
-* Go 的开源项目
-- 重点说说云计算和微服务
-- 1、基础框架:Docker,Kubernetes,CoreOS
-- 2、服务发现及数据库:Etcd,Consul,TiDB
-- 3、负载均衡:Caddy
-- 4、服务网关:tyk,fabio,vulcand
-- 5、消息队列:NSQ,Nats
-- 6、CI/CD:Drone
-- 7、监控与告警:cAdvisor,Open-Falcon,Prometheus
-- 8、日志与审计:Beats
-- 9、web框架:Beego,reval
-- 10、配置服务：mgmt
 
-* Go 在网易云的实践
+* Go 在云计算和微服务领域的开源项目 TODO
+- 1、基础框架: Docker,Kubernetes,CoreOS
+- 2、服务发现及数据库: Etcd,Consul,TiDB
+- 3、负载均衡: Caddy
+- 4、服务网关: tyk,fabio,vulcand
+- 5、消息队列: NSQ,Nats
+- 6、CI/CD:Drone
+- 7、监控与告警: cAdvisor,Open-Falcon,Prometheus
+- 8、日志与审计: Beats
+- 9、配置服务: mgmt
+- 10、web框架: [[http://beego.me][*Beego*]]
+
+* Go 在网易云的应用实践
+#.image go-history/163yun.png 200 _
+#.image go-history/gopher-toy.jpg 200 _
+.html go-history/gopher.html
+
 - 网易蜂巢: Docker, Kubernetes, Etcd, 工具
 - 网易对象存储：
+- 网易存储：
 - 网易视频云:
 - 网易云信:
-- 网易云的开源仓库：http://github.com/163yun
-.image go-history/163yun.png 200 332
+- 网易云的开源仓库： [[https://github.com/163yun]]
 - 欢迎一起来开源实践!
