@@ -1,6 +1,6 @@
-Go 语言发展历程及学习实践-蜂巢小组分享
+Go 语言发展历程及应用实践
 
-2016.10.13
+2016.10.15
 
 黄庆兵
 
@@ -14,7 +14,7 @@ https://github.com/163yun
 - Go 发展历程
 - Go Team
 - Go 版本历程
-- Go 学习实践
+- Go 应用实践
 .image go-history/gopher-logo.png 300 _
 
 * 编程语言的历史与现状
@@ -37,7 +37,7 @@ https://github.com/163yun
   - 而后加入的人：Russ Cox, Ian Lance Taylor, Brad Fitzpatrick, Andrew Gerrand 等
   - 有Google这个显赫的爹
 - 2009年11月开源，对外正式发布，社区非常活跃，当年就当选 TIOBE 年度语言
-- 2012年发布第一个稳定版本 Go1
+- 2012年3月发布第一个稳定版本 Go1
   - Go 1   (3月  2012)
   - Go 1.1 (5月  2013)
   - Go 1.2 (12月 2013)
@@ -59,12 +59,11 @@ https://github.com/163yun
 
 * Go Team
 
-* Go Team - 三个泰斗级的人物
-- Ken Thompson 肯·汤普逊 https://en.wikipedia.org/wiki/Ken_Thompson
+* Go Team - 三个泰斗级的人物 TODO
+- Ken Thompson 肯·汤普逊 [[https://en.wikipedia.org/wiki/Ken_Thompson]]
   - 设计了B语言、C语言。创建了Unix和Plan 9操作系统，UTF-8的主要设计者。1943年出生，1983年图灵奖得主。Go的共同作者。
-- Rob Pike 罗勃·派克 https://en.wikipedia.org/wiki/Rob_Pike 大名 Robert C- Pike
+- Rob Pike 罗勃·派克 [[https://en.wikipedia.org/wiki/Rob_Pike]] 大名 Robert Pike
   - Unix小组成员，参与Plan 9、Inferno操作系统。UTF-8编码的创立者之一，Go 的主要设计者。
-  《The Unix Programming Environment》及《The Practice of Programming》作者之一。
   1956年出生，在Google的电子邮箱是 r@google.com
 - Robert Griesemer 罗伯特·格瑞史莫
   - 曾设计了Chrome浏览器的JavaScript V8引擎，协助制作Java的HotSpot编译器
@@ -82,10 +81,12 @@ https://github.com/163yun
 
 * Go Team - “炉边谈话”
 .image go-history/goteam-members.png 200 _
+
 - Google I/O 2012 - Meet the Go Team
-  https://www.youtube.com/watch?v=sln-gJaURzk
+[[https://www.youtube.com/watch?v=sln-gJaURzk]]
+
 - Google I/O 2013 - Fireside Chat with the Go Team
-  https://www.youtube.com/watch?v=p9VUCp98ay4
+[[https://www.youtube.com/watch?v=p9VUCp98ay4]]
 
 * Go 的创立故事
 
@@ -111,7 +112,7 @@ https://github.com/163yun
   - Robert：定义空接口语法：interface{}。所有接口都通过这个实现，因此可以用它代替void*。
 - 很多语言特色在最初的几天就确定下来，但没有一开始设计出所有功能，比如之后花了一年时间才确定了array和slice
 - 约定：只有三人都认可的功能才会加入 Go 当中。有些功能可能要一年或更多的讨论才能被加入。
-- 查看 git log：
+- 查看 git log：TODO
   - git log --before={2008-03-03} --reverse
 
 * Go 语言起源
@@ -251,23 +252,20 @@ https://github.com/163yun
 - 详细信息
   - http://tip.golang.org/doc/go1.1
 
-* Go 1.2
+* Go 1.2 TODO
 - 语法变化
   - 三下标切片(Three-index slices):array[begin:end:endcap]
-  - cgo 支持 C++
 - 性能
   - 标准库 compress/bzip2, crypto/des, encoding/json 性能优化
 - 标准库/工具
   - 新增的包(package):encoding, image/color/palette
-  - godoc, vet 工具从 go 发布中移出,迁移到
-    • code.google.com/p/go.tools/cmd/godoc
-    • code.google.com/p/go.tools/cmd/vet
+  - godoc, vet 工具从 go 发布中移出t
   - 测试覆盖率
     • code.google.com/p/go.tools/cmd/cover
 - 详细信息
   - http://tip.golang.org/doc/go1.2
 
-* Go 1.3
+* Go 1.3 TODO
 - 语法变化:无
 - 实现细节:如下
 - GC
@@ -279,9 +277,6 @@ https://github.com/163yun
   • Go1标准指出:对map的多次遍历不应该假设有同样的次序
   • 为了避免这样的假设发生,Go1.0遍历map选择起点时用了随机数
   • Go1.1用重新实现map后,小map的遍历没有引入随机数;Go1.3重新 引入,以消灭此类潜在bug
-- cgo 变化:C类型不再允许跨包访问
-  • 例如,如果某个函数有 *C.FILE 参数,那么这个函数无法在其他包中使用(会编译失败)
-  - 如果认为此代码是合理的,可将其调整为 unsafe.Pointer
 
 * Go 1.3
 - 性能
@@ -386,10 +381,9 @@ https://github.com/163yun
 
 * Go 学习实践
 
-* 学习 Go 的八大理由
+* 学习 Go 的八大理由 - By ASTA谢
 - 理由一：学习曲线低
-  - 类C语法
-  - GC内置
+  - 类C语法，GC内置
   - 工程工具
 - 理由二：效率高
   - 接近C的运行效率
@@ -401,11 +395,10 @@ https://github.com/163yun
   - 组合的思想
   - 无侵入式的接口
 
-* 学习 Go 的八大理由
+* 学习 Go 的八大理由 - By ASTA谢
 - 理由五：强大的标准库
   - 互联网应用
-  - 系统编程
-  - 网络编程
+  - 系统编程，网络编程
 - 理由六：部署方便
   - 二进制文件
   - copy 部署
@@ -413,22 +406,21 @@ https://github.com/163yun
   - 降低心智的并发
   - 简易的数据同步
 - 理由八：稳定性
-  - 强大的编译检查
-  - 严格的编码规范
+  - 强大的编译检查，严格的编码规范
   - 完整的软件生命周期工具
 
 * 学习方式
 - 官方文档
-  - 学习基本语法和命令操作
+  - 学习基本语法和命令操作，参照实例学习
   - Go Tour
   - How to Write Go Code
   - Go By Example
 - 视频教程：
   - 无闻的《Go 编程基础》
   - 郝林的《Go 语言第一课》
-  - 进阶：Go 系统开发、web开发
+  - 进阶：web开发 TODO 系统开发 TODO
 - 书籍资料：
-  - Go Team的《The Go Programming》电子版+英文书籍
+  - Go Team的《The Go Programming》俗称 Go 语言圣经
   - 许式伟的《Go 语言编程》电子版+书籍
   - astaxie的《Go Web 编程》开源+书籍
   - 郝林的《Go 并发编程》书籍
@@ -445,7 +437,7 @@ https://github.com/163yun
 
 * 如何实践：编程实践+社区开源
 
-* Go 在云计算和微服务领域的开源项目 TODO
+* Go 在云计算和微服务领域的开源项目 - By ASTA谢 TODO
 - 1、基础框架: Docker,Kubernetes,CoreOS
 - 2、服务发现及数据库: Etcd,Consul,TiDB
 - 3、负载均衡: Caddy
@@ -462,10 +454,8 @@ https://github.com/163yun
 #.image go-history/gopher-toy.jpg 200 _
 .html go-history/gopher.html
 
-- 网易蜂巢: Docker, Kubernetes, Etcd, 工具
-- 网易对象存储：
-- 网易存储：
-- 网易视频云:
-- 网易云信:
-- 网易云的开源仓库： [[https://github.com/163yun]]
-- 欢迎一起来开源实践!
+- *网易蜂巢* : Docker, Kubernetes, Etcd, comb，工具链
+- *网易对象存储* ：上传加速，底层文件系统，富媒体服务
+- *网易视频云* : 底层文件存储
+- *网易云信* : 音视频节点分配服务
+- *网易云的开源组织* ： [[https://github.com/163yun]]
