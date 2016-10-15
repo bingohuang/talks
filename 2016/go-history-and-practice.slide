@@ -4,13 +4,22 @@ Go 语言发展历程及应用实践
 
 黄庆兵
 
-网易蜂巢
+网易云 网易蜂巢
 
 me@bingohuang.com
-http://bingohuang.com
-https://github.com/163yun
+http://gotalks.bingohuang.com
+http://github.com/163yun
 
-* 目录
+* 自我介绍
+- 浙大
+- 网易
+- Gopher
+- Docker/云
+- DevOps
+- 喜欢分享、交流
+.image go-history/weixin.png
+
+* 分享目录
 - Go 发展历程
 - Go Team
 - Go 版本历程
@@ -193,6 +202,8 @@ https://github.com/163yun
 - 移动端全面支持及爆发！
 - Bug不剩
 - 功能干光
+- 登顶编程语言排行榜！
+- 一统天下！
 - 。。。
 
 * 让人兴奋不已!?!?
