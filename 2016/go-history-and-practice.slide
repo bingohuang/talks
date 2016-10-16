@@ -482,7 +482,7 @@ http://gitbook.com/@bingohuang
   - 雨痕   《Go 学习笔记》 *开源书籍
 
 * 学习方式
-- 开发工具：Intellij IDEA、LiteIDE、Eclipse、Atom、Sublime、Vim
+- 开发工具：Intellij IDEA、LiteIDE、Eclipse、Atom、Sublime、Vim、VS code
 - 参考资料：
   - Go Tour: http://tour.golang.org/
   - How to Write Go Code: http://golang.org/doc/code.html
