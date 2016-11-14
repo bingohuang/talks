@@ -239,7 +239,7 @@ http://gitbook.com/@bingohuang
 * 如何实践：编程实践+社区开源
 
 * Go 编程实践
-.play -edit go-history/helloworld.go /START/,/STOP/
+.play -edit go-docker-microservice/helloworld.go /START/,/STOP/
 
 * Go 在云计算和微服务领域的开源项目
 - 1、基础框架: [[https://docker.com][*Docker*]],[[https://kubernetes.io][*Kubernetes*]],CoreOS
