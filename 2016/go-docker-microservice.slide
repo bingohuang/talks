@@ -1,0 +1,444 @@
+探讨 Go 和 Docker，探索微服务架构
+
+2016.11.14
+
+黄庆兵
+
+网易云 网易蜂巢
+
+me@bingohuang.com
+http://gotalks.bingohuang.com
+http://github.com/bingohuang
+http://gitbook.com/@bingohuang
+
+* 自我介绍
+- 浙大
+- 网易
+- Gopher
+- Docker/容器云
+- DevOps/微服务
+- 喜欢分享、交流
+.image go-history/weixin.png
+
+* 目录
+- Go
+- Docker
+- Microservice
+
+.image go-docker-microservice/docker-friends.png 400 _
+
+* Go
+
+* 编程语言历史与现状
+- 2000年前
+  - 单机时代
+  - C 语言
+  - 成功原因：简单、对机器的绝佳抽象
+- 2000年至2015年
+  - 互联网时代
+  - Java 语言
+  - 成功原因：机器性能的提升，软件规模与复杂度提高
+- 未来预测 - By 许式伟
+  - Java 语言的份额继续下滑，最终被 C 和 Go 语言超越
+  - C    语言将长居编程榜第二的位置，有望在 Go 取代 Java 前重获语言榜第一的宝座
+  - Go   语言最终会取代 Java 居于编程榜之首
+  - 成功原因：Go 以 C 语言为原型，以降低心智负担为设计理念，易学习，高品质，大道至简，目标解放程序员
+
+* Go 发展历程
+
+* Go 发展历程
+- 在2007年9月 Go 作为 Google 20% 项目开始设计和实现
+  - 创始者三剑客：Ken Thompson, Rob Pike 和 Robert Griesemer
+  - 而后加入的人：Russ Cox, Ian Lance Taylor, Brad Fitzpatrick, Andrew Gerrand 等
+  - 有Google这个显赫的爹
+- 2009年11月开源，对外正式发布，社区非常活跃，当年就当选 TIOBE 年度语言
+- 2012年3月发布第一个稳定版本 Go1
+  - Go 1   (3月  2012)
+  - Go 1.1 (5月  2013)
+  - Go 1.2 (12月 2013)
+  - Go 1.3 (6月  2014)
+  - Go 1.4 (12月 2014)
+  - Go 1.5 (8月  2015)
+  - Go 1.6 (2月  2016)
+  - Go 1.7 (8月  2016)
+- 2016: Go 是否能问再次问鼎 TIOBE 本年度语言？
+
+* TIOBE 2016年10月榜 TOP20 编程语言榜单
+.image go-history/TIOBE-201610-top20.png 550 _
+
+* TIOBE 2016年11月榜 TOP20 编程语言榜单
+.image go-history/TIOBE-201611-top20.png 550 _
+
+* TIOBE 年度编程语言（2003-2015）
+.image go-history/TIOBE-2013-2016-MVP.png 550 _
+
+* TIOBE Top10 指数走势（2002-2016）
+.image go-history/TIOBE-2012-2016-trend.png 510 _
+
+* Go 趋势图
+.image go-history/go-trend-1.png  550 1000
+
+* Go 趋势图
+.image go-history/go-trend-2.png  550 1000
+
+* Go Team
+
+* Go Team - 三个泰斗级的人物
+- Ken Thompson 肯·汤普逊 [[https://en.wikipedia.org/wiki/Ken_Thompson]]
+  - 设计了B语言、C语言。创建了Unix和Plan 9操作系统，UTF-8的主要设计者。1983年图灵奖得主。Go的创立者之一。
+- Rob Pike 罗勃·派克 [[https://en.wikipedia.org/wiki/Rob_Pike]] 大名 Robert Pike
+  - Unix小组成员，参与Plan 9、Inferno操作系统。UTF-8编码的创立者之一，r@google.com。Go的创立者之一。
+- Robert Griesemer 罗伯特·格瑞史莫 [[https://github.com/griesemer]]
+  - 曾设计了Chrome浏览器的JavaScript V8引擎，协助制作Java的HotSpot编译器。Go的创立者之一。
+.image go-history/goteam-3-creators.png 200 _
+
+* Go Team - 几个独当一面的人物
+- Russ Cox：[[http://swtch.com/~rsc/]]
+  - 参与Plan 9操作系统开发。Google Code Search项目负责人
+- Ian Lance Taylor：[[https://airs.com/ian/]]
+  - gcc 社区的活跃人物。gold连接器和gcc过程间优化LTO的主要设计者，Zembu公司的创始人。
+- Brad Fitzpatrick：[[https://en.wikipedia.org/wiki/Rob_Pike]]
+  - LiveJournal 创始人，著名开源项目memcached的作者
+- Andrew Gerrand：[[http://www.gophercon.in/blog/2015/02/17/andrew/]]
+  - 2010年2月加入Google和Go team，多次担任 Go 的发言人。澳大利亚人，本科专业摄影，艺术学位。
+
+* Go Team - “炉边谈话”
+.image go-history/goteam-members.png 200 _
+
+- Google I/O 2012 - Meet the Go Team
+[[https://www.youtube.com/watch?v=sln-gJaURzk]]
+
+- Google I/O 2013 - Fireside Chat with the Go Team
+[[https://www.youtube.com/watch?v=p9VUCp98ay4]]
+
+- Golang, Rust, C++, Dlang 四大作者现场PK
+[[https://www.youtube.com/watch?v=ynQoaajojIs]]
+
+* Go 的创立故事
+
+* Go 的创立故事
+.image go-history/compiling.png 550 _
+
+* Go 的创立故事
+- 让我们回到2007年9月，Rob Pike三位大牛，正在为Google庞大的C++程序做一些比较琐碎但是核心的工作
+- Rob Pike 在Google庞大的分布式编译集群上编译，都需要花45分钟，不能忍受!
+- 有一次，C++标准委员的Google员工为他们做演讲，在一个小时的演讲中，他们又听到了35种计划中的新特性
+- 他们实在受不了C++了！C++的特性还不够多吗？Rob 想过改造C++，但非常困难，就算侥幸成功收益也非常小
+- 演讲结束后，三剑客又回到办公室，就在Rob Pike做C++编译的45分钟当中，他和Robert说服了Ken，决定一起做一些事情！
+- 他们说，不要 C++，于是就有了 Go ！
+
+* Go 最初的代码提交
+- 查看 git log：
+  $ git log --before={2008-03-03} --reverse
+.image go-history/go-git-log.png 430 _
+
+* Go 语言起源
+  哪些早期的编程语言对Go语言的设计产生了重要影响
+.image go-history/go-origin.png 500 _
+
+* Go 主要特性列表 - "21世纪的C语言"
+  - 垃圾回收（GC）
+
+  - 轻量级线程（goroutine）和消息通信（channel）
+
+  - 反射（reflect）
+
+  - 字母大小写设置可见性（letter case sets visibility）
+
+  - 函数多返回值、更好的错误处理规范
+
+  - 匿名函数和闭包
+
+  - 类型（type）和接口（interface）接口只有方法（没有数据）
+
+  - 包（package）（无循环依赖）
+
+  - 更丰富的内置类型：slice、string、map等
+
+  - 更丰富的标准库
+
+* Go 版本变更总结
+- 语法基本保持稳定 - 细节请参考我之前在 *Gopher* *Meetup* 上的 [[https://github.com/163yun][*分享*]]
+  - Go语言4年发布了7个大版本,语言特性没有实质性的变化
+: 是不思进取,还是深思熟虑?
+: 判断:别说4年,未来10年也不要指望Go语言特性有重大变化 (泛型是唯一变数,但引入的可能性不是很大)
+: 与其说是不思 进取,还不如说是自信(对需求透彻理解后的强烈自信)。
+- 几乎没有增加什么显眼的语法特性,变化主要 围绕:
+  - 降低心智负担
+  - 细节完善
+  - 工程化
+- Go本身的迭代的核心是实现优化,围绕:
+  - 性能,性能,性能!性能优化,尤其是GC
+  - 更多平台的移植
+  - 更进一步的标准化,强化社区约定
+- 关于Go语言的演进方向
+  - 3到5年内,Go的主攻方向仍然是服务端开发
+  - 站在10年的维度,Go语言会在桌面端(Mobile)大放异彩, 占据重要地位
+
+* Go 学习实践
+
+* 学习 Go 的八大理由 - By ASTA谢
+- 理由一：学习曲线低
+  - 类C语法，GC内置
+  - 工程工具
+- 理由二：效率高
+  - 接近C的运行效率
+  - 接近PHP的开发效率
+- 理由三：出生名门，血统纯正
+  - 诞生于几位泰山北斗之手
+  - 出生于Google这个名门
+- 理由四：自由高效
+  - 组合的思想
+  - 无侵入式的接口
+
+* 学习 Go 的八大理由 - By ASTA谢
+- 理由五：强大的标准库
+  - 互联网应用
+  - 系统编程，网络编程
+- 理由六：部署方便
+  - 二进制文件
+  - copy 部署
+- 理由七：简单的并发
+  - 降低心智的并发
+  - 简易的数据同步
+- 理由八：稳定性
+  - 强大的编译检查，严格的编码规范
+  - 完整的软件生命周期工具
+
+* 学习方式
+- 官方文档
+  - 学习基本语法和命令操作，参照实例学习
+  - Go Tour
+  - How to Write Go Code
+  - Effective Go : gitbook@bingohuang
+  - Go By Example
+- 视频教程：
+  - 无闻的《Go 编程基础》
+  - 郝林的《Go 语言第一课》
+  - 进阶：web开发《Beego 视频教程》
+- 书籍资料：
+  - Go Team《The Go Programming》又称 《Go 语言圣经》
+  - asta谢 《Go Web 编程》*开源书籍
+  - 许式伟  《Go 语言编程》
+  - 郝林   《Go 并发编程》
+  - 雨痕   《Go 学习笔记》 *开源书籍
+
+* 学习方式
+- 开发工具：Intellij IDEA、LiteIDE、Eclipse、Atom、Sublime、Vim、VS code
+- 参考资料：
+  - Go Tour: http://tour.golang.org/
+  - How to Write Go Code: http://golang.org/doc/code.html
+  - Effective Go: https://www.gitbook.com/book/bingohuang/effective-go-zh-en/details
+  - Go By Example: http://gobyexample.com/
+  - 《Go 编程基础》: http://study.163.com/course/introduction.htm?courseId=306002#/courseDetail
+  - 《Go 语言第一课》: http://www.imooc.com/learn/345
+  - 《Beego 视频教程》: http://beego.me/video
+  - 《Go Web 编程》: https://www.gitbook.com/book/astaxie/build-web-application-with-golang/details
+  - 《Go 学习笔记》: https://github.com/qyuhen/book
+
+* 如何实践：编程实践+社区开源
+
+* Go 编程实践
+.play -edit go-history/helloworld.go /START/,/STOP/
+
+* Go 在云计算和微服务领域的开源项目
+- 1、基础框架: [[https://docker.com][*Docker*]],[[https://kubernetes.io][*Kubernetes*]],CoreOS
+- 2、服务发现及数据库: Etcd,Consul,TiDB
+- 3、负载均衡: Caddy
+- 4、服务网关: tyk,fabio,vulcand
+- 5、消息队列: NSQ,Nats
+- 6、CI/CD:Drone
+- 7、监控与告警: cAdvisor,Open-Falcon,Prometheus
+- 8、日志与审计: Beats
+- 9、配置服务: mgmt
+- 10、web框架: [[http://beego.me][*Beego*]]
+
+* Go 在网易云的应用实践
+#.image go-history/163yun.png 200 _
+#.image go-history/gopher-toy.jpg 200 _
+.html go-history/gopher.html
+
+- [[http://c.163.com][*网易蜂巢*]] : Docker, Kubernetes, Etcd, cAdvisor, comb, 生态工具链
+- [[https://c.163.com/wiki/index.php?title=%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5][*网易对象存储*]] ：上传加速，底层文件系统，富媒体服务
+- [[http://vcloud.163yun.com/][*网易视频云*]] : 底层文件存储
+- [[http://yunxin.163yun.com/][*网易云信*]] : 音视频节点分配服务
+- *网易云的开源组织* ： [[https://github.com/163yun][*163yun*]]
+- 欢迎一起来开源实践 [[https://golang.org][*Go*]]
+
+* Docker
+
+* 容器技术的历史
+.image go-docker-microservice/container-history.jpg _ _
+
+* Docker 的诞生
+.image go-docker-microservice/container-future.jpg 300 _
+
+- 2013 年 3 月 15日，在加利福尼亚州圣克拉拉市举办的 Python 开发者大会上，dotCloud的创始人兼 CEO Solomon Hykes 在一个微型演讲《The future of Linux Containers》（只有5分钟）中向世人宣布了 Docker
+- 源码托管在 GitHub 中（ https://github.com/docker/docker ）
+- 演讲链接：https://youtu.be/wW9CAH9nSLs
+
+* Docker VS 集装箱
+.image go-docker-microservice/docker-vs-container.jpg 480 _
+
+* Docker VS 虚拟机
+.image go-docker-microservice/docker-architecture.png _ 750
+.image go-docker-microservice/vm-architecture.png _ 750
+
+* Docker VS 虚拟机
+.image go-docker-microservice/docker-vs-vm.jpg _ 1000
+
+
+* Docker 特性
+1. *不变* ：将操作系统、依赖库、应用程序...等都打包在 Container 內，确保每次构建的 Container 都拥有同样的行为。
+
+2. *轻量* ：Container 不需消耗太多内存，只需使用主程序所需的用量，在多加上数十 MB 内存就足夠。
+
+3. *快速* ：Container 启动就如同平时启动 Linux 程序一样快，仅需耗費几秒钟的时间。
+
+* Docker 基本概念
+- 镜像 (Image)
+
+- 容器 (Container)
+
+- 仓库 (Repository)
+: 打个比喻
+
+* Docker Images
+.image go-docker-microservice/docker-layers.png 400 _
+- 简单理解，Docker 镜像就是一个独一的模版，储存系统当下的状态。
+
+* Docker Container
+.image go-docker-microservice/docker-container.jpg 400 _
+- 利用 Image 执行后的服务就称为一個 container，可以想成是 VM 的实例 (Instance) ，它在一個被隔离的进程中执行，该进程共享主机的内核
+
+* Docker Repository
+.image go-docker-microservice/docker-repository.png 400 _
+- 仓库是集中存放镜像的场所，仓库分为公有仓库 (Public)和私有仓库 (Private)
+
+: 有时候会把仓库和仓库注册服务器（Registry）混为一谈，并不严格区分。实际上，仓库注册服务器上往往存放着多个仓库，每个仓库中又包含了多个镜像，每个镜像有不同的标签（tag）
+
+* Docker 的应用场景
+- 作为云主机使用
+- 作为服务使用
+  - Web应用服务
+  - 持续集成和持续部署
+  - 微服务架构使用
+- 其他应用场景
+  - 跑一次性/定时任务
+  - 科学计算/大数据分析服务
+  - 游戏和网联网等
+
+* Docker 大坑小洼：TODO - link
+- 孙宏亮 -《Docker 的大坑小洼》猛戳我
+- 补充 -《再谈 Docker 的大坑小洼》猛戳我
+- 国外 -《Docker 的优势与不足》猛戳我
+- Docker实战：一部失败史
+前途是光明的，道路是坎坷的
+细节问题很多，需要动手实践
+
+* Docker 实践 - TODO
+https://blog.golang.org/docker 用 docker 部署 Go 程序
+在本地演示一遍，在蜂巢上再跑一遍
+Code 展示
+Dockerfile 展示
+本地展示
+蜂巢展示
+
+* 微服务架构
+
+* 微型机器人 VS 微服务架构
+.image go-docker-microservice/micro-robot.jpg 150 _
+.image go-docker-microservice/microservices-diagram.png 360 600
+
+* 软件架构模式 - 抽象
+.image go-docker-microservice/architecture-pattern.png
+
+* 软件架构模式 - 具体
+.image go-docker-microservice/architecture-pattern2.jpg
+
+* 软件架构演进
+  让我们来开发一个应用
+.image go-docker-microservice/change1.png 300 _
+
+* 软件架构演进
+  刚开始时
+.image go-docker-microservice/change2.png 300 _
+
+* 软件架构演进
+  随着开发语言的发展
+.image go-docker-microservice/change3.png 300 _
+
+* 软件架构演进
+  在框架和设计模式的帮助下
+.image go-docker-microservice/change4.png 300 _
+
+* 软件架构演进
+单体模式 (Monolith)
+
+.image go-docker-microservice/monolith.jpg 300 _
+
+  - 一个单独的 Java WAR 文件
+  - Rails 或 Node.JS 代码中的一个单独的目录结构
+  - 一个 Go 的可执行文件
+
+* 软件架构演进
+单体模式的优势
+
+.image go-docker-microservice/change6.png 200 _
+
+在项目刚开始的时候并不是一个错误的选择
+
+  - 利用已有的工具和环境
+  - 快速开发一个模型
+  - 不必担心应用的分布式部署
+  - 并没有遇到其他开发模式所解决的问题
+
+* 软件架构演进
+单体模式的优势
+
+.image go-docker-microservice/change5.png _ 800
+
+- 易于开发：开发人员已经熟练使用的IDE或框架
+- 易于测试：已有的UI自动化测试工具进行端到端测试
+- 易于部署：打包整个应用到生产环境，并利用已有的自动化部署工具
+
+* 软件架构演进
+单体模式的不足
+
+.image go-docker-microservice/change7.jpg 182 _
+
+  - 应用工程变得又大又复杂
+  - 敏捷开发和部署举步维艰
+  - 启动时间长
+  - 可靠性差
+  - 难以采用新技术新语言
+
+* 软件架构演进
+使用微服务架构重新设计我们的应用
+
+.image go-docker-microservice/change8.png _ 800
+
+* 软件架构演进
+应用架构继续变得复杂
+
+.image go-docker-microservice/change9.png _ 800
+
+* 软件架构演进
+微服务架构
+
+.image go-docker-microservice/microservice.jpg 300 _
+
+  - 由多个独立运行的微小服务构成
+  - 通过轻量级的机制通信
+  - 独立构建部署
+  - 每个服务可以使用不同语言
+  - 每个服务可以使用不同数据库
+
+* 软件架构演进
+微服务架构优缺点
+
+.image go-docker-microservice/microservice2.jpg 500 _
+
+* 微服务架构实践 - 基于蜂巢的网易众筹平台
+
+.image go-docker-microservice/zc.png 580 _
