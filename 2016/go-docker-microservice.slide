@@ -15,7 +15,7 @@ http://gitbook.com/@bingohuang
 - 浙大
 - 网易
 - Gopher
-- Docker/容器云
+- Docker/云平台
 - DevOps/微服务
 - 喜欢分享、交流
 .image go-history/weixin.png
@@ -23,7 +23,7 @@ http://gitbook.com/@bingohuang
 * 目录
 - Go
 - Docker
-- Microservice
+- Microservice（有时间探讨下）
 
 .image go-docker-microservice/docker-friends.png 400 _
 
@@ -43,6 +43,9 @@ http://gitbook.com/@bingohuang
   - C    语言将长居编程榜第二的位置，有望在 Go 取代 Java 前重获语言榜第一的宝座
   - Go   语言最终会取代 Java 居于编程榜之首
   - 成功原因：Go 以 C 语言为原型，以降低心智负担为设计理念，易学习，高品质，大道至简，目标解放程序员
+
+* TIOBE Top10 指数走势（2002-2016）
+.image go-history/TIOBE-2012-2016-trend.png 510 _
 
 * Go 发展历程
 
@@ -71,9 +74,6 @@ http://gitbook.com/@bingohuang
 
 * TIOBE 年度编程语言（2003-2015）
 .image go-history/TIOBE-2013-2016-MVP.png 550 _
-
-* TIOBE Top10 指数走势（2002-2016）
-.image go-history/TIOBE-2012-2016-trend.png 510 _
 
 * Go 趋势图
 .image go-history/go-trend-1.png  550 1000
@@ -125,7 +125,7 @@ http://gitbook.com/@bingohuang
 - 有一次，C++标准委员的Google员工为他们做演讲，在一个小时的演讲中，他们又听到了35种计划中的新特性
 - 他们实在受不了C++了！C++的特性还不够多吗？Rob 想过改造C++，但非常困难，就算侥幸成功收益也非常小
 - 演讲结束后，三剑客又回到办公室，就在Rob Pike做C++编译的45分钟当中，他和Robert说服了Ken，决定一起做一些事情！
-- 他们说，不要 C++，于是就有了 Go ！
+- 他们说，不要 C++，于是就有了 *Go* ！
 
 * Go 最初的代码提交
 - 查看 git log：
@@ -265,37 +265,67 @@ http://gitbook.com/@bingohuang
 - *网易云的开源组织* ： [[https://github.com/163yun][*163yun*]]
 - 欢迎一起来开源实践 [[https://golang.org][*Go*]]
 
+* Q&A
+
 * Docker
 
 * 容器技术的历史
 .image go-docker-microservice/container-history.jpg _ _
 
 * Docker 的诞生
-.image go-docker-microservice/container-future.jpg 300 _
+#.image go-docker-microservice/container-future.jpg 300 _
+.video http://bingohuang.nos-eastchina1.126.net/ThefutureofLinuxContainers.mp4 video/mp4 400 _
 
-- 2013 年 3 月 15日，在加利福尼亚州圣克拉拉市举办的 Python 开发者大会上，dotCloud的创始人兼 CEO Solomon Hykes 在一个微型演讲《The future of Linux Containers》（只有5分钟）中向世人宣布了 Docker
-- 源码托管在 GitHub 中（ https://github.com/docker/docker ）
-- 演讲链接：https://youtu.be/wW9CAH9nSLs
+  - 2013 年 3 月 15日，在 加利福尼亚州 圣克拉拉市 举办的 Python 开发者大会上, dotCloud 的创始人兼 CEO
+  - Solomon Hykes， 在一个微型演讲《The future of Linux Containers》（只有5分钟）中向世人宣布了 Docker
+  - 演讲链接：https://youtu.be/wW9CAH9nSLs
+  - 源码托管在 GitHub 中：https://github.com/docker/docker
+
+* Docker VS 集装箱
+
+.image go-docker-microservice/docker-vs-container.png 480 _
+
+* Docker VS 集装箱
+.image go-docker-microservice/docker-vs-container2.jpg 480 _
+
+* Docker VS 集装箱
+类比传统的航运基础设施
+
+  - 集装箱        =>     容器
+  - 货物          =>     应用
+  - 集装箱拖船     =>     云服务器
+  - 集装箱吊车     =>     容器编排工具
+  - 集装箱仓库     =>     镜像仓库
+  - 拖车          =>     镜像发布工具
+  - 港口          =>     公有云
+  - 海运公司       =>     云计算厂商
+
+- 集装箱： 变革了人类整个生产流程体系，让他地球变平了
+- Docker：变革IT领域的软件交付方式，让IT之间的鸿沟消失了
 
 * Docker VS 集装箱
 .image go-docker-microservice/docker-vs-container.jpg 480 _
 
 * Docker VS 虚拟机
-.image go-docker-microservice/docker-architecture.png _ 750
-.image go-docker-microservice/vm-architecture.png _ 750
+.image go-docker-microservice/vm-architecture.png _ 600
+.image go-docker-microservice/docker-architecture.png _ 600
+   好比：公寓套间 VS 一个房间
 
 * Docker VS 虚拟机
 .image go-docker-microservice/docker-vs-vm.jpg _ 1000
 
-
 * Docker 特性
-1. *不变* ：将操作系统、依赖库、应用程序...等都打包在 Container 內，确保每次构建的 Container 都拥有同样的行为。
+1. *不变* ：将操作系统、依赖库、应用程序等都打包在 Container 內，确保每次构建的 Container 都拥有同样的行为。
 
 2. *轻量* ：Container 不需消耗太多内存，只需使用主程序所需的用量，在多加上数十 MB 内存就足夠。
 
 3. *快速* ：Container 启动就如同平时启动 Linux 程序一样快，仅需耗費几秒钟的时间。
 
 * Docker 基本概念
+Docker 是一套以容器技术为核心的，用于应用的构建、分发和执行的体系和生态。
+
+三个基本概念：
+
 - 镜像 (Image)
 
 - 容器 (Container)
@@ -309,7 +339,7 @@ http://gitbook.com/@bingohuang
 
 * Docker Container
 .image go-docker-microservice/docker-container.jpg 400 _
-- 利用 Image 执行后的服务就称为一個 container，可以想成是 VM 的实例 (Instance) ，它在一個被隔离的进程中执行，该进程共享主机的内核
+- 利用 Image 执行后的服务就称为一个 container，可以想成是 Image 的实例 (Instance) ，它在一个被隔离的进程中执行，该进程共享主机的内核
 
 * Docker Repository
 .image go-docker-microservice/docker-repository.png 400 _
@@ -317,44 +347,77 @@ http://gitbook.com/@bingohuang
 
 : 有时候会把仓库和仓库注册服务器（Registry）混为一谈，并不严格区分。实际上，仓库注册服务器上往往存放着多个仓库，每个仓库中又包含了多个镜像，每个镜像有不同的标签（tag）
 
+* 从三个问题入手
+- 程序在我这儿跑的好好的，在你那怎么不行了？
+- 系统好卡，是哪个进程把CPU给吃光了？
+- 这套系统我已经搭建好了，要不你再重新搭一遍？
+
 * Docker 的应用场景
-- 作为云主机使用
+- 作为云主机使用 - 不推荐
 - 作为服务使用
   - Web应用服务
-  - 持续集成和持续部署
   - 微服务架构使用
+- 构建 DevOps流程，实现 CI/CD，运维的自动化
+- 构建私有的 PAAS 平台，降低开发成本，提升效率
+- 企业级 AppStore，统一的后端系统分发平台
 - 其他应用场景
   - 跑一次性/定时任务
   - 科学计算/大数据分析服务
-  - 游戏和网联网等
+  - 金融和游戏等
 
-* Docker 大坑小洼：TODO - link
-- 孙宏亮 -《Docker 的大坑小洼》猛戳我
-- 补充 -《再谈 Docker 的大坑小洼》猛戳我
-- 国外 -《Docker 的优势与不足》猛戳我
-- Docker实战：一部失败史
-前途是光明的，道路是坎坷的
-细节问题很多，需要动手实践
+* Docker 实践经验
+- ”3C” 原则，由美军提出，也就是一个集装箱，只运送一种货物，一个目的地，对应一个容器只运行一个应用。
+- 使用镜像来交付应用程序，不要直接部署
+- 分层构建镜像 （Dockerfile）
+- 不要把本地运行的容器转成镜像（docker commit)
+- 不要将数据存储在容器中（无状态容器）
 
-* Docker 实践 - TODO
-https://blog.golang.org/docker 用 docker 部署 Go 程序
-在本地演示一遍，在蜂巢上再跑一遍
-Code 展示
-Dockerfile 展示
-本地展示
-蜂巢展示
+拓展阅读：[[http://note.youdao.com/share/?id=3f3c1b3467e092af002acdc521fc3563&type=note#/][Docker实战：一部失败史]]
+
+
+* Docker 实践演示
+用 docker 部署 Go 程序
+
+- 源码：
+  main.go
+  Dockerfile
+
+- 执行命令
+  docker build -t go-docker-demo .
+  docker run --publish 12306:8080 --name go-docker --rm go-docker-demo /go/bin/app --help
+  docker run --publish 12306:8080 --name go-docker --rm go-docker-demo /go/bin/app -version 1.7.3
+  docker tag go-docker-demo hub.c.163.com/bingohuang/go-docker-demo
+  docker login hub.c.163.com
+  docker push hub.c.163.com/bingohuang/go-docker-demo
+
+- 演示
+
+
+* Thank you Q&A
+
+me@bingohuang.com
+[[http://github.com/bingohuang][http://github.com/bingohuang]]
+[[http://gitbook.com/@bingohuang][http://gitbook.com/@bingohuang]]
+
+.image go-docker-microservice/weixin-group.jpg 450 _
+
+* -
 
 * 微服务架构
 
-* 微型机器人 VS 微服务架构
-.image go-docker-microservice/micro-robot.jpg 150 _
-.image go-docker-microservice/microservices-diagram.png 360 600
+* 从一篇漫画说起
+西乔漫画：[[http://mp.weixin.qq.com/s?__biz=MzA4OTMxODQwNA==&mid=2650978646&idx=1&sn=ae1378170203421926bc4bac49bdcf72&chksm=8beaac3dbc9d252b52d0adec39bb32c925ef9a9027e0153ecab3ee0bfae0c69ca8ffb9aff2eb&mpshare=1&scene=1&srcid=1110rctAqHWpNEp5i10AiEuq#rd][当一个项目里的代码超过一百万行……]]
+.image go-docker-microservice/manhua.png 450 _
 
 * 软件架构模式 - 抽象
 .image go-docker-microservice/architecture-pattern.png
 
 * 软件架构模式 - 具体
 .image go-docker-microservice/architecture-pattern2.jpg
+
+* 微型机器人 VS 微服务架构
+.image go-docker-microservice/micro-robot.jpg 150 _
+.image go-docker-microservice/microservices-diagram.png 360 600
 
 * 软件架构演进
   让我们来开发一个应用
