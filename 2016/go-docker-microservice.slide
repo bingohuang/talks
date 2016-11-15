@@ -267,6 +267,12 @@ http://gitbook.com/@bingohuang
 
 * Q&A
 
+.image go-docker-microservice/weixin-group.jpg 400 _
+
+me@bingohuang.com
+[[http://github.com/bingohuang][http://github.com/bingohuang]]
+[[http://gitbook.com/@bingohuang][http://gitbook.com/@bingohuang]]
+
 * Docker
 
 * 容器技术的历史
@@ -372,7 +378,7 @@ Docker 是一套以容器技术为核心的，用于应用的构建、分发和�
 - 不要把本地运行的容器转成镜像（docker commit)
 - 不要将数据存储在容器中（无状态容器）
 
-拓展阅读：[[http://note.youdao.com/share/?id=3f3c1b3467e092af002acdc521fc3563&type=note#/][Docker实战：一部失败史]]
+拓展阅读：Docker也在不断完善当中：[[http://note.youdao.com/share/?id=3f3c1b3467e092af002acdc521fc3563&type=note#/][Docker实战，一部失败史]]
 
 
 * Docker 实践演示
@@ -393,17 +399,17 @@ Docker 是一套以容器技术为核心的，用于应用的构建、分发和�
 - 演示
 
 
-* Thank you Q&A
+* Q&A
+
+.image go-docker-microservice/weixin-group.jpg 400 _
 
 me@bingohuang.com
 [[http://github.com/bingohuang][http://github.com/bingohuang]]
 [[http://gitbook.com/@bingohuang][http://gitbook.com/@bingohuang]]
 
-.image go-docker-microservice/weixin-group.jpg 450 _
-
 * -
 
-* 微服务架构
+* Microservice
 
 * 从一篇漫画说起
 西乔漫画：[[http://mp.weixin.qq.com/s?__biz=MzA4OTMxODQwNA==&mid=2650978646&idx=1&sn=ae1378170203421926bc4bac49bdcf72&chksm=8beaac3dbc9d252b52d0adec39bb32c925ef9a9027e0153ecab3ee0bfae0c69ca8ffb9aff2eb&mpshare=1&scene=1&srcid=1110rctAqHWpNEp5i10AiEuq#rd][当一个项目里的代码超过一百万行……]]
