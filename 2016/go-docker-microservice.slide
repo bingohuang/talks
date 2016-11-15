@@ -23,7 +23,7 @@ http://gitbook.com/@bingohuang
 * 目录
 - Go
 - Docker
-- Microservice（有时间探讨下）
+- Microservice
 
 .image go-docker-microservice/docker-friends.png 400 _
 
@@ -406,8 +406,6 @@ Docker 是一套以容器技术为核心的，用于应用的构建、分发和�
 me@bingohuang.com
 [[http://github.com/bingohuang][http://github.com/bingohuang]]
 [[http://gitbook.com/@bingohuang][http://gitbook.com/@bingohuang]]
-
-* -
 
 * Microservice
 
