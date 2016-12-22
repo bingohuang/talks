@@ -6,8 +6,8 @@
 4. cp go-talks-master $GOPATH/src/golang.org/x/tools/cmd/present  
 5. cd $GOPATH/bin  
 6. bin# ./present  
-you will see  
+**you will see**  
 2016/12/22 18:07:05 Open your web browser and visit http://127.0.0.1:3999  
-7. open http://127.0.0.1:3999/go-talks-master/2016/go-docker-microservice.slide in your web brower  
+7. open http://127.0.0.1:3999/go-talks-master/2016 in your web brower  
 
 that's all  
