@@ -1,5 +1,5 @@
 #go talks  
 ###how to use  
-* a  
+* see <https://github.com/audreylim/go-presenter>  
 * b  
 * c  
