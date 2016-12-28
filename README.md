@@ -1,14 +1,19 @@
-#Go talks  
-###how to use ?  
-1. see https://github.com/audreylim/go-presenter  
-2. download https://github.com/bingohuang/go-talks  
-3. Downloads# unzip -q go-talks-master.zip  
-4. cp go-talks-master $GOPATH/src/golang.org/x/tools/cmd/present  
-5. cd $GOPATH/bin  
-6. bin# ./present  
-**you will see**  
-2016/12/22 18:07:05 Open your web browser and visit http://127.0.0.1:3999  
-7. open http://127.0.0.1:3999/go-talks-master/2016 in your web brower  
+# Go talks
 
-that's all  
+该 slide 由 `go present` 驱动。
 
+### go present安装方法：
+```
+go get -v golang.org/x/tools/cmd/present
+```
+
+### go present说明文档：
+```
+https://godoc.org/golang.org/x/tools/present
+```
+
+### go present使用简介：
+1. 配置好 go 环境，安装好 go present
+2. 克隆当前工程： git clone https://github.com/bingohuang/go-talks
+3. 在工程目录下执行：present
+4. 输出正常，打开浏览器访问： http://127.0.0.1:3999
