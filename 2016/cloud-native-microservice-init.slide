@@ -1,0 +1,293 @@
+一步步打造微服务架构的云原生应用
+基于 Spring & Docker
+
+
+黄庆兵
+
+网易云 • 蜂巢
+
+2016.12.30
+
+hzhuangqingbin@corp.netease.com
+http://bingohuang.com
+
+* 自我介绍
+- 浙大 / 网易
+- 开发 / 布道
+- Gopher / Javaer
+- Docker / 云平台
+- DevOps / 微服务
+- 技术、人文 / 分享、交流
+.image go-history/weixin.png
+
+* 目录
+- 微服务(Microservices)
+- 云原生(Cloud Nattive)
+- Spring(Boot & Cloud)
+- Docker(容器 & 编排)
+- Demo演示(网易蜂巢)
+.image cloud-native-microservice/microservice-1.jpg 300 _
+# 在这里做个调查统计
+
+* 微服务(Microservices)
+
+* 从一篇漫画说起
+西乔漫画：[[http://mp.weixin.qq.com/s?__biz=MzA4OTMxODQwNA==&mid=2650978646&idx=1&sn=ae1378170203421926bc4bac49bdcf72&chksm=8beaac3dbc9d252b52d0adec39bb32c925ef9a9027e0153ecab3ee0bfae0c69ca8ffb9aff2eb&mpshare=1&scene=1&srcid=1110rctAqHWpNEp5i10AiEuq#rd][当一个项目里的代码超过一百万行……]]
+.image go-docker-microservice/manhua.png 450 _
+
+* 架构变迁
+: 我们是怎么一步步走到微服务这来的？
+- 系统架构变迁
+  - 出门左转，我在KS上写的一篇总结文章：《互联网时代，我眼中的架构变迁》
+.image cloud-native-microservice/system-architecture.png 300 _
+- *应用架构变迁* - Let's Go!
+
+* 应用架构演变 - 抽象举例
+.image go-docker-microservice/architecture-pattern.png
+
+* 应用架构演变 - 形象举例
+.image go-docker-microservice/architecture-pattern2.jpg
+
+* 微型机器人 VS 微服务架构
+.image go-docker-microservice/micro-robot.jpg 150 _
+.image go-docker-microservice/microservices-diagram.png 360 600
+# 超能陆战队
+
+* 应用架构演进
+  让我们来开发一个应用
+.image go-docker-microservice/change1.png 300 _
+
+* 应用架构演进
+  刚开始时
+.image go-docker-microservice/change2.png 300 _
+
+* 应用架构演进
+  随着开发语言的发展
+.image go-docker-microservice/change3.png 300 _
+
+* 应用架构演进
+  在框架和设计模式的帮助下
+.image go-docker-microservice/change4.png 300 _
+
+* 应用架构演进
+单体模式 (Monolith)
+
+.image go-docker-microservice/monolith.jpg 300 _
+
+  - Java: 一个单独的 JAR/WAR 文件
+  - Rails / Node.JS: 一个单独的目录结构
+  - Go: 一个可执行二进制文件
+
+* 应用架构演进
+单体模式的优势
+
+.image go-docker-microservice/change6.png 200 _
+
+在项目刚开始的时候并不是一个错误的选择
+
+  - 利用已有的工具和环境
+  - 快速开发一个模型
+  - 不必担心应用的分布式部署
+  - 并没有遇到其他开发模式所解决的问题
+
+* 应用架构演进
+单体模式的优势
+
+.image go-docker-microservice/change5.png _ 800
+
+- 易于开发：开发人员已经熟练使用的IDE或框架
+- 易于测试：已有的UI自动化测试工具进行端到端测试
+- 易于部署：打包整个应用到生产环境，并利用已有的自动化部署工具
+
+* 应用架构演进
+单体模式的不足
+
+.image go-docker-microservice/change7.jpg 182 _
+
+  - 应用工程变得又大又复杂
+  - 敏捷开发和部署举步维艰
+  - 启动时间长
+  - 可靠性差
+  - 难以采用新技术新语言
+
+* 应用架构演进
+使用微服务架构重新设计我们的应用
+
+.image go-docker-microservice/change8.png _ 800
+
+* 应用架构演进
+应用架构继续变得复杂
+
+.image go-docker-microservice/change9.png _ 800
+
+* 应用架构演进
+微服务架构
+
+.image go-docker-microservice/microservice.jpg 300 _
+
+  - 由多个独立运行的微小服务构成
+  - 通过轻量级的机制通信
+  - 独立构建部署
+  - 每个服务可以使用不同语言
+  - 每个服务可以使用不同数据库
+
+* 应用架构演进
+微服务架构优缺点
+.image go-docker-microservice/microservice2.jpg 500 _
+
+* 云原生(Cloud Native)
+
+* 从一本书说起
+云计算书籍：[[#][《蝶变：云原生应用架构与实践》]]
+.image cloud-native-microservice/cloud-native-cookbook.png 450 _
+
+* 从另一本书说起
+A *cloud-native* *application* is an application that has been designed and implemented to run on a *Platform-as-a-Service* installation and to embrace *horizontal* *elastic* *scaling*.
+: 说白了，云原生应用就是面向云平台开发的应用，可以方便的做弹性伸缩
+
+  The Twelve-Factor App
+  Beyond the Twelve-Factor App
+.image cloud-native-microservice/Beyond-Twelve-Factor-Cover.png 350 _
+: 12factor：heroku提出，pivotal在此基础上提出了加强
+
+* 从三个方面理解 云原生应用
+- *云* 提供资源
+- *平台* 提供服务
+- *应用* 提供价值
+.image cloud-native-microservice/cloud-native-1.png 400 _
+
+* 总结: 微服务 VS 云原生
+- 微服务是一种架构实践
+- 云原生是一种应用开发方式
+- 微服务和云天生有很强的共生性
+- 单体架构也可以是云原生应用
+: 一会的Demo演示中我们也可以看到这点
+  Microservices != Cloud Native
+.image cloud-native-microservice/microservice-cloud-native.png 300 _
+
+* Spring（Boot & Cloud）
+
+* Spring 平台：涉及到三个项目
+  https://spring.io/projects
+.image cloud-native-microservice/spring-framework-logo.png 140 _
+.image cloud-native-microservice/spring-boot-logo.png 140 _
+.image cloud-native-microservice/spring-cloud-cf.png 140 _
+
+* Spring Framework
+A framework core supported for dependency injection, transaction management, web applications, data access, messaging, testing and more.
+
+.image cloud-native-microservice/spring-framework-look.png 400 _
+  好比：蛋糕原材料
+# 说明下Spring的版本吧
+
+* Spring Boot
+A JVM micro-framework for building microservices
+
+.image cloud-native-microservice/spring-boot-look.png 400 _
+  好比：蛋糕原型
+# 简单说明下Spring Boot
+
+* Spring Cloud
+A toolset designed for building distributed systems
+
+.image cloud-native-microservice/spring-Cloud-look.png 400 _
+  好比：蛋糕店
+# 列举Spring Cloud的功能
+
+
+* 放在一起感受一下
+Spring Cloud provides a way to turn Spring Boot microservices into distributed applications
+.image cloud-native-microservice/spring-look.png _ 900
+
+* Docker（容器 & 编排）
+
+* 容器技术的历史
+.image go-docker-microservice/container-history.jpg _ _
+
+* Docker 的诞生
+#.image go-docker-microservice/container-future.jpg 300 _
+.video http://bingohuang.nos-eastchina1.126.net/ThefutureofLinuxContainers.mp4 video/mp4 400 _
+
+  - 2013 年 3 月 15日，在 加利福尼亚州 圣克拉拉市 举办的 Python 开发者大会上, dotCloud 的创始人兼 CEO
+  - Solomon Hykes， 在一个微型演讲《The future of Linux Containers》（只有5分钟）中向世人宣布了 Docker
+  - 演讲链接：https://youtu.be/wW9CAH9nSLs
+  - 源码托管在 GitHub 中：https://github.com/docker/docker 基于Go语言开发
+
+* Docker VS 集装箱
+.html cloud-native-microservice/docker-container.html
+  - 集装箱        =>     容器
+  - 货物          =>     应用
+  - 集装箱拖船     =>     云服务器
+  - 集装箱吊车     =>     容器编排工具
+  - 集装箱仓库     =>     镜像仓库
+  - 拖车          =>     镜像发布工具
+  - 港口          =>     公有云
+  - 海运公司       =>     云计算厂商
+
+- *集装箱* ： 变革了人类整个生产流程体系，让地球变平了
+- *Docker* ：变革 IT 领域的软件交付方式，让IT之间的鸿沟消失了
+
+* Docker VS 虚拟机
+.image go-docker-microservice/vm-architecture.png _ 600
+.image go-docker-microservice/docker-architecture.png _ 600
+   好比：公寓套间 VS 一个房间
+
+* 怎么定位Docker？从三个问题入手
+- 程序在我这儿跑的好好的，在你那怎么不行了？
+  - 环境一致性
+- 系统好卡，是哪个进程把CPU给吃光了？
+  - 资源隔离
+- 这套系统我已经搭建好了，要不你再重新搭一遍？
+  - 快速交付
+
+*Docker* 是一套以容器技术为核心的，用于应用的构建、分发和执行的体系和生态。
+
+* Docker 三个基本特性
+1. *不变* ：将操作系统、依赖库、应用程序等都打包在 Container 內，确保每次构建的 Container 都拥有同样的行为。
+
+2. *轻量* ：Container 不需消耗太多内存，只需使用主程序所需的用量，在多加上数十兆内存就足夠。
+
+3. *快速* ：Container 启动就如同平时启动 Linux 程序一样快，仅需耗費几秒钟的时间。
+
+* Docker 三个基本概念
+
+- 镜像 (Image)
+  - 简单理解，Docker 镜像就是一个独一的模版，储存系统当下的状态
+- 容器 (Container)
+  - 容器可以想成是 Image 的实例，它在一个被隔离的进程中执行，共享主机内核
+- 仓库 (Repository)
+  - 仓库是集中存放镜像的场所，有公有仓库 (Public)和私有仓库 (Private)
+
+* Docker 的应用场景
+- 作为云主机使用 - 习惯用法，不太推荐
+- 作为服务使用
+  - Web应用服务
+  - 微服务架构使用
+- 构建 DevOps流程，实现 CI/CD，运维的自动化
+- 构建私有的 PAAS 平台，降低开发成本，提升效率
+- 企业级 AppStore，统一的后端系统分发平台
+- 其他应用场景
+  - 跑一次性/定时任务
+  - 科学计算/大数据分析服务
+  - 金融和游戏等
+
+* Show Time（网易蜂巢）
+介绍Demo
+开源
+1. 单体架构
+2. 前后端分离架构
+3. 微服务架构
+
+代码
+docker run
+docker compose
+
+
+
+* 微服务架构实践 - 基于蜂巢的网易众筹平台
+: 这里也另外换一张图，顺带宣传一下众筹
+.image go-docker-microservice/zc.png 580 _
+
+* Q&A
+: 另外配一张图
+: .image go-docker-microservice/weixin-group.jpg 400 _
