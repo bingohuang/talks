@@ -1,14 +1,12 @@
 一步步打造微服务架构的云原生应用
 基于 Spring & Docker
 
-
 黄庆兵
 
 网易云 • 蜂巢
 
 2016.12.30
 
-hzhuangqingbin@corp.netease.com
 http://bingohuang.com
 
 * 自我介绍
@@ -17,7 +15,7 @@ http://bingohuang.com
 - Gopher / Javaer
 - Docker / 云平台
 - DevOps / 微服务
-- 技术、人文 / 分享、交流
+- 技术、分享、交流
 .image go-history/weixin.png
 
 * 目录
@@ -32,26 +30,22 @@ http://bingohuang.com
 * 微服务(Microservices)
 
 * 从一篇漫画说起
-西乔漫画：[[http://mp.weixin.qq.com/s?__biz=MzA4OTMxODQwNA==&mid=2650978646&idx=1&sn=ae1378170203421926bc4bac49bdcf72&chksm=8beaac3dbc9d252b52d0adec39bb32c925ef9a9027e0153ecab3ee0bfae0c69ca8ffb9aff2eb&mpshare=1&scene=1&srcid=1110rctAqHWpNEp5i10AiEuq#rd][当一个项目里的代码超过一百万行……]]
-.image go-docker-microservice/manhua.png 450 _
+*西乔漫画* ：[[http://note.youdao.com/noteshare?id=51797ecca931b5ebbaa80815265772da][当一个项目里的代码超过一百万行……]]
+.image cloud-native-microservice/manhua-1.jpg 500 _
 
 * 架构变迁
-: 我们是怎么一步步走到微服务这来的？
 - 系统架构变迁
   - 出门左转，我在KS上写的一篇总结文章：《互联网时代，我眼中的架构变迁》
-.image cloud-native-microservice/system-architecture.png 300 _
+.image cloud-native-microservice/system-architecture.png 350 _
 - *应用架构变迁* - Let's Go!
 
-* 应用架构演变 - 抽象举例
+: 我们是怎么一步步走到微服务这来的？
+
+* 应用架构演变 - 抽象描述
 .image go-docker-microservice/architecture-pattern.png
 
-* 应用架构演变 - 形象举例
+* 应用架构演变 - 形象描述
 .image go-docker-microservice/architecture-pattern2.jpg
-
-* 微型机器人 VS 微服务架构
-.image go-docker-microservice/micro-robot.jpg 150 _
-.image go-docker-microservice/microservices-diagram.png 360 600
-# 超能陆战队
 
 * 应用架构演进
   让我们来开发一个应用
@@ -79,11 +73,11 @@ http://bingohuang.com
   - Go: 一个可执行二进制文件
 
 * 应用架构演进
-单体模式的优势
+单体模式的特点
 
 .image go-docker-microservice/change6.png 200 _
 
-在项目刚开始的时候并不是一个错误的选择
+在项目刚开始的时候，还是一个不错的选择
 
   - 利用已有的工具和环境
   - 快速开发一个模型
@@ -101,8 +95,8 @@ http://bingohuang.com
 
 * 应用架构演进
 单体模式的不足
-
-.image go-docker-microservice/change7.jpg 182 _
+.image cloud-native-microservice/manhua-2.jpg 300 _
+#.image go-docker-microservice/change7.jpg 182 _
 
   - 应用工程变得又大又复杂
   - 敏捷开发和部署举步维艰
@@ -111,17 +105,17 @@ http://bingohuang.com
   - 难以采用新技术新语言
 
 * 应用架构演进
-使用微服务架构重新设计我们的应用
+使用 *微服务架构* 重新设计我们的应用
 
 .image go-docker-microservice/change8.png _ 800
 
 * 应用架构演进
-应用架构继续变得复杂
+应用架构继续变得复杂， *微服务架构* 也能应对自如
 
 .image go-docker-microservice/change9.png _ 800
 
 * 应用架构演进
-微服务架构
+微服务架构特点
 
 .image go-docker-microservice/microservice.jpg 300 _
 
@@ -135,40 +129,52 @@ http://bingohuang.com
 微服务架构优缺点
 .image go-docker-microservice/microservice2.jpg 500 _
 
+* 微服务架构 VS 微型机器人
+.html cloud-native-microservice/micro-robot.html
+.image cloud-native-microservice/micro-robot-2.jpg 320 300
+# 超能陆战队
+
 * 云原生(Cloud Native)
 
 * 从一本书说起
 云计算书籍：[[#][《蝶变：云原生应用架构与实践》]]
 .image cloud-native-microservice/cloud-native-cookbook.png 450 _
 
-* 从另一本书说起
-A *cloud-native* *application* is an application that has been designed and implemented to run on a *Platform-as-a-Service* installation and to embrace *horizontal* *elastic* *scaling*.
-: 说白了，云原生应用就是面向云平台开发的应用，可以方便的做弹性伸缩
+* 从另二本书说起
+A *cloud-native* *application* is an application that has been designed and implemented to run on a *Platform-as-a-Service* (*PAAS*) installation and to embrace *horizontal* *elastic* *scaling* (*水平弹性伸缩*).
 
-  The Twelve-Factor App
-  Beyond the Twelve-Factor App
-.image cloud-native-microservice/Beyond-Twelve-Factor-Cover.png 350 _
+#  The Twelve-Factor App - 《十二要素应用》
+#  Beyond the Twelve-Factor App - 《十二要素应用扩展》
+.image cloud-native-microservice/12-factor.png 400 _
+#  API设计优先、认证和授权、遥控技术
+
+: 说白了，云原生应用就是面向云平台开发的应用，可以方便的做弹性伸缩
 : 12factor：heroku提出，pivotal在此基础上提出了加强
 
 * 从三个方面理解 云原生应用
+云原生应用，简单说就是面向云的应用，或者叫云平台应用
+
 - *云* 提供资源
 - *平台* 提供服务
 - *应用* 提供价值
-.image cloud-native-microservice/cloud-native-1.png 400 _
+.image cloud-native-microservice/cloud-native-1.png 350 _
 
 * 总结: 微服务 VS 云原生
+
+  微服务 != 云原生
+
 - 微服务是一种架构实践
 - 云原生是一种应用开发方式
-- 微服务和云天生有很强的共生性
+- 微服务架构很适合开发云原生应用
 - 单体架构也可以是云原生应用
-: 一会的Demo演示中我们也可以看到这点
-  Microservices != Cloud Native
 .image cloud-native-microservice/microservice-cloud-native.png 300 _
+
+: 一会的Demo演示中我们也可以看到这点
 
 * Spring（Boot & Cloud）
 
-* Spring 平台：涉及到三个项目
-  https://spring.io/projects
+* Spring 家族：涉及到三个成员
+  https://spring.io/projects - Spring Framework/Boot/Cloud
 .image cloud-native-microservice/spring-framework-logo.png 140 _
 .image cloud-native-microservice/spring-boot-logo.png 140 _
 .image cloud-native-microservice/spring-cloud-cf.png 140 _
@@ -190,13 +196,14 @@ A JVM micro-framework for building microservices
 * Spring Cloud
 A toolset designed for building distributed systems
 
-.image cloud-native-microservice/spring-Cloud-look.png 400 _
+.image cloud-native-microservice/spring-cloud-look.png 400 _
   好比：蛋糕店
 # 列举Spring Cloud的功能
 
-
 * 放在一起感受一下
-Spring Cloud provides a way to turn Spring Boot microservices into distributed applications
+- Spring Boot构建在Spring Framework之上，用于构建微服务应用
+- Spring Cloud又在Spring Boot的基础上，用于构建分布式的云原生应用
+
 .image cloud-native-microservice/spring-look.png _ 900
 
 * Docker（容器 & 编排）
@@ -215,6 +222,7 @@ Spring Cloud provides a way to turn Spring Boot microservices into distributed a
 
 * Docker VS 集装箱
 .html cloud-native-microservice/docker-container.html
+# 类比传统的航运基础设施
   - 集装箱        =>     容器
   - 货物          =>     应用
   - 集装箱拖船     =>     云服务器
@@ -239,8 +247,6 @@ Spring Cloud provides a way to turn Spring Boot microservices into distributed a
   - 资源隔离
 - 这套系统我已经搭建好了，要不你再重新搭一遍？
   - 快速交付
-
-*Docker* 是一套以容器技术为核心的，用于应用的构建、分发和执行的体系和生态。
 
 * Docker 三个基本特性
 1. *不变* ：将操作系统、依赖库、应用程序等都打包在 Container 內，确保每次构建的 Container 都拥有同样的行为。
@@ -269,25 +275,48 @@ Spring Cloud provides a way to turn Spring Boot microservices into distributed a
 - 其他应用场景
   - 跑一次性/定时任务
   - 科学计算/大数据分析服务
-  - 金融和游戏等
 
-* Show Time（网易蜂巢）
-介绍Demo
-开源
-1. 单体架构
-2. 前后端分离架构
-3. 微服务架构
+*Docker* 是一套以容器技术为核心的，用于应用的构建、分发和执行的体系和生态。
 
-代码
-docker run
-docker compose
+* Demo演示（网易蜂巢）
+
+* Demo展示-单体架构
+.image cloud-native-microservice/Cloud-Native-App-1.png _ 600
+
+* Demo展示-SOA
+.image cloud-native-microservice/Cloud-Native-App-2.png _ 800
+
+* Demo展示-微服务架构
+.image cloud-native-microservice/Cloud-Native-App-3.png _ 800
 
 
+* Demo展示
 
-* 微服务架构实践 - 基于蜂巢的网易众筹平台
-: 这里也另外换一张图，顺带宣传一下众筹
+三个阶段：
+
+  1. 单体架构
+  2. SOA架构（前后端分离，服务化）
+  3. 微服务架构（服务注册于发现，负载均衡、反向代理、
+
+前置知识：
+
+  1. Intellij IDEA
+  2. Spring Boot/Cloud (Java)
+  3. Docker (Go)
+  4. 网易蜂巢
+
+蜂巢平台：
+  - http://c.163.com
+
+参考链接：
+  - https://g.hz.netease.com/cloudcomb/cloud-native-app-sample
+  - http://start.spring.io/
+
+
+* 公司项目实践 - 基于蜂巢的网易三拾众筹平台 - zc.163.com
 .image go-docker-microservice/zc.png 580 _
 
 * Q&A
-: 另外配一张图
-: .image go-docker-microservice/weixin-group.jpg 400 _
+.image cloud-native-microservice/qrcode_for_cloudcomb.jpg 400 _
+
+[[https://github.com/163yun][@github/163yun]]
