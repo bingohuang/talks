@@ -8,7 +8,7 @@
 2016.12.30
 
 hzhuangqingbin@corp.netease.com
-http://bingohuang.com
+http://talks.bingohuang.com
 
 * 自我介绍
 - 浙大 / 网易
@@ -290,7 +290,7 @@ A toolset designed for turning Spring Boot microservices into distributed applic
 所需环境：
 
   1. JDK（8）、Maven(3+杭研仓库)
-  2. Intellij IDEA
+  2. Intellij IDEA CE
   2. Spring Boot/Cloud (Java)
   3. Docker(Go)+Compose（Python）
   4. 网易蜂巢账号
@@ -310,13 +310,8 @@ A toolset designed for turning Spring Boot microservices into distributed applic
 * Demo展示-微服务架构
 .image cloud-native-microservice/Cloud-Native-App-3.png _ 800
 
-
-
-
-
 * 公司产品实践 - 基于网易蜂巢-网易三拾-众筹平台 - zc.163.com
 .image cloud-native-microservice/zc-platform.png 570 _
-
 
 * 公司产品实践 - 基于网易蜂巢-网易三拾-众筹平台 - zc.163.com
 
@@ -324,7 +319,6 @@ A toolset designed for turning Spring Boot microservices into distributed applic
 - 基于容器技术自动化构建、发布和配置流程，改进敏捷交付环境和产品快速迭代能力，及时有力的支撑业务。
   - 自10月27上线以来，三拾众筹系统（不包括基础服务）发布版本1710次，其中43次线上版本发布；发布线上配置33次，新系统设计到上线1 ~ 3周
 - 通过实践打磨的方案才能适合自己，开放性是选择云平台关键评估因素
-
 
 * Q&A
 .image cloud-native-microservice/qrcode_for_cloudcomb.jpg 400 _
