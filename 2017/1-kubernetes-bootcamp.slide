@@ -9,59 +9,89 @@ K8S 小组分享
 http://talks.bingohuang.com
 
 * 目录
-- K8S 训练营 - 这个可以好好讲讲
+- K8S Bootcamp
 
-- minikube - 在线
-  - 本地演示下，同时展现一下UI
-  - 简单介绍下架构
+- Minikube
 
-- kubeadm
+- Kubeadm
 
 
 * K8S 训练营
-- 6个部分
-- katacoda
+- http://k8s.bingohuang.com/
+- 基于官网的Interactive Tutorials：https://kubernetes.io/docs/tutorials/kubernetes-basics/
+- 6个模块：
+  1. 集群创建
+  2. 应用部署
+  3. 应用探索
+  4. 应用发布
+  5. 应用扩容
+  6. 应用升级
+- 3个部分
+  - 技能学习
+  - 实战演练：katacoda
+  - 过关测试
 
-* Minikube - 这个是个好东西
-- http://blog.kubernetes.io/2016/07/minikube-easily-run-kubernetes-locally.html
+* Minikube - 最简单的单机体验K8S工具
+- 开源地址：http://github.com/kubernetes/minikube
+  - 一个单独可执行文件，类似于 docker-machine
+  - 构建在 Docker 的 libmachine 和 RedSpread 的 localkube 之上
+- 在线安装：https://github.com/kubernetes/minikube/releases
+  - curl -Lo minikube https://storage.googleapis.com/minikube/releases/v0.16.0/minikube-darwin-amd64 && chmod +x minikube && sudo mv minikube /usr/local/bin/
+- 需要安装 VirtualBox https://www.virtualbox.org/
+# http://blog.kubernetes.io/2016/07/minikube-easily-run-kubernetes-locally.html
 
+* Minikube - 操作
+- minikube version
+- minikube get-k8s-versions
+- minikube docker-env
+  - eval $(minikube docker-env)
+- minikube start/status/ip
+- kubectl version
+  - kubectl config use-context minikube
 
-* Kubeadm - 这里就有很多坑
-https://kubernetes.io/docs/getting-started-guides/kubeadm/
+* Minikube - 操作
+- kubectl run hello-minikube --image=gcr.io/google_containers/echoserver:1.4 --port=8080
+- kubectl expose deployment hello-minikube --type=NodePort
+- kubectl get pod
+- minikube service hello-minikube --url
+  - curl $(minikube service hello-minikube --url)
+- minikube dashboard
+- minikube stop/delete
 
-* 环境
-- 在合作云上试了下，发现网络不可行
-- 最终决定在本机用virtualbox来做
+* Kubeadm - 安装过程坑不少
+- https://kubernetes.io/docs/getting-started-guides/kubeadm/ - Alpha 版本
+- 仅支持在 Ubuntu 16.04+, CentOS 7 和 HypriotOS v1.0.1+
+- 官方步骤：
+  - 安装二进制：安装包从哪里来？
+    - 自己编译：https://github.com/kubernetes/release
+    - 第三方源：https://yum.mritd.me
+  - 初始化集群：镜像从哪里来？
+    - 利用国外服务器
+    - Docker hub 自动构建功能
+    - Docker hub 现成镜像
+  - 安装网络：DNS可能还是启动不正常，官方issue可解决
+  - 添加节点：还是可能网络问题
+- 基于 vagrant + virtualbox + centos7 - 不支持在合作云上的云主机部署（网络问题）
+  - gitlab: https://g.hz.netease.com/k8s/kubeadm-vagrant
+  - vagrant：https://www.vagrantup.com/ （box预先下载下来）
+  - http://note.youdao.com/noteshare?id=677f825787bc1a10c6c3366db279fbbf
 
-* 步骤
-- 配置虚拟机
-  - OS：CentOS
-  - hostname
-  - ssh
-  - private_network
-  - public_network
-  - cpus/memory
-- 安装 Docker
-  - 配置docker官方源
-  - 配置docker镜像加速器
-  - 启动
-- 安装 K8S 相关组件
-  - 配置源
-  - 拉镜像：通过脚本
-  - 启动kubelet
-- Kubeadm
-- 演示一个demo
-- 去掉ansible
+* Kubeadm - 总结下坑
+- 操作系统问题
+- 安装包问题
+- 镜像问题
+- 网络问题
+- DNS 解析错误
+- etcd 单点问题
+- reset要小心
+- 有兴趣的同学可以继续踩踩坑
+- 未来规划：
+  - http://blog.kubernetes.io/2017/01/stronger-foundation-for-creating-and-managing-kubernetes-clusters.html
 
-
-* 遇到了多少坑
-- 参照已有的两篇文章
-- DNS的问题最多
-
-* K8S 1.5 - 简要介绍下
-  http://blog.kubernetes.io/2016/12/five-days-of-kubernetes-1.5.html
-- Windows Container
-- Cluster Federation
-- CRI
-- StatefulSet
-- OpenAPI
+# * K8S 1.5 - 简要介绍下
+#   http://blog.kubernetes.io/2016/12/five-days-of-kubernetes-1.5.html
+# - Windows Container
+# - Cluster Federation
+# - CRI
+# - StatefulSet
+# - OpenAPI
