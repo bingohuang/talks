@@ -1,4 +1,4 @@
-# Go talks
+# Bingo talks
 
 该 slide 由 `go present` 驱动。
 
