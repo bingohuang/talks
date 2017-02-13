@@ -92,7 +92,7 @@ http://bingohuang.com
 ** I. 基准代码
 *Factor解说*：
 
-- 一个应用（App），一份基准代码（Codebase），多份部署（deploy）
+- 一个应用（App），只有一份基准代码（Codebase），可以多份部署（deploy）
 
 意思就是说一个应用只有一份用来跟踪所有修订版本的代码仓库，基准代码和应用之间总是保持一一对应的关系：
 
@@ -113,3 +113,64 @@ http://bingohuang.com
   $ git push -u origin master
 
 图：TODO
+
+** II. 依赖
+*Factor解说*：
+
+- 应用程序必须显式声明依赖关系，即：通过 *依赖清单* 声明所有依赖项，通过 *依赖隔离* 工具确保程序不会调用系统中存在但清单中未声明的依赖项。
+
+*Factor实践*：
+
+- package.json 就是我们的 *依赖清单*，所有应用程序的依赖都声明在此。
+  {
+  "name": "12factor-app",
+  "private": true,
+  "version": "0.0.0",
+  "description": "a Sails application",
+  "keywords": [],
+  "dependencies": {
+    "ejs": "2.3.4",
+    "grunt": "1.0.1",
+    "grunt-contrib-clean": "1.0.0",
+    "grunt-contrib-coffee": "1.0.0",
+    "grunt-contrib-concat": "1.0.1",
+    "grunt-contrib-copy": "1.0.0",
+    "grunt-contrib-cssmin": "1.0.1",
+    "grunt-contrib-jst": "1.0.0",
+    "grunt-contrib-less": "1.3.0",
+    "grunt-contrib-uglify": "1.0.1",
+    "grunt-contrib-watch": "1.0.0",
+    "grunt-sails-linker": "~0.10.1",
+    "grunt-sync": "0.5.2",
+    "include-all": "^1.0.0",
+    "rc": "1.0.1",
+    "sails": "~0.12.11",
+    "sails-disk": "~0.10.9"
+  },
+  "scripts": {
+    "debug": "node debug app.js",
+    "start": "node app.js"
+  },
+  "main": "app.js",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/bingo/12factor-app.git"
+  },
+  "author": "bingo",
+  "license": ""
+  }
+
+ # 接下来我们加入 mongodb 的库依赖（后续会用到），只需要执行：
+  npm install sails-mongo --save
+
+ # 同时 package.json 中会有相应的变更
+  {
+    ...
+    "dependencies": {
+      ...
+      "sails-mongo": "^0.12.2"  //最新加入的依赖
+    }
+    ...
+  }
+
+- node_modules 文件夹就作为 *依赖隔离*，所有应用程序需要用到的库都安装在这里，并且和系统的库是隔离的
