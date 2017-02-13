@@ -1,0 +1,115 @@
+云原生时代下的12-factor应用与实践
+
+黄庆兵
+网易云 • 基础服务
+http://c.163.com
+http://bingohuang.com
+
+* 简介
+在云的时代，应用会更多的迁移到云端，基于云的架构设计和开发模式需要一套全新的理念去承载，于是云原生思想应运而生，而针对云原生应用开发的最佳实践原则，12-Factor脱颖而出，同时也带来了新的解读。本次分享将介绍在Cloud Native时代下，结合Docker等技术，如何一一实践12-Factor原则，并能应用在当代的云平台中。
+
+* 云原生
+首先先从我的理解，来简单介绍下云原生这个概念。
+所谓云原生（Cloud Native），通常又表达为云原生应用，简单的说就是面向云的应用，这表示我们应该面向云（平台）来设计我们的应用。网易三拾众筹的架构师陈晓辉，还为它起了一个小清新的名字——向云而生，我觉得非常贴切，再通俗一点讲，也可以叫做“云平台应用”，并用下面这幅图一一拆解，可能更直白的理解。
+
+.image cloud-native-12factor/cloud-native.png 300 _
+
+- IaaS看做基础 *云* 设施，用来提供各种基础资源
+- PaaS作为开发 *平台*，用来提供各种平台服务
+- SaaS交付 *应用* 或服务，直面用户，提供应用价值
+
+可见云原生应用（又叫云平台应用）并非一个空中楼阁，而是构建在一层层服务之上的。
+
+* 12-Factor
+12-Factor 全称叫 The Twelve-Factor App，和 Cloud-Native 有异曲同工之处。其中文翻译不少，我觉得“十二要素”或“十二原则”比较贴切，它定义了一个优雅的互联网应用在设计过程中，需要遵循的一些基本原则。
+十二要素应用宣言，是由Heroku创始人Adam Wiggins首次提出并开源，并由众多经验丰富的开发者共同完善，这综合了他们关于SaaS应用几乎所有的经验和智慧，是开发此类应用的理想实践标准。
+
+配图：TODO
+
+在接下来的 *应用和实践* 当中，我们会一一实践每条原则。
+
+12-Factor的多语言版本发布在其官网上，为了方便大家阅读和下载，我将其转化了为 GitBook 格式，并架设在网易蜂巢平台，同时开源在 GitHub
+
+- 在线阅读地址：http://12.bingohuang.com
+- 原文开源地址：
+- pdf/epub下载地址：
+
+* 应用与实践
+
+既然12-factor作为SaaS开发的最佳实践原则，当然脱离不了实践，接下来我们就来设计一款云原生应用，并依照12-factor，一步步验证和升级我们的应用。从中，我们将讲解每个应用的要点，以及对我们应用的意义。最后，你将更深刻的理解12-factor的每条原则。
+
+** 0. 应用准备
+基于 Node.js ，开发一个 Web 应用
+
+- 下载安装 Node.js (包含 npm)：https://nodejs.org/zh-cn/download/
+- 注：Node 版本只要 4.4 以上就够用，我这里对应用的是：
+  node: v5.10.1
+  npm: 3.8.3
+
+基于 Sails，暴露一系列 CRUD 的 HTTP Rest API
+
+- 安装 Sails 框架：npm install sails -g
+- 注：Sails 是类似 Rails 框架，用于快速开发 Node.js 应用：http://sailsjs.com/
+
+基于 Docker，作为我们打包、发布、运行的工作
+
+- 安装 Docker：https://docs.docker.com/engine/installation/
+- 注：这里不得不说，Docker非常适合 云原生应用和 12-factor 理念
+
+初始化一个项目
+
+  $ sails new 12factor-app
+  info: Created a new Sails app `12factor-app`!
+  $ cd 12factor-app
+  $ sails generate api user
+  info: Created a new api!
+  $ npm start
+
+本地调试接口
+
+- 浏览器中访问：TODO：部署在蜂巢上，在线试用
+  http://localhost:1337
+- 本地curl命令：
+  $ curl http://localhost:1337/user
+  []
+  $ curl -XPOST http://localhost:1337/user?name=bingo
+  {
+    "name": "bingo",
+    "createdAt": "2017-02-13T06:13:53.791Z",
+    "updatedAt": "2017-02-13T06:13:53.791Z",
+    "id": 1
+  }
+  $ curl http://localhost:1337/user
+  [
+    {
+      "name": "bingo",
+      "createdAt": "2017-02-13T06:13:53.791Z",
+      "updatedAt": "2017-02-13T06:13:53.791Z",
+      "id": 1
+    }
+  ]
+
+** I. 基准代码
+*Factor解说*：
+
+- 一个应用（App），一份基准代码（Codebase），多份部署（deploy）
+
+意思就是说一个应用只有一份用来跟踪所有修订版本的代码仓库，基准代码和应用之间总是保持一一对应的关系：
+
+- 一旦有多个基准代码，就不能称为一个应用，而是一个分布式系统。分布式系统中的每一个组件都是一个应用，每一个应用可以分别使用 12-Factor 进行开发。
+- 多个应用共享一份基准代码是有悖于 12-Factor 原则的。解决方案是将共享的代码拆分为独立的类库，然后使用 依赖管理（第二个原则） 策略去加载它们。
+- 多份 部署 相当于是运行了该应用的多个实例，比如开发环境一个实例，测试环境、生产环境都有一个实例
+
+*Factor实践*：
+
+- 使用Git作为应用的版本管理系统，使用GitHub我们的在线仓库
+- 在刚刚创建好的应用目录下执行：
+
+  $ echo "# 12factor-app" >> README.md
+  $ git init
+  $ git add .
+  $ git commit -m "first commit"
+  $ git remote add origin git@github.com:bingohuang/12factor-app.git
+  $ git push -u origin master
+
+图：TODO
