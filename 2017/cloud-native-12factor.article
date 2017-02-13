@@ -174,7 +174,7 @@ http://bingohuang.com
 
 - node_modules 文件夹就作为 *依赖隔离*，所有应用程序需要用到的库都安装在这里，并且和系统的库是隔离的
 
-* III. 配置
+** III. 配置
 *Factor解说*：
 
 - 推荐将应用的配置存储于 *环境变量* 中，保证配置排除在代码之外
@@ -199,3 +199,95 @@ http://bingohuang.com
     connection: mongo,
     migrate: 'safe'
   };
+
+** IV. 后端服务
+*Factor解说*：
+
+- 把后端服务当作附加资源
+
+*Factor实践*：
+
+- Database, Message Queue, Logs, API, ...
+
+** V. 构建，发布，运行
+*Factor解说*：
+
+- 严格分离构建和运行
+
+*Factor实践*：
+
+- Dockerfile
+- docker-compose
+
+** VI. 进程
+*Factor解说*：
+
+- 以一个或多个无状态进程运行应用
+
+*Factor实践*：
+
+- session
+
+** VII. 端口绑定
+*Factor解说*：
+
+- 把后端服务当作附加资源
+
+*Factor实践*：
+
+- ports
+
+** VIII. 并发
+*Factor解说*：
+
+- 通过进程模型进行扩展
+
+*Factor实践*：
+
+- web server\worker\cron
+- 易扩展
+
+** IX. 易处理
+*Factor解说*：
+
+- 快速启动和优雅终止可最大化健壮性
+
+*Factor实践*：
+
+- kafka
+
+** X. 环境等价
+*Factor解说*：
+
+- 尽可能的保持开发，预发布，线上环境相同
+
+*Factor实践*：
+
+- docker-compose
+
+** XI. 日志
+*Factor解说*：
+
+- 把日志当作事件流
+
+*Factor实践*：
+
+- docker log service
+
+** XII. 管理进程
+*Factor解说*：
+
+- 后台管理任务当作一次性进程运行
+- 统一的管理入口
+
+*Factor实践*：
+
+- docker-compose
+- adnin service
+- docker exec -ti
+
+** ∞. 蜂巢实践
+- 创建mongo有状态服务
+- 创建Sails无状态服务
+- 设置环境变量
+- 部署
