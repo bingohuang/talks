@@ -119,7 +119,6 @@ http://bingohuang.com
 
 - 应用程序必须显式声明依赖关系，即：通过 *依赖清单* 声明所有依赖项，通过 *依赖隔离* 工具确保程序不会调用系统中存在但清单中未声明的依赖项。
 
-*Factor实践*：
 
 - package.json 就是我们的 *依赖清单*，所有应用程序的依赖都声明在此。
   {
@@ -174,3 +173,29 @@ http://bingohuang.com
   }
 
 - node_modules 文件夹就作为 *依赖隔离*，所有应用程序需要用到的库都安装在这里，并且和系统的库是隔离的
+
+* III. 配置
+*Factor解说*：
+
+- 推荐将应用的配置存储于 *环境变量* 中，保证配置排除在代码之外
+  - 环境变量可以非常方便地在不同的部署间做修改，却不动一行代码
+  - 与配置文件不同，不小心把它们签入代码库的概率微乎其微
+  - 与一些传统的解决配置问题的机制（比如 Java 的属性配置文件）相比，环境变量与语言和系统无关
+  - 存储在环境变量中的另一个好处是，方便和Docker配合使用
+
+- 判断一个应用是否正确地将配置排除在代码之外，一个简单的方法是看该应用可以立刻开源，而不用担心会暴露任何敏感的信息：）
+
+*Factor实践*：
+
+- 在应用程序的 _config/connections.js_ 文件中，我们使用 MONGO_URL 这个环境变量来定义 _mongo_ 的连接方式
+  module.exports.connections = {
+    mongo: {
+       adapter: 'sails-mongo',
+       url: process.env.MONGO_URL
+    }
+  };
+- 在 文件中，指定module所使用的连接
+  module.exports.models = {
+    connection: mongo,
+    migrate: 'safe'
+  };
