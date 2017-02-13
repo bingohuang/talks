@@ -43,8 +43,7 @@ http://bingohuang.com
 
 - 下载安装 Node.js (包含 npm)：https://nodejs.org/zh-cn/download/
 - 注：Node 版本只要 4.4 以上就够用，我这里对应用的是：
-  node: v5.10.1
-  npm: 3.8.3
+  node: v5.12.0
 
 基于 Sails，暴露一系列 CRUD 的 HTTP Rest API
 
@@ -199,6 +198,8 @@ http://bingohuang.com
     connection: mongo,
     migrate: 'safe'
   };
+- 如果你在本地起了一个mongodb测试服务，就可以用这个命令验证应用是否正常配置
+  MONGO_URL=mongodb://localhost:27017/12factor-app npm start
 
 ** IV. 后端服务
 *Factor解说*：
@@ -286,8 +287,11 @@ http://bingohuang.com
 - adnin service
 - docker exec -ti
 
-** ∞. 蜂巢实践
+** ∞. 蜂巢实践 - 怎么说
 - 创建mongo有状态服务
 - 创建Sails无状态服务
 - 设置环境变量
 - 部署
+
+* 总结
+至此，12-Factor一一实践完毕，希望对你理解12-Factor有所帮助。在云原生时代，12-Factor具有强大的生命力，每一条原则都是应用开发的珠玑，而且每一个原则也不是一沉不变的，随着新的理念出现，原有的Factor会得到延伸和发展，也会出现新的原则，有兴趣的同学，不妨读一读《Beyond the 12  Factor App》这本书，还会有更大的收获。
