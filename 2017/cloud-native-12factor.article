@@ -206,18 +206,37 @@ http://bingohuang.com
 ** IV. 后端服务
 *Factor解说*：
 
-- 把后端服务当作附加资源
+- 把后端服务(backing services)当作附加资源
+- 后端服务是指程序运行所需要的通过网络调用的各种服务，如数据库（MySQL），消息/队列系统（RabbitMQ），SMTP 邮件发送服务（ Postfix），以及缓存系统（Memcached）等
+- 除了本地服务之外，应用程序有可能使用了第三方发布和管理的服务，如 SMTP（例如 Postmark），数据收集服务，数据存储服务（如 Amazon S3），以及使用 API 访问的服务（例如 Twitter）等
+- 12-Factor 应用不会区别对待本地或第三方服务。
+- 对应用程序而言，两种都是附加资源，通过一个 url 或是其他存储在 配置 中的设置来获取数据，仅需修改配置中的资源地址即可。
+
+图：TODO
+
+详情: http://localhost:4000/zh_cn/backing-services.html
 
 *Factor实践*：
 
-- Database, Message Queue, Logs, API, ...
+- 对我们的应用程序来说，用到的后端服务就是 MongoDB 数据库。我们正是通过 MONGO_URL 来传递 MongoDB 的资源地址，从而实现了后端服务和应用程序的解耦。
+- 如果当前这个 MongoDB 实例出问题了，我们可以通过设置 MONGO_URL 这个环境变量，很方便的切换一个新的实例
 
 ** V. 构建，发布，运行
 *Factor解说*：
 
-- 严格分离构建和运行
+- 12-facfor 应用严格区分构建，发布，运行这三个步骤
+- Docker 的 Build, Ship and Run 理念就很好的契合了这条原则
+- 发布的版本就像一本只能追加的账本，一旦发布就不可修改，任何的变动都应该产生一个新的发布版本
+- 直接修改处于运行状态的代码是非常不可取的做法，因为这些修改很难再同步回构建步骤
+
+图：
 
 *Factor实践*：
+
+我们将隆重推出 Docker，它将适合在整个构建、发布和运行流程。
+
+构建：
+- 添加 Dockerfile 文件
 
 - Dockerfile
 - docker-compose
