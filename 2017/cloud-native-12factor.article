@@ -47,26 +47,29 @@ http://bingohuang.com
 
 * 应用与实践
 
-既然12-factor作为SaaS开发的最佳实践原则，当然脱离不了实践，接下来我们就来设计一款云原生应用，并依照12-factor，一步步验证和升级我们的应用。从中，我们将讲解每个应用的要点，以及对我们应用的意义。最后，你将更深刻的理解12-factor的每条原则。
+既然12-factor作为SaaS开发的最佳实践原则，当然脱离不了实践，接下来我们就来设计一款云原生应用，并依照12-factor，一步步验证和升级我们的应用。从中，我们将讲解每个Factor的要点，以及如何在我们的应用中实践Factor。
 
 ** 0. 应用准备
-基于 Node.js ，开发一个 Web 应用
+这是一个面向云平台设计的简单Web应用，它将暴露一个HTTP REST风格的接口，可以实现对 user 的增删改查功能，将用到以下技术栈：
+
+1. 基于 Node.js，用它的人真是越来越多
 
 - 下载安装 Node.js (包含 npm)：https://nodejs.org/zh-cn/download/
 - 注：Node 版本只要 4.4 以上就够用，我这里对应用的是：
   node: v5.12.0
 
-基于 Sails，暴露一系列 CRUD 的 HTTP Rest API
+2. 基于 Sails，类似 Rails 框架，用于快速开发 Node.js 应用：http://sailsjs.com/
 
-- 安装 Sails 框架：npm install sails -g
-- 注：Sails 是类似 Rails 框架，用于快速开发 Node.js 应用：http://sailsjs.com/
+- 安装 Sails 框架：
+  npm install sails -g
 
-基于 Docker，作为我们打包、发布、运行的工具
+3. 基于 mongo 3.2 ：https://docs.mongodb.org/manual/installation/
+
+4. 基于 Docker，非常契合12-Factor理念，作为我们打包、发布、运行的工具
 
 - 安装 Docker：https://docs.docker.com/engine/installation/
-- 注：这里不得不说，Docker非常适合 云原生应用和 12-factor 理念
 
-初始化一个项目
+5. 初始化一个项目并运行
 
   $ sails new 12factor-app
   info: Created a new Sails app `12factor-app`!
@@ -77,29 +80,52 @@ http://bingohuang.com
 
 本地调试接口
 
-- 浏览器中访问：TODO：部署在蜂巢上，在线试用
+- 控制台输出正常，在浏览器中访问以下链接，即可看到Sails应用的首页
   http://localhost:1337
-- 本地curl命令：
-  $ curl http://localhost:1337/user
-  []
+- 本地curl命令调试：
+
+1. 增加一个新用户
+
   $ curl -XPOST http://localhost:1337/user?name=bingo
   {
     "name": "bingo",
     "createdAt": "2017-02-13T06:13:53.791Z",
     "updatedAt": "2017-02-13T06:13:53.791Z",
-    "id": 1
+    "id": 58a41d952f53291200b9e065
   }
+
+2. 获取用户列表
+
   $ curl http://localhost:1337/user
   [
     {
       "name": "bingo",
       "createdAt": "2017-02-13T06:13:53.791Z",
       "updatedAt": "2017-02-13T06:13:53.791Z",
-      "id": 1
+      "id": 58a41d952f53291200b9e065
     }
   ]
-- 在线curl命令：
-  curl -XPOST http://59.111.110.95:1337/user?name=bingo
+
+3. 修改一个用户
+
+  curl -XPUT http://localhost:1337/user/58a41d952f53291200b9e065?name=bingohuang
+  {
+    "name": "bingohuang",
+    "createdAt": "2017-02-13T06:13:53.791Z",
+    "updatedAt": "2017-02-13T06:14:13.460Z",
+    "id": 58a41d952f53291200b9e065
+  }
+
+4. 删除一个用户
+
+  curl -XDELETE http://localhost:1337/user/58a41d952f53291200b9e065
+
+注：我已经将该应用部署到了网易蜂巢在线平台，可以通过以下命令体验：
+
+  # 注册你自己
+  curl -XPOST http://59.111.110.95:1337/user?name=yourname
+  # 查看所有注册过的用户
+  curl http://59.111.110.95:1337/user
 
 ** I. 基准代码
 *Factor解说*：
