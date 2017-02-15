@@ -50,7 +50,7 @@ http://bingohuang.com
 - 安装 Sails 框架：npm install sails -g
 - 注：Sails 是类似 Rails 框架，用于快速开发 Node.js 应用：http://sailsjs.com/
 
-基于 Docker，作为我们打包、发布、运行的工作
+基于 Docker，作为我们打包、发布、运行的工具
 
 - 安装 Docker：https://docs.docker.com/engine/installation/
 - 注：这里不得不说，Docker非常适合 云原生应用和 12-factor 理念
@@ -87,6 +87,8 @@ http://bingohuang.com
       "id": 1
     }
   ]
+- 在线curl命令：
+  curl -XPOST http://59.111.110.95:1337/user?name=bingo
 
 ** I. 基准代码
 *Factor解说*：
