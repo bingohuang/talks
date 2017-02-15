@@ -78,6 +78,8 @@ http://bingohuang.com
   info: Created a new api!
   $ npm start
 
+注：本次分享源代码将在分享后提供给大家
+
 本地调试接口
 
 - 控制台输出正常，在浏览器中访问以下链接，即可看到Sails应用的首页
@@ -127,6 +129,8 @@ http://bingohuang.com
   # 查看所有注册过的用户
   curl http://59.111.110.95:1337/user
 
+*接下来开始就让我们开始一一实践12-Factor中的每条原则吧，每个原则中我们将分为Factor解说和Factor实践两块。*
+
 ** I. 基准代码
 *Factor解说*：
 
@@ -137,6 +141,8 @@ http://bingohuang.com
 - 一旦有多个基准代码，就不能称为一个应用，而是一个分布式系统。分布式系统中的每一个组件都是一个应用，每一个应用可以分别使用 12-Factor 进行开发。
 - 多个应用共享一份基准代码是有悖于 12-Factor 原则的。解决方案是将共享的代码拆分为独立的类库，然后使用 依赖管理（第二个原则） 策略去加载它们。
 - 多份 部署 相当于是运行了该应用的多个实例，比如开发环境一个实例，测试环境、生产环境都有一个实例
+
+.image cloud-native-12factor/codebase-deploys.png 300 _
 
 *Factor实践*：
 
@@ -149,8 +155,6 @@ http://bingohuang.com
   $ git commit -m "first commit"
   $ git remote add origin git@github.com:bingohuang/12factor-app.git
   $ git push -u origin master
-
-图：TODO
 
 ** II. 依赖
 *Factor解说*：
@@ -249,9 +253,7 @@ http://bingohuang.com
 - 12-Factor 应用不会区别对待本地或第三方服务。
 - 对应用程序而言，两种都是附加资源，通过一个 url 或是其他存储在 配置 中的设置来获取数据，仅需修改配置中的资源地址即可。
 
-图：TODO
-
-详情: http://localhost:4000/zh_cn/backing-services.html
+.image cloud-native-12factor/attached-resources.png 300 _
 
 *Factor实践*：
 
@@ -266,13 +268,13 @@ http://bingohuang.com
 - 发布的版本就像一本只能追加的账本，一旦发布就不可修改，任何的变动都应该产生一个新的发布版本
 - 直接修改处于运行状态的代码是非常不可取的做法，因为这些修改很难再同步回构建步骤
 
-图：
+.image cloud-native-12factor/release.png 250 _
 
 *Factor实践*：
 
 我们将隆重推出 Docker及其组件，它将适合在整个构建、发布和运行流程，我们也将从这三个方面进行讲解。
 
-构建：
+*构建*：
 
 - 书写构建脚本：Dockerfile
   FROM hub.c.163.com/library/node:5.12.0
@@ -298,7 +300,7 @@ http://bingohuang.com
 - Docker 推送：可以将其 push 到指定的镜像仓库，比如网易蜂巢的镜像仓库
   docker push hub.c.163.com/bingohuang/12factor-app:1.0
 
-发布：
+*发布*：
 
 - 书写发布脚本：docker-compose.yml
   version: '2'
@@ -324,14 +326,14 @@ http://bingohuang.com
 - 以上在已有构建的基础上，定义了一个发布过程，并将配置（MONGO_URL）通过环境变量注入进去
   MONGO_URL=mongodb://mongo/12factor-app
 
-运行：
+*运行*：
 
 - 可以通过Docker Compose在本地运行，也可以通过云平台来在线编排（网易蜂巢即将支持服务编排功能）
   docker-compose up -d
 - 继而查看日志
   docker-compose logs -f
 
-注：为了方便不熟悉docker和docker-compose命令的人快速运行程序和本地调试，我在源代码中还提供了 docker.sh 脚本，方便构建、发布和运行应用。
+注：为了方便不熟悉docker和docker-compose命令的人快速运行程序和本地调试，我在源代码中还提供了 *docker.sh* 脚本，方便构建、发布和运行应用。
 
 ** VI. 进程
 *Factor解说*：
@@ -346,6 +348,7 @@ http://bingohuang.com
   - 错误容忍
 
 *Factor实践*：
+
 - 虽然这是一个简单的demo应用，但查看docker容器中的运行进程，发现也有4个进程在运行，其中 `npm` 也就是我们的启动进程
   $ docker  exec eaaa922abf08 ps aux
   USER       PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
@@ -355,7 +358,10 @@ http://bingohuang.com
   root        27  1.1  3.7 962884 77076 ?        Sl   18:22   0:01 grunt
 - 我们 的应用进程是无状态的，持久化的数据都存储在了后端服务 MongoDB 当中
 
+
+*到此，我们已经分享完了6个Factor，并且都成功实践在了我们的应用上，Yes！*
 .image cloud-native-12factor/6-factor-app-done.jpg 300 _
+*接下来，我们继续分享和实践后续的6个Factor。*
 
 ** VII. 端口绑定
 *Factor解说*：
@@ -377,7 +383,7 @@ http://bingohuang.com
 - 在 12-factor 应用中，进程是一等公民。
 - 12-Factor 应用的进程所具备的无共享，水平分区的特性
 - 上述进程模型会在系统急需扩展时大放异彩，意味着添加并发会变得简单而稳妥
-- 举例来说，HTTP 请求可以交给 web 进程来处理，而常驻的后台工作则交由 worker 进程负责，定时任务交由 clock 来处理，如下图：
+- 举例来说，HTTP 请求可以交给 web 进程来处理，而常驻的后台工作则交由 worker 进程负责，定时任务交由 clock 来处理，如下图所示：
 .image cloud-native-12factor/process-types.png 400 _
 
 *Factor实践*：
@@ -392,19 +398,19 @@ http://bingohuang.com
 - 进程应当追求最小启动时间，可以提供了更敏捷的发布以及扩展过程
 - 进程一旦接收终止信号（SIGTERM） 就会优雅的终止
 - 在云平台的基础上，可以做到更好的易处理
+- 如下图所示，就是一个优雅的应用启动和终止流程
 
-图：TODO
+.image cloud-native-12factor/disposability.png 600 _
 
 *Factor实践*：
 
-- Docker 的轻量级，就非常适合来做快速启动和优雅终止，非常适合该实践原则
-- 应用是无状态的，在其之上，再架设一个负载均衡，可以使应用的升级不对用户产品影响
-- 构建在网易蜂巢容器云平台之上，可以优雅的处理进程的启动和停止。
+- Docker 先天的轻量级，就非常适合来做快速启动和优雅终止，我认为使用docker是该原则很好的实践
+- 应用是无状态的，在其之上，再架设一个负载均衡，可以使应用的升级不对用户产品影响。
+- 构建在容器云平台之上，可以优雅的处理进程的启动和停止。
 
 ** X. 环境等价
 *Factor解说*：
 
-- 尽可能的保持开发，预发布，线上环境相同
 - 12-Factor 应用想要做到持续部署就必须缩小本地与线上差异，包括以下三种差异：
   缩小时间差异：开发人员可以几小时，甚至几分钟就部署代码
   缩小人员差异：开发人员不只要编写代码，更应该密切参与部署过程以及代码在线上的表现
