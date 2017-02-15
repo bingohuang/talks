@@ -299,11 +299,24 @@ http://bingohuang.com
 ** VI. 进程
 *Factor解说*：
 
-- 以一个或多个无状态进程运行应用
+- 运行环境中，应用程序通常是以一个和多个 进程 运行的。
+  最简单的场景中，代码是一个独立的脚本，运行环境是开发人员自己的笔记本电脑，进程由一条命令行（例如python my_script.py）。另外一个极端情况是，复杂的应用可能会使用很多 进程类型 ，也就是零个或多个进程实例。
+- 12-Factor 应用的进程必须无状态且无共享。
+  任何需要持久化的数据都要存储在 后端服务 内，比如数据库。
+  Session 中的数据应该保存在诸如 Memcached 或 Redis 这样的带有过期时间的缓存中。
+- 这么做是为了：
+  - 可扩展性
+  - 错误容忍
 
 *Factor实践*：
-
-- session
+- 虽然这是一个简单的demo应用，但查看docker容器中的运行进程，发现也有4个进程在运行，其中 `npm` 也就是我们的启动进程
+  $ docker  exec eaaa922abf08 ps aux
+  USER       PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
+  root         1  0.2  2.0 1076204 42024 ?       Ssl  18:22   0:00 npm
+  root        17  0.0  0.0   4340   724 ?        S    18:22   0:00 sh -c node app.js
+  root        18  0.9  4.5 1253808 93808 ?       Sl   18:22   0:01 node app.js
+  root        27  1.1  3.7 962884 77076 ?        Sl   18:22   0:01 grunt
+- 我们 的应用进程是无状态的，持久化的数据都存储在了后端服务 MongoDB 当中
 
 ** VII. 端口绑定
 *Factor解说*：
