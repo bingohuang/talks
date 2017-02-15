@@ -337,12 +337,15 @@ http://bingohuang.com
 ** VIII. 并发
 *Factor解说*：
 
-- 通过进程模型进行扩展
+- 在 12-factor 应用中，进程是一等公民。
+- 12-Factor 应用的进程所具备的无共享，水平分区的特性
+- 上述进程模型会在系统急需扩展时大放异彩，意味着添加并发会变得简单而稳妥
+- 举例来说，HTTP 请求可以交给 web 进程来处理，而常驻的后台工作则交由 worker 进程负责，定时任务交由 clock 来处理，如下图：
+.image cloud-native-12factor/process-types.png 400 _
 
 *Factor实践*：
 
-- web server\worker\cron
-- 易扩展
+- 如第六个要素所描述，我们的应用拥有多个进程，最主要的是 Node.js 的http server进程，进程都是无状态并无共享，所以可以非常容易的做水平扩展。
 
 ** IX. 易处理
 *Factor解说*：
