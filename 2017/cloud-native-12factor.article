@@ -386,11 +386,27 @@ http://bingohuang.com
 ** XI. 日志
 *Factor解说*：
 
-- 把日志当作事件流
+- 日志使得应用程序运行的动作变得透明。
+- 日志应该是事件流的汇总，将所有运行中进程和后端服务的输出流按照时间顺序收集起来。
+- 12-factor应用本身从不考虑存储自己的输出流。相反，每一个运行的进程都会直接的标准输出（stdout）事件流。
+  开发环境中，开发人员可以通过这些数据流，实时在终端看到应用的活动
+  在预发布或线上部署中，每个进程的输出流由运行环境截获，并将其他输出流整理在一起，然后一并发送给一个或多个最终的处理程序，用于查看或是长期存档。
 
 *Factor实践*：
 
-- docker log service
+- 许多服务都能提供日志集中管理，比如ELK、Splunk、Logentries，而且大多数都能方便的和Docker集成在一起
+- 这里以 Logentries 为例来为应用集成日志服务，需要在 docker-compose 文件中加入 log 服务，如下：
+  log:
+    command: '-t a80277ea-4233-7785203ae328'
+    image: 'logentries/docker-logentries’
+    restart: always
+    tags:
+      - development
+    volumes:
+      - '/var/run/docker.sock:/var/run/docker.sock'
+- 一个典型的 Logentries 面板界面如下：
+
+.image cloud-native-12factor/logentries.png 300 _
 
 ** XII. 管理进程
 *Factor解说*：
