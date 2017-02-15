@@ -233,13 +233,68 @@ http://bingohuang.com
 
 *Factor实践*：
 
-我们将隆重推出 Docker，它将适合在整个构建、发布和运行流程。
+我们将隆重推出 Docker及其组件，它将适合在整个构建、发布和运行流程，我们也将从这三个方面进行讲解。
 
 构建：
-- 添加 Dockerfile 文件
 
-- Dockerfile
-- docker-compose
+- 书写构建脚本：Dockerfile
+  FROM hub.c.163.com/library/node:5.12.0
+  MAINTAINER bingohuang <me@bingohuang.com>
+  # 拷贝依赖清单
+  COPY package.json /tmp/package.json
+  # 安装依赖包
+  RUN cd /tmp && npm install --registry=https://registry.npm.taobao.org
+  # 将依赖包拷贝到应用程序目录下
+  RUN mkdir /app && cp -a /tmp/node_modules /app/
+  # 更改工作目录
+  WORKDIR /app
+  # 拷贝应用程序代码
+  COPY . /app
+  # 设置应用启动端口
+  ENV PORT 1337
+  # 暴露应用程序端口
+  EXPOSE 1337
+  # 启动应用
+  CMD ["npm","start"]
+- Docker 构建
+  $ docker build -t message-app:v1.0 .
+- Docker 推送：可以将其 push 到指定的镜像仓库，比如网易蜂巢的镜像仓库
+  docker push hub.c.163.com/bingohuang/12factor-app:1.0
+
+发布：
+
+- 书写发布脚本：docker-compose.yml
+  version: '2'
+  services:
+  mongo:
+    image: hub.c.163.com/library/mongo:3.2
+    volumes:
+      - mongo-data:/data/db
+    ports:
+      - "27017:27017"
+  app:
+    image: hub.c.163.com/bingohuang/12factor-app:1.0
+    ports:
+      - "1337:1337"
+    links:
+      - mongo
+    depends_on:
+      - mongo
+    environment:
+      - MONGO_URL=mongodb://mongo/12factor-app
+  volumes:
+    mongo-data:
+- 以上在已有构建的基础上，定义了一个发布过程，并将配置（MONGO_URL）通过环境变量注入进去
+  MONGO_URL=mongodb://mongo/12factor-app
+
+运行：
+
+- 可以通过Docker Compose在本地运行，也可以通过云平台来在线编排（网易蜂巢即将支持服务编排功能）
+  docker-compose up -d
+- 继而查看日志
+  docker-compose logs -f
+
+注：为了方便不熟悉docker和docker-compose命令的人快速运行程序和本地调试，我在源代码中还提供了 docker.sh 脚本，方便构建、发布和运行应用。
 
 ** VI. 进程
 *Factor解说*：
