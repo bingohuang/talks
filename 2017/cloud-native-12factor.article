@@ -34,7 +34,7 @@ http://bingohuang.com
 
 那具体有哪十二要素了，见下图：
 
-.image cloud-native-12factor/12-factor.png
+.image cloud-native-12factor/12-Factor.png
 
 在接下来的 *应用和实践* 当中，我们会一一实践每条原则。
 
