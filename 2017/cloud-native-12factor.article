@@ -32,7 +32,7 @@ http://bingohuang.com
 
 12-Factor 全称叫 The Twelve-Factor App，它定义了一个优雅的互联网应用在设计过程中，需要遵循的一些基本原则，和 Cloud-Native 有异曲同工之处。其中文翻译不少，我觉得“十二要素”或“十二原则”比较贴切，
 
-那具体有哪十二要素了，见下图：
+那具体有哪十二原则了，见下图：
 
 .image cloud-native-12factor/12-Factor.png
 
@@ -52,15 +52,14 @@ http://bingohuang.com
 ** 0. 应用准备
 这是一个面向云平台设计的简单Web应用，它将暴露一个HTTP REST风格的接口，可以实现对 user 的增删改查功能，将用到以下技术栈：
 
-1. 基于 Node.js，用它的人真是越来越多
+1. 基于 Node.js，用 Node.js 写Web应用非常方便，而且是当今最火的编程平台之一
 
 - 下载安装 Node.js (包含 npm)：https://nodejs.org/zh-cn/download/
-- 注：Node 版本只要 4.4 以上就够用，我这里对应用的是：
-  node: v5.12.0
+  - 注：Node 版本只要 v4.4 以上就够用，当前最新的稳定版是v6.9.5, 我本地的版本是v5.12.0
 
 2. 基于 Sails，类似 Rails 框架，用于快速开发 Node.js 应用：http://sailsjs.com/
 
-- 安装 Sails 框架：
+- 安装 Sails 框架最新版：
   npm install sails -g
 
 3. 基于 mongo 3.2 ：https://docs.mongodb.org/manual/installation/
@@ -69,22 +68,24 @@ http://bingohuang.com
 
 - 安装 Docker：https://docs.docker.com/engine/installation/
 
-5. 初始化一个项目并运行
+5. 以上环境安装好之后，就开始初始化我们的应用并运行，应用的名称就叫：12factor-app
 
   $ sails new 12factor-app
-  info: Created a new Sails app `12factor-app`!
+    info: Created a new Sails app `12factor-app`!
   $ cd 12factor-app
   $ sails generate api user
-  info: Created a new api!
+    info: Created a new api!
   $ npm start
 
 注：本次分享源代码将在分享后提供给大家
 
-本地调试接口
+仅需4条命令就搞定了应用的框架代码，并自动生成了基于user的CRUD接口，我们已经将应用启动起来，可以通过以下方式本地调试接口：
 
-- 控制台输出正常，在浏览器中访问以下链接，即可看到Sails应用的首页
+- 控制台输出正常，在浏览器中访问下面链接，即可看到Sails应用的首页
   http://localhost:1337
-- 本地curl命令调试：
+.image cloud-native-12factor/sails-index.png 400 _
+
+- 接着，就可以通过本地curl命令或者http工具来做接口调试，这里以常规的增删改查为例：
 
 1. 增加一个新用户
 
@@ -122,19 +123,21 @@ http://bingohuang.com
 
   curl -XDELETE http://localhost:1337/user/58a41d952f53291200b9e065
 
-注：我已经将该应用部署到了网易蜂巢在线平台，可以通过以下命令体验：
+
+我已经将该应用部署到了网易蜂巢在线平台，如果您对这个应用感兴趣，直接将localhost替换为59.111.110.95，一样可以体验CRUD操作，如下所示，只要把yourname换成您的名字即可(建议在PC端操作)：
 
   # 注册你自己
   curl -XPOST http://59.111.110.95:1337/user?name=yourname
   # 查看所有注册过的用户
   curl http://59.111.110.95:1337/user
+  # 或者PC浏览器直接访问 http://59.111.110.95:1337/user
 
 *接下来开始就让我们开始一一实践12-Factor中的每条原则吧，每个原则中我们将分为Factor解说和Factor实践两块。*
 
 ** I. 基准代码
 *Factor解说*：
 
-- 12-Factor应用（App），只有一份基准代码（Codebase），可以多份部署（deploy）
+- 12-Factor应用只有一份基准代码（Codebase），可以多份部署（deploy）
 - 意思就是说一个应用只有一份用来跟踪所有修订版本的代码仓库，基准代码和应用之间总是保持一一对应的关系，因为：
   - 一旦有多个基准代码，就不能称为一个应用，而是一个分布式系统。分布式系统中的每一个组件都是一个应用，每一个应用可以分别使用 12-Factor 进行开发。
   - 多个应用共享一份基准代码是有悖于 12-Factor 原则的。解决方案是将共享的代码拆分为独立的类库，然后使用 依赖管理（第二个原则） 策略去加载它们。
