@@ -40,7 +40,7 @@ http://bingohuang.com
 
 注：虽然 12-Factor 的原文书籍都是发布在其官网上，但因为网络问题和格式问题，不是很方便阅读，我将其转化了为 GitBook 格式，并架设在网易蜂巢平台上，同时开源将源书开源在 GitHub 上，方便大家阅读和下载:
 
-- 在线阅读地址：[[http://12.bingohuang.com][http://12.bingohuang.com]]
+- 在线阅读地址：[[http://12.bingohuang.com/zh_cn/index.html][http://12.bingohuang.com/zh_cn/index.html]]
 - GitHub 开源地址：[[https://github.com/bingohuang/12factor-gitbook][https://github.com/bingohuang/12factor-gitbook]]
 - pdf/epub下载地址：[[https://github.com/bingohuang/12factor-gitbook/download][https://github.com/bingohuang/12factor-gitbook/download]]
 - GitBook 地址：[[https://www.gitbook.com/book/bingohuang/12factor/details][https://www.gitbook.com/book/bingohuang/12factor/details]]
@@ -466,3 +466,9 @@ http://bingohuang.com
 
 * 总结
 至此，12-Factor一一实践完毕，从中可以看出，12-Factor并非相互独立，而是一个整体，有的涉及代码和框架（Node和Rails），有的涉及工具（Docker和Compose）有的涉及架构和平台。在云原生时代，12-Factor仍然具有强大的生命力，每一条原则都是应用开发的珠玑，而且每一个原则也不是一成不变的，随着新的理念出现，原有的Factor会得到延伸和发展，也会出现新的原则，有兴趣的同学，不妨读一读《Beyond the 12  Factor App》这本书，还会有更大的收获。最后，希望此次分享对你理解云原生应用、实践12-Factor有所帮助。
+
+* 参考链接：
+- 12-Factor 在线书籍：[[http://12.bingohuang.com/zh_cn/index.html][http://12.bingohuang.com/zh_cn/index.html]]
+- 12-Factor 开源地址：[[https://github.com/bingohuang/12factor-gitbook][https://github.com/bingohuang/12factor-gitbook]]
+- 文章分享链接：[[http://talks.bingohuang.com/2017/cloud-native-12factor.article][http://talks.bingohuang.com/2017/cloud-native-12factor.article]]
+- Demo开源地址：[[https://github.com/bingohuang/12factor-app][https://github.com/bingohuang/12factor-app]]
