@@ -23,7 +23,7 @@ http://bingohuang.com
 
 - IaaS看做基础 *云* 设施，用来提供各种基础资源(Infrastructure)
 - PaaS作为开发 *平台*，用来提供各种平台服务(Platform)
-- SaaS交付 *应用* 或*服务*，直面用户，提供应用价值(Application)
+- SaaS交付 *应用* 或 *服务*，直面用户，提供应用价值(Application)
 
 云原生应用，正好契合了云、平台和服务，一层层搭建，所以我通常就把它理解为面向云（平台）来设计我们的应用。[[http://zc.163.com][网易三拾众筹]]的架构师陈晓辉，还为它起了一个小清新的名字——向云而生，我觉得非常贴切，再通俗一点讲，也可以叫做云平台应用。
 
@@ -38,7 +38,7 @@ http://bingohuang.com
 
 在接下来的 *应用和实践* 当中，我们会一一实践每条原则。
 
-注：虽然 12-Factor 的原文书籍都是发布在其官网上，但因为网络问题和格式问题，不是很方便阅读，我将其转化了为 GitBook 格式，并架设在网易蜂巢平台上，同时开源将源书开源在 GitHub 上，方便大家阅读和下载:
+注：虽然 12-Factor 的原文书籍都是发布在其官网上，但因为网络问题和格式问题，不是很方便阅读，我将其转化了为 GitBook 格式，并架设在网易蜂巢平台上，同时开源在 GitHub 上，方便大家阅读和下载:
 
 - 在线阅读地址：[[http://12.bingohuang.com/zh_cn/index.html][http://12.bingohuang.com/zh_cn/index.html]]
 - GitHub 开源地址：[[https://github.com/bingohuang/12factor-gitbook][https://github.com/bingohuang/12factor-gitbook]]
