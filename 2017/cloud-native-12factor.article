@@ -10,12 +10,12 @@ http://bingohuang.com
 
 黄庆兵，网易云技术布道师，浙大硕士毕业，后加入网易至今，从事容器云平台相关技术（Kubernetes、Docker）的开发架构以及布道工作，热衷于推动微服务和云原生的实践与落地；喜欢开源，乐于分享，勤于布道，折腾过开源工具，制作过Docker课程（《动手玩Docker》、《玩转Docker镜像》），分享过Gopher Meetup、大学创客等。
 
-*分享简介*
+*内容简介*
 
-在云的时代，应用会更多的迁移到云端，基于云的架构设计和开发模式需要一套全新的理念去承载，于是云原生思想应运而生，而针对云原生应用开发的最佳实践原则，12-Factor脱颖而出，同时也带来了新的解读。本次分享将介绍在Cloud Native时代下，结合Docker等技术，如何一一实践12-Factor原则，并能应用在当代的云平台中。
+在云的时代，应用会更多的迁移到云端，基于云的架构设计和开发模式需要一套全新的理念去承载，于是云原生思想应运而生，而针对云原生应用开发的最佳实践原则，12-Factor脱颖而出，同时也带来了新的解读。本文将介绍在Cloud Native时代下，结合Docker等技术，如何一一实践12-Factor原则。
 
 * 云原生
-*云原生*（Cloud Native）是由 Pivotal 的Matt Stine在2013年提出的一个概念，是他多年的架构和咨询总结出来的一个思想的集合。Pivotal 首席技术专家Casey West也说过，云原生把运行应用程序所需的基础设施、中间件和后台服务完全自动化，让用户能够快速为软件添加新功能，同时保持生产环境的稳定性和安全性。
+*云原生*（Cloud Native）是由 Pivotal 的Matt Stine在2013年提出的一个概念，是他多年的架构和咨询总结出来的一个思想的集合。
 
 那怎么去理解云原生应用？我觉得可以从三个角度来说明，这和云计算平台的三个层次不谋而合，如下图：
 
@@ -25,7 +25,7 @@ http://bingohuang.com
 - PaaS作为开发 *平台*，用来提供各种平台服务(Platform)
 - SaaS交付 *应用* 或 *服务*，直面用户，提供应用价值(Application)
 
-云原生应用，正好契合了云、平台和服务，一层层搭建，所以我通常就把它理解为面向云（平台）来设计我们的应用。[[http://zc.163.com][网易三拾众筹]]的架构师陈晓辉，还为它起了一个小清新的名字——向云而生，我觉得非常贴切，再通俗一点讲，也可以叫做云平台应用。
+云原生应用，正好契合了云、平台和服务，一层层构建，所以我通常就把它理解为面向云（平台）来设计我们的应用。[[http://zc.163.com][网易三拾众筹]]的架构师陈晓辉，还为它起了一个小清新的名字——向云而生，我觉得非常贴切，再通俗一点讲，也可以叫做云平台应用。
 
 * 12-Factor
 *12-Factor*，是由Heroku创始人Adam Wiggins首次提出并开源，并由众多经验丰富的开发者共同完善，这综合了他们关于SaaS应用几乎所有的经验和智慧，是开发此类应用的理想实践标准。
@@ -77,7 +77,7 @@ http://bingohuang.com
     info: Created a new api!
   $ npm start
 
-注：本次分享源代码将在分享后提供给大家
+注：本文源代码放在GitHub上，请参考文后参考链接
 
 仅需4条命令就搞定了应用的框架代码，并自动生成了基于user的CRUD接口，我们已经将应用启动起来，可以通过以下方式本地调试接口：
 
@@ -269,7 +269,7 @@ http://bingohuang.com
 ** V. 构建，发布，运行
 *Factor解说*：
 
-- 12-facfor 应用严格区分构建，发布，运行这三个步骤
+- 12-Factor 应用严格区分构建，发布，运行这三个步骤
   - Cloud Native应用的构建流程把大部分发布配置挪到开发阶段，包括实际的代码构建和运行应用所需的生产环境配置
   - 举例来说，直接修改处于运行状态的代码是非常不可取的做法，因为这些修改很难再同步回构建步骤
   - 发布的版本就像一本只能追加的账本，一旦发布就不可修改，任何的变动都应该产生一个新的发布版本
@@ -302,9 +302,9 @@ http://bingohuang.com
   # 启动应用
   CMD ["npm","start"]
 - Docker 构建
-  $ docker build -t message-app:v1.0 .
+  $ docker build -t 12factor-app:v1.0 .
 - Docker 镜像 推送：可以将其 push 到指定的镜像仓库，比如网易蜂巢的[[http://support.c.163.com/md.html#!容器服务/镜像仓库/使用指南/推送本地镜像.md][镜像中仓库]]
-  docker push hub.c.163.com/bingohuang/12factor-app:1.0
+  $ docker push hub.c.163.com/bingohuang/12factor-app:1.0
 
 *发布*：
 
@@ -354,7 +354,7 @@ http://bingohuang.com
 *Factor实践*：
 
 - 虽然这是一个简单的demo应用，但查看docker容器中的运行进程，发现也有4个进程在运行，其中 `npm` 也就是我们的启动进程，`node app.js` 是实际运行应用的进程
-  $ docker  exec eaaa922abf08 ps aux
+  $ docker  exec 12-factor ps aux
   USER       PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
   root         1  0.2  2.0 1076204 42024 ?       Ssl  18:22   0:00 npm
   root        17  0.0  0.0   4340   724 ?        S    18:22   0:00 sh -c node app.js
@@ -363,9 +363,9 @@ http://bingohuang.com
 - 在这里，我们的应用进程是无状态的，持久化的数据都存储在了后端服务 MongoDB 当中
 
 
-*到此，我们已经分享完了6个Factor，并且都成功实践在了我们的应用上，Yes！*
+*到此，我们已经介绍完了6个Factor，并且都成功实践在了我们的应用上，Yes！*
 .image cloud-native-12factor/6-factor-app-done.jpg 300 _
-*接下来，我们继续分享和实践后续的6个Factor。*
+*接下来，我们继续介绍和实践后续的6个Factor。*
 
 ** VII. 端口绑定
 *Factor解说*：
@@ -455,7 +455,7 @@ http://bingohuang.com
 
 - 开发人员经常希望执行一些管理或维护应用的一次性任务，例如：
   - 运行数据移植
-  - 运行一个控制台也被称为 REPL shell），来执行一些代码或是针对线上数据库做一些检查。
+  - 运行一个控制台也被称为 REPL shell，来执行一些代码或是针对线上数据库做一些检查。
   - 运行一些提交到代码仓库的一次性脚本。
 - 12-Factor应用中，一次性管理进程应该和正常的常驻进程（应用进程）使用同样的环境，并且使用相同的代码和配置，基于某个发布版本运行，随着其他的应用程序一起发布
 - 在Cloud Native中，管理任务也是一个进程，而不是特别的工具；同样重要的是，管理任务的进程不应使用秘密的 API 或者内部机制。
@@ -471,7 +471,7 @@ http://bingohuang.com
 至此，12-Factor一一实践完毕，从中可以看出，12-Factor并非相互独立，而是一个整体，有的涉及代码和框架（Node和Rails），有的涉及工具（Docker和Compose）有的涉及架构和平台。在云原生时代，12-Factor仍然具有强大的生命力，每一条原则都是应用开发的珠玑，而且每一个原则也不是一成不变的，随着新的理念出现，原有的Factor会得到延伸和发展，也会出现新的原则，有兴趣的同学，不妨读一读《Beyond the 12  Factor App》这本书，还会有更大的收获。最后，希望此次分享对你理解云原生应用、实践12-Factor有所帮助。
 
 * 参考链接：
+- 源代码：[[https://github.com/bingohuang/12factor-app][https://github.com/bingohuang/12factor-app]]
+- 文章地址：[[http://talks.bingohuang.com/2017/cloud-native-12factor.article][http://talks.bingohuang.com/2017/cloud-native-12factor.article]]
 - 12-Factor 在线书籍：[[http://12.bingohuang.com/zh_cn/index.html][http://12.bingohuang.com/zh_cn/index.html]]
-- 12-Factor 开源地址：[[https://github.com/bingohuang/12factor-gitbook][https://github.com/bingohuang/12factor-gitbook]]
-- 文章分享链接：[[http://talks.bingohuang.com/2017/cloud-native-12factor.article][http://talks.bingohuang.com/2017/cloud-native-12factor.article]]
-- Demo开源地址：[[https://github.com/bingohuang/12factor-app][https://github.com/bingohuang/12factor-app]]
+- 12-Factor 书籍开源：[[https://github.com/bingohuang/12factor-gitbook][https://github.com/bingohuang/12factor-gitbook]]
