@@ -5,8 +5,9 @@ function docker-build() {
         echo "build $1"
         docker build -t hub.c.163.com/bingohuang/talks:$1 .
     else
-        echo "build latest"
-        docker build -t hub.c.163.com/bingohuang/talks:latest .
+        version=`cat VERSION`
+        echo "build $version"
+        docker build -t hub.c.163.com/bingohuang/talks:$version .
     fi
 }
 
@@ -15,8 +16,9 @@ function docker-push() {
         echo "push $1"
         docker push hub.c.163.com/bingohuang/talks:$1
     else
-        echo "push latest"
-        docker push hub.c.163.com/bingohuang/talks:latest
+        version=`cat VERSION`
+        echo "push $version"
+        docker push hub.c.163.com/bingohuang/talks:$version
     fi
 }
 
