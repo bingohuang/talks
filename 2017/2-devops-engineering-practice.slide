@@ -1,0 +1,212 @@
+DevOps 之工程化实践
+
+2017.06.xx
+
+黄庆兵
+
+网易云
+
+http://talks.bingohuang.com
+
+* 目录
+- devops
+
+- 工程化
+
+- 实践
+
+* Why？-为什么要做工程化？
+
+* 图：时间+复杂度图
+* 图：时间-金钱图
+
+* What？-什么是工程化？范围？
+
+* How？-如何做工程化？ 有没有线索，头绪？基于 12-factor？
+
+
+* TODO
+
+* DevOps 是什么？
+- Dev+
+- 所有这一切，都关乎生产
+
+* 对 DevOps 的混乱解读
+1. 。。。
+
+- devops 圣经
+
+
+* 解决谁的问题？
+- 开发人员视角
+- 运维人员视角
+- 管理人员视角
+- 更需要贴近管理人员视角 - 解决老板的问题
+- 对开发和运维人员来说，更多的是挑战
+
+* 老板的 5 大需求
+1.  Give me my peace and quiet!
+- 尽量别烦我！
+2.  Don‘t make me think!
+- 不要让我想太多！
+3.  Let me see that everything is fine!
+- 我要看到一切正常
+4.  Show me the problem – now!
+- 随时给我看问题 - 就现在！
+5.  Tell me what to do!
+- 告诉我怎么做？
+
+* 解读老板的需求
+* 1.  Give me my peace and quiet! 
+(The application should just run smoothly)
+- 应用要跑的好好的
+
+2.  Don‘t make me think! 
+(Rollout, setup and operation of the application should be easy)
+- 应用要操作起来简单
+
+3.  Let me see that everything is fine! 
+(The application should show its state)
+- 应用应该要时刻展示它的状态
+
+4.  Show me the problem – now! 
+(The application should provide concise error messages and enable easy root cause drilldown)
+- 应用应该提供简明的错误消息
+
+5.  Tell me what to do! 
+(The application should be documented properly – including error handling instructions)
+- 应用要配有合适的文档，包括错误处理部分
+
+* DevOps 人员的 3 大挑战
+1. 可管理（Manageability）
+2. 可恢复（Resilience）
+3. 可透明（Transparency）
+
+* DevOps 应用的 10 个设计原则（角度）
+- 可管理（Manageability）
+  - 部署（Deployment）
+  - 配置（Configuration）
+  - 备份（Backup）
+- 可恢复（Resilience）
+  - 隔板（Bulkheads）
+  - 冗余（Redundancy）
+  - 松耦合（Loose Coupling）
+  - 预设机制（Fallbacks）
+  - 扩展性（Scalability）
+- 可透明（Transparency）
+  - 监控（Monitoring）
+  - 日志（Logging）
+
+* devops 小结
+- 开发运维，并不清晰
+- 理解老板（主管）的需求
+- 直面三大挑战
+- 合理采用设计原则
+
+* 三条通往 DevOps 的路
+1. Systems thinking
+2. Amplify feedback loops
+3. Culture of continual experimentation & learning
+
+* 但是，仅仅只有 DevOps 是不够的！
+- 介绍一些背景
+- 浴缸曲线
+- IT 变革
+- 重新思考 IT
+- 新的驱动
+- 新的目标
+
+* DevOps 带来的变化： IT 组织架构
+- 图 1 - 传统 IT 组织
+- 图 2 - DevOps IT 组织
+- 图 3 - 进一步优化
+- 商业能力发生变生增长变化
+- 跨只能团队需要一个平台小组
+
+* DevOps 会一步步带来哪些变化？
+
+* “好的，让我们从 DevOps 开始 ...”
+- DevOps
+
+* “但是我们的 IT 部门太大，我们需要重新组织”
+- 跨职能团队：通过商业能力来组织团队
+- Cross-functional teams：(organized by business capabilities)
+
+* “怎样使团队变得更快（敏捷）？”
+- 团队自治：包括端到端责任
+- Autonomy：(incl. E2E responsibility)
+
+* “如何管理这些团队”
+- 去中心化
+- Decentralized control
+
+* “如何保证团队一直在正确的方向？”
+- 价值驱动
+- Outcome-driven
+
+* “我们需要重新思考整个管理模型！”
+- 超越预算
+- Beyond budgeting
+
+* “什么样的架构能更好的支持团队自治？”
+- 微服务
+- Microservices
+
+* “什么样的技术理念能让团队更敏捷？”
+- 异类
+- Heterogeneity
+
+* “什么样的基础设施能保证所需的速度和灵活性？”
+- 云计算和容器化
+- Cloud and Containers
+
+* “如何确保更快速和更高质量的交付？”
+- 持续交付
+- Continuous Delivery
+
+* “如何确保生产环境的高可用？”
+- 弹性，可恢复性
+- Resilience
+
+* “如何在生产环境管理这些活动部件？”
+- 操作自动化
+- Operations automation
+
+* “如何确保不同的团队能流畅紧密的工作？”
+- 精益管理
+- Lean EAM
+
+* “如何确保我们的成效可持续发展？”
+- 持续改进
+- Continuous improvement
+
+* “如何从改进中获取足够的价值？”
+- 快速反馈循环
+- Quick feedback loops
+
+* “如何建立这些快速反馈循环？”
+- 特性流
+- Feature flow
+
+* “最后，对参与其中的人，有怎样的意义？”
+- 技艺和精通
+- Craftsmanship & mastery
+- T 型人才
+- T-Shaped people：(being empathic)
+- 好奇心
+- Curiosity
+
+* 整张图出来，震撼全场
+- 图：TODO
+- DevOps 驱动 IT 革新
+
+* DevOps 小结
+- 市场已经变化
+- IT 已经变化
+- IT 角色也已经变化
+- 新的驱动
+- 新的目标
+- 新的构建积木
+- DevOps 驱动 IT 革新
+
+* 引出工程化实践
