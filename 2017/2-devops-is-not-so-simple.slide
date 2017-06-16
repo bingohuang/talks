@@ -31,10 +31,6 @@ http://talks.bingohuang.com
 #.image 2-devops-is-not-so-simple/the-phoenix-project-1.jpg
 .image 2-devops-is-not-so-simple/the-phoenix-project-2.png
 
-* So?
-- It‘s all about production!
-- Closer to Reality Point of View - Admin
-
 * Why DevOps is not simple?
 
 * Top 5 Needs of an Admin
@@ -70,9 +66,10 @@ http://talks.bingohuang.com
 
   The application should be documented properly – including error handling instructions
 
+* DevOps will eventually rotate your IT organization by 90°
+
 * Traditional IT organization
 .image 2-devops-is-not-so-simple/traditional-it-organization.png _ 840
-
 
 * DevOps IT organization
 .image 2-devops-is-not-so-simple/devops-it-organization.png _ 840
@@ -80,11 +77,12 @@ http://talks.bingohuang.com
 * DevOps IT organization (optimized)
 .image 2-devops-is-not-so-simple/devops-it-organization-2.png _ 840
 
-* Concludtion
-
-If taken seriously DevOps will eventually rotate your IT organization by 90°
-
 * How to do DevOps?
+
+* The role of DevOps
+Quick repetition …
+
+: 快速迭代
 
 * Top 3 Challenges & 10 Design Principles
 1.  Manageability
@@ -106,8 +104,9 @@ If taken seriously DevOps will eventually rotate your IT organization by 90°
   IX    Monitoring
   X     Logging
 
-* The role of DevOps
-Quick repetition …
+: 1. 可管理（Manageability）
+: 2. 可恢复（Resilience）
+: 3. 可透明（Transparency）
 
 * The 3 ways of DevOps
 
@@ -115,7 +114,7 @@ Quick repetition …
 - Amplify feedback loops
 - Culture of continual experimentation & learning
 
-* Systems thinking
+* 1. Systems thinking
 .image 2-devops-is-not-so-simple/system-thinking.png 240 _
 
 •  Maximize flow (minimize cycle times)
@@ -128,7 +127,7 @@ Quick repetition …
 
 •  Build systems and organizations that are safe to change
 
-* Amplify feedback loops
+* 2. Amplify feedback loops
 .image 2-devops-is-not-so-simple/amplify-feedback-loops.png 240 _
 
 •  Facilitate constant flow of fast feedback from right-to-left
@@ -141,7 +140,7 @@ Quick repetition …
 
 •  Pervasively measure outcome (customer value), not output
 
-* Continual experimentation and learning
+* 3. Continual experimentation and learning
 .image 2-devops-is-not-so-simple/continual-experimentation-and-learning.png 240 _
 
 •  Create a culture that fosters two things
@@ -155,9 +154,6 @@ Quick repetition …
 •  Constantly reinforce that improvements are encouraged & celebrated
 
 * Sounds good, but how does it work?
-
-* .
-.image 2-devops-is-not-so-simple/devops-0.png 560 840
 
 * “Okay, let’s start with DevOps …”
 .image 2-devops-is-not-so-simple/devops-1.png _ 840
@@ -217,7 +213,7 @@ Quick repetition …
 * Finally: DevOps drives the implementation of the new IT
 .image 2-devops-is-not-so-simple/devops-20.png _ 840
 
-* We need to rethink IT!
+* DevOps is not so simple and we need to rethink IT!
 
 * Evolution of IT
 .image 2-devops-is-not-so-simple/it-evolution-1.png _ 840
@@ -226,7 +222,7 @@ Quick repetition …
 * … but we still base most of our decisions on that
 .image 2-devops-is-not-so-simple/it-evolution-3.png _ 840
 * Business is very different today … than it was back then
-.image 2-devops-is-not-so-simple/it-evolution-2.png _ 840
+.image 2-devops-is-not-so-simple/it-evolution-4.png _ 840
 
 * Wrap-up
 •  What is DevOps?
@@ -234,5 +230,7 @@ Quick repetition …
 •  Why DevOps is not simple?
 
 •  How to do DevOps?
+
+•  DevOps is not so simple!
 
 •  We need to rethink IT!
