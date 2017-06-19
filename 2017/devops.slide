@@ -1,0 +1,191 @@
+The 3 things about DevOps
+
+2017.06.20
+
+Bingo Huang
+
+c.163yun.com
+
+http://talks.bingohuang.com
+
+* The 3 things about DevOps
+- Why DevOps?
+- What is DevOps?
+- How to do DevOps?
+
+* Why DevOps?
+
+* Evolution of IT
+.image 2-devops-is-not-so-simple/it-evolution-1.png _ 840
+
+* We are here …
+.image 2-devops-is-not-so-simple/it-evolution-2.png _ 840
+
+* … but we still base most of our decisions on that
+.image 2-devops-is-not-so-simple/it-evolution-3.png _ 840
+
+* Business is very different today … than it was back then
+.image 2-devops-is-not-so-simple/it-evolution-4.png _ 840
+
+* IT today is a ...
+.image 2-devops-is-not-so-simple/it-market.png _ 480
+
+* IT today is a key success factor to survive in a post-industrial market
+
+* We need to rethink IT!
+
+* DevOps can help!
+
+* What is DevOps?
+
+* Perfect confusion of ideas
+- “A team that moderates between Dev and Ops”
+- “Another buzzword for build and deployment automation”
+- “Isn’t that just a new word for ‘agile’?”
+- “It’s a mindset thing”
+- “Of course the new version of our product is ‘DevOps’!”
+- “You build it, you run it!”
+
+* DevOps will eventually rotate your IT organization by 90°
+
+* Traditional IT organization
+.image 2-devops-is-not-so-simple/traditional-it-organization.png _ 840
+
+* DevOps IT organization
+.image 2-devops-is-not-so-simple/devops-it-organization.png _ 840
+
+* DevOps IT organization (optimized)
+.image 2-devops-is-not-so-simple/devops-it-organization-2.png _ 840
+
+* Let’s check the “DevOps bible”
+#.image 2-devops-is-not-so-simple/the-phoenix-project-1.jpg
+.image 2-devops-is-not-so-simple/the-phoenix-project-2.png
+
+* The 3 ways of DevOps
+
+- Systems thinking
+- Amplify feedback loops
+- Culture of continual experimentation & learning
+
+* 1. Systems thinking
+.image 2-devops-is-not-so-simple/system-thinking.png 240 _
+
+•  Maximize flow (minimize cycle times)
+
+•  Optimize for global goals (holistic view)
+
+•  Never pass defects downstream
+
+•  Limit work in progress
+
+•  Build systems and organizations that are safe to change
+
+* 2. Amplify feedback loops
+.image 2-devops-is-not-so-simple/amplify-feedback-loops.png 240 _
+
+•  Facilitate constant flow of fast feedback from right-to-left
+
+•  Create quality at source (provide knowledge where needed)
+
+•  Create shared goals and shared pain for everyone involved
+
+•  Implement fast automated test suites
+
+•  Pervasively measure outcome (customer value), not output
+
+* 3. Continual experimentation and learning
+.image 2-devops-is-not-so-simple/continual-experimentation-and-learning.png 240 _
+
+•  Create a culture that fosters two things
+
+  •  Continual experimentation, taking risks and learning from success and failure
+
+  •  Understanding that repetition and practice is the prerequisite to mastery
+
+•  Allocate at least 20% of available cycles to non-business requirements
+
+•  Constantly reinforce that improvements are encouraged & celebrated
+
+* How to do DevOps?
+
+* Top 5 Needs of an Admin
+
+1.  Give me my peace and quiet!
+
+2.  Don‘t make me think!
+
+3.  Let me see that everything is fine!
+
+4.  Show me the problem – now!
+
+5.  Tell me what to do!
+
+* Top 5 Needs of an Admin (translated)
+1.  Give me my peace and quiet! 
+
+  The application should just run smoothly
+
+2.  Don‘t make me think! 
+
+  Rollout, setup and operation of the application should be easy
+
+3.  Let me see that everything is fine! 
+
+  The application should show its state
+
+4.  Show me the problem – now! 
+
+  The application should provide concise error messages and enable easy root cause drilldown
+
+5.  Tell me what to do! 
+
+  The application should be documented properly – including error handling instructions
+
+* Top 3 Challenges
+1. Manageability
+2. Resilience
+3. Transparency
+
+* 10 Design Principles
+1. Manageability
+
+  I     Deployment
+  II    Configuration
+  III   Backup
+
+2. Resilience
+
+  IV    Bulkheads
+  V     Redundancy
+  VI    Loose Coupling
+  VII   Fallbacks
+  VIII  Scalability
+
+3. Transparency
+
+  IX    Monitoring
+  X     Logging
+
+* 12 Factor
+.image 2-devops-is-not-so-simple/12-factor-summary.png 560 _
+
+* Wrap-up
+1. What is DevOps?
+
+  - Evolution of IT
+  - IT today is a key success factor to survive in a post-industrial market
+  - We need to rethink IT! and DevOps can help!
+
+2. Why DevOps?
+
+  - Perfect confusion of ideas
+  - Rotate IT Organization
+  - The 3 ways of DevOps
+
+3. How to do DevOps?
+
+  - Top 5 Needs of an admin
+  - Top 3 Challenges
+  - 10 Design Principles
+  - 12 Factor
+  ...
