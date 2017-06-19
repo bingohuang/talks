@@ -59,15 +59,18 @@ http://talks.bingohuang.com
 
 * Let’s check the “DevOps bible”
 #.image 2-devops-is-not-so-simple/the-phoenix-project-1.jpg
-.image 2-devops-is-not-so-simple/the-phoenix-project-2.png
+.image 2-devops-is-not-so-simple/the-phoenix-project-2.png 400 _
+
+  THE PHOENIX PROJECT
+  A Novel About IT, DevOps, And Helping Your Business Win
 
 * The 3 ways of DevOps
 
-- Systems thinking
+- Maximize flow
 - Amplify feedback loops
 - Culture of continual experimentation & learning
 
-* 1. Systems thinking
+* 1. Maximize flow
 .image 2-devops-is-not-so-simple/system-thinking.png 240 _
 
 •  Maximize flow (minimize cycle times)
