@@ -1,4 +1,4 @@
-The 3 things about DevOps
+How DevOps Helping Your Business Win
 
 2017.06.20
 
@@ -8,7 +8,7 @@ c.163yun.com
 
 http://talks.bingohuang.com
 
-* The 3 things about DevOps
+* 3 things about DevOps
 - Why DevOps?
 - What is DevOps?
 - How to do DevOps?
@@ -27,24 +27,48 @@ http://talks.bingohuang.com
 * Business is very different today … than it was back then
 .image 2-devops-is-not-so-simple/it-evolution-4.png _ 840
 
-* IT today is a ...
+* IT today is... a key success factor to survive in a post-industrial market
 .image 2-devops-is-not-so-simple/it-market.png _ 480
 
-* IT today is a key success factor to survive in a post-industrial market
+#* IT today is a key success factor to survive in a post-industrial market
 
 * We need to rethink IT!
 
-* DevOps can help!
+* And DevOps can help your business win!
 
 * What is DevOps?
+
+* DevOps Story
+- Agile Conference 2008 in Toronto - Andrew Clay Shafer’s “birds of a feather” ad hoc session called Agile Infrastructure. The only person who showed up was Patrick Debois. Shafer and Debois started a Google group called “Agile System Administration”
+- O’Reilly Velocity 2009 Conference - Presentation at Velocity of "10+ Deploys per Day: Dev and Ops Cooperation at Flickr" by John Allspaw and Paul Hammond – Debois watched by streaming video, tweeted.
+- October 2009 - Organized through Twitter. Conversation continued on Twitter and the #DevOps hashtag was born, dropping “Days” for brevity.
 
 * Perfect confusion of ideas
 - “A team that moderates between Dev and Ops”
 - “Another buzzword for build and deployment automation”
 - “Isn’t that just a new word for ‘agile’?”
-- “It’s a mindset thing”
-- “Of course the new version of our product is ‘DevOps’!”
 - “You build it, you run it!”
+- “Of course the new version of our product is ‘DevOps’!”
+
+: 对 DevOps 常见的看法，有些还是混淆的
+: 1. 一个用于缓和 Dev 和 Ops 的团队
+: 2. 又一个自动化构建和部署的流行词
+: 3. 或者说是“敏捷”文化里的又一新词
+: 4. 所谓 devops 就是“谁构建，谁运行”，开发自己玩去
+: 5. 有的人直接说，我们新版的产品当然是基于 DevOps 的
+
+* What’s the DevOps?
+
+  DevOps is "a portmanteau of 'development' and 'operations'"
+  and is "a software development method that stresses communications,
+  collaboration, integration, automation and measurement of cooperation
+  between software developers and other IT professionals".
+
+                                                                —— From Wikipedia
+
+.image 2-devops-is-not-so-simple/devops-define-1.png 300 _
+
+  The ultimate AIM is break down barriers between developers, QAs and operators.
 
 * DevOps will eventually rotate your IT organization by 90°
 
@@ -64,11 +88,17 @@ http://talks.bingohuang.com
   THE PHOENIX PROJECT
   A Novel About IT, DevOps, And Helping Your Business Win
 
+: 在本书中就阐明了知道开发运维的流程与实践的价值观和理念
+
 * The 3 ways of DevOps
 
 - Maximize flow
 - Amplify feedback loops
 - Culture of continual experimentation & learning
+
+: 流量最大化
+: 快速持续的反馈
+: 持续尝试和学习的文化
 
 * 1. Maximize flow
 .image 2-devops-is-not-so-simple/system-thinking.png 240 _
@@ -83,6 +113,9 @@ http://talks.bingohuang.com
 
 •  Build systems and organizations that are safe to change
 
+: 第一工作法是关于从开发到IT运维再到客户的整个自左向右的工作流。为了使流量最大化，我们需要小的批量规模和工作间隔，绝不让缺陷流向下游工作中心，并且不断为了整体目标（相对于开发功能完成率、测试发现/修复比率或运维有效性指标等局部目标）进行优化。
+: 必要的做法包括持续构建、集成以及部署，按需创建环境，严控半成品，以及构建起能够顺利变更的安全系统和组织。
+
 * 2. Amplify feedback loops
 .image 2-devops-is-not-so-simple/amplify-feedback-loops.png 240 _
 
@@ -95,6 +128,9 @@ http://talks.bingohuang.com
 •  Implement fast automated test suites
 
 •  Pervasively measure outcome (customer value), not output
+
+: 第二工作法是关于价值流各阶段自右向左的快速持续反馈流，放大其效益以确保防止问题再次发生，或者更快地发现和修复问题。这样，我们就能在所需之处获取或嵌入知识，从源头上保证质量。
+: 必要的做法包括：在部署管道中的构建和测试失败时“停止生产线”；日复一日地持续改进日常工作；创建快速的自动化测试套装软件，以确保代码总是处于可部署的状态；在开发和IT运维之间建立共同的目标和共同解决问题的机制；建立普遍的产品遥测技术，让每个人都能知道，代码和环境是否在按照设定的运行，以及是否达到了客户的目标。
 
 * 3. Continual experimentation and learning
 .image 2-devops-is-not-so-simple/continual-experimentation-and-learning.png 240 _
@@ -109,6 +145,10 @@ http://talks.bingohuang.com
 
 •  Constantly reinforce that improvements are encouraged & celebrated
 
+: 第三工作法是关于创造公司文化，该文化可带动两种风气的形成：不断尝试，这需要承担风险并从成功和失败中吸取经验教训；理解重复和练习是熟练掌握的前提。
+: 尝试和承担风险让我们能够不懈地改进工作系统，这经常要求我们去做一些与几十年来的做法大不相同的事。一旦出了问题，不断重复的日常操练赋予我们的技能和经验，令我们可以撤回至安全区域并恢复正常运作。
+: 必要的做法包括营造一种勇于创新、敢于冒险（相对于畏惧或盲目服从命令）以及高信任度（相对于低信任度和命令控制）的文化，把至少20%的开发和IT运维周期划拨给非功能性需求，并且不断鼓励进行改进。
+
 * How to do DevOps?
 
 * Top 5 Needs of an Admin
@@ -122,6 +162,12 @@ http://talks.bingohuang.com
 4.  Show me the problem – now!
 
 5.  Tell me what to do!
+
+: 尽量别烦我！
+: 不要让我想太多！
+: 我要看到一切正常
+: 随时给我看问题 - 就现在！
+: 告诉我怎么做？
 
 * Top 5 Needs of an Admin (translated)
 1.  Give me my peace and quiet! 
@@ -144,10 +190,20 @@ http://talks.bingohuang.com
 
   The application should be documented properly – including error handling instructions
 
+: 应用要跑的好好的
+: 应用要操作起来简单
+: 应用应该要时刻展示它的状态
+: 应用应该提供简明的错误消息
+: 应用要配有合适的文档，包括错误处理部分
+
 * Top 3 Challenges
 1. Manageability
 2. Resilience
 3. Transparency
+
+: 1. 易管理（Manageability）
+: 2. 弹性可回复（Resilience）
+: 3. 透明性（Transparency）
 
 * 10 Design Principles
 1. Manageability
@@ -169,19 +225,28 @@ http://talks.bingohuang.com
   IX    Monitoring
   X     Logging
 
+: 可管理（Manageability）
+: 部署（Deployment） 配置（Configuration） 备份（Backup）
+: 可恢复（Resilience）
+: 隔板（Bulkheads） 冗余（Redundancy） 松耦合（Loose Coupling） 预设机制（Fallbacks） 扩展性（Scalability）
+: 可透明（Transparency）
+: 监控（Monitoring） 日志（Logging）
+
 * 12 Factor
-.image 2-devops-is-not-so-simple/12-factor-summary.png 560 _
+.image 2-devops-is-not-so-simple/12-factor-summary2.png 560 _
 
 * Wrap-up
-1. What is DevOps?
+1. Why DevOps?
 
   - Evolution of IT
   - IT today is a key success factor to survive in a post-industrial market
-  - We need to rethink IT! and DevOps can help!
+  - We need to rethink IT! and DevOps can help your business win!
 
-2. Why DevOps?
+2. What is DevOps?
 
+  - DevOps Story
   - Perfect confusion of ideas
+  - Wikipedia
   - Rotate IT Organization
   - The 3 ways of DevOps
 
