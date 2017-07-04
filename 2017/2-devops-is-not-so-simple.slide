@@ -28,8 +28,8 @@ http://talks.bingohuang.com
 - ……
 
 * Let’s check the “DevOps bible”
-#.image 2-devops-is-not-so-simple/the-phoenix-project-1.jpg
-.image 2-devops-is-not-so-simple/the-phoenix-project-2.png
+#.image devops/the-phoenix-project-1.jpg
+.image devops/the-phoenix-project-2.png
 
 * Why DevOps is not simple?
 
@@ -69,13 +69,13 @@ http://talks.bingohuang.com
 * DevOps will eventually rotate your IT organization by 90°
 
 * Traditional IT organization
-.image 2-devops-is-not-so-simple/traditional-it-organization.png _ 840
+.image devops/traditional-it-organization.png _ 840
 
 * DevOps IT organization
-.image 2-devops-is-not-so-simple/devops-it-organization.png _ 840
+.image devops/devops-it-organization.png _ 840
 
 * DevOps IT organization (optimized)
-.image 2-devops-is-not-so-simple/devops-it-organization-2.png _ 840
+.image devops/devops-it-organization-2.png _ 840
 
 * How to do DevOps?
 
@@ -115,7 +115,7 @@ Quick repetition …
 - Culture of continual experimentation & learning
 
 * 1. Systems thinking
-.image 2-devops-is-not-so-simple/system-thinking.png 240 _
+.image devops/system-thinking.png 240 _
 
 •  Maximize flow (minimize cycle times)
 
@@ -128,7 +128,7 @@ Quick repetition …
 •  Build systems and organizations that are safe to change
 
 * 2. Amplify feedback loops
-.image 2-devops-is-not-so-simple/amplify-feedback-loops.png 240 _
+.image devops/amplify-feedback-loops.png 240 _
 
 •  Facilitate constant flow of fast feedback from right-to-left
 
@@ -141,7 +141,7 @@ Quick repetition …
 •  Pervasively measure outcome (customer value), not output
 
 * 3. Continual experimentation and learning
-.image 2-devops-is-not-so-simple/continual-experimentation-and-learning.png 240 _
+.image devops/continual-experimentation-and-learning.png 240 _
 
 •  Create a culture that fosters two things
 
@@ -156,73 +156,73 @@ Quick repetition …
 * Sounds good, but how does it work?
 
 * “Okay, let’s start with DevOps …”
-.image 2-devops-is-not-so-simple/devops-1.png _ 840
+.image devops/devops-1.png _ 840
 
 * “But our IT department is too big. We need to organize differently.”
-.image 2-devops-is-not-so-simple/devops-2.png _ 840
+.image devops/devops-2.png _ 840
 
 * “How can we enable the teams to become faster?”
-.image 2-devops-is-not-so-simple/devops-3.png _ 840
+.image devops/devops-3.png _ 840
 
 * “How can we manage those teams?”
-.image 2-devops-is-not-so-simple/devops-4.png _ 840
+.image devops/devops-4.png _ 840
 
 * “How can we control if the teams are on the right track?”
-.image 2-devops-is-not-so-simple/devops-5.png _ 840
+.image devops/devops-5.png _ 840
 
 * “We need to rethink our overall governance model.”
-.image 2-devops-is-not-so-simple/devops-6.png _ 840
+.image devops/devops-6.png _ 840
 
 * “How can we support autonomy on the architectural level?”
-.image 2-devops-is-not-so-simple/devops-7.png _ 840
+.image devops/devops-7.png _ 840
 
 * “Can we help teams getting faster on the technological level?”
-.image 2-devops-is-not-so-simple/devops-8.png _ 840
+.image devops/devops-8.png _ 840
 
 * “How can we ensure the required speed and flexibility at the infrastructure level?”
-.image 2-devops-is-not-so-simple/devops-9.png _ 840
+.image devops/devops-9.png _ 840
 
 * “How can we guarantee high speed and high quality delivery?”
-.image 2-devops-is-not-so-simple/devops-10.png _ 840
+.image devops/devops-10.png _ 840
 
 * “How can we guarantee high availability in production?”
-.image 2-devops-is-not-so-simple/devops-11.png _ 840
+.image devops/devops-11.png _ 840
 
 * “How can we manage all those moving parts in production?”
-.image 2-devops-is-not-so-simple/devops-12.png _ 840
+.image devops/devops-12.png _ 840
 
 * “How can we make sure the services of different teams work smoothly together?”
-.image 2-devops-is-not-so-simple/devops-13.png _ 840
+.image devops/devops-13.png _ 840
 
 * “How can we make our efforts sustainable?”
-.image 2-devops-is-not-so-simple/devops-14.png _ 840
+.image devops/devops-14.png _ 840
 
 * “How do we get enough input for improvement?”
-.image 2-devops-is-not-so-simple/devops-15.png _ 840
+.image devops/devops-15.png _ 840
 
 * “How can we establish those quick feedback loops?”
-.image 2-devops-is-not-so-simple/devops-16.png _ 840
+.image devops/devops-16.png _ 840
 
 * “And what does this all mean for the people involved in this?”
-.image 2-devops-is-not-so-simple/devops-17.png _ 840
+.image devops/devops-17.png _ 840
 * “And what does this all mean for the people involved in this?”
-.image 2-devops-is-not-so-simple/devops-18.png _ 840
+.image devops/devops-18.png _ 840
 * “And what does this all mean for the people involved in this?”
-.image 2-devops-is-not-so-simple/devops-19.png _ 840
+.image devops/devops-19.png _ 840
 
 * Finally: DevOps drives the implementation of the new IT
-.image 2-devops-is-not-so-simple/devops-20.png _ 840
+.image devops/devops-20.png _ 840
 
 * DevOps is not so simple and we need to rethink IT!
 
 * Evolution of IT
-.image 2-devops-is-not-so-simple/it-evolution-1.png _ 840
+.image devops/it-evolution-1.png _ 840
 * We are here …
-.image 2-devops-is-not-so-simple/it-evolution-2.png _ 840
+.image devops/it-evolution-2.png _ 840
 * … but we still base most of our decisions on that
-.image 2-devops-is-not-so-simple/it-evolution-3.png _ 840
+.image devops/it-evolution-3.png _ 840
 * Business is very different today … than it was back then
-.image 2-devops-is-not-so-simple/it-evolution-4.png _ 840
+.image devops/it-evolution-4.png _ 840
 
 * Wrap-up
 •  What is DevOps?

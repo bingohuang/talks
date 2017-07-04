@@ -16,19 +16,19 @@ http://talks.bingohuang.com
 * Why DevOps?
 
 * Evolution of IT
-.image 2-devops-is-not-so-simple/it-evolution-1.png _ 840
+.image devops/it-evolution-1.png _ 840
 
 * We are here …
-.image 2-devops-is-not-so-simple/it-evolution-2.png _ 840
+.image devops/it-evolution-2.png _ 840
 
 * … but we still base most of our decisions on that
-.image 2-devops-is-not-so-simple/it-evolution-3.png _ 840
+.image devops/it-evolution-3.png _ 840
 
 * Business is very different today … than it was back then
-.image 2-devops-is-not-so-simple/it-evolution-4.png _ 840
+.image devops/it-evolution-4.png _ 840
 
 * IT today is... a key success factor to survive in a post-industrial market
-.image 2-devops-is-not-so-simple/it-market.png _ 480
+.image devops/it-market.png _ 480
 
 #* IT today is a key success factor to survive in a post-industrial market
 
@@ -66,24 +66,24 @@ http://talks.bingohuang.com
 
                                                                 —— From Wikipedia
 
-.image 2-devops-is-not-so-simple/devops-define-1.png 300 _
+.image devops/devops-define-1.png 300 _
 
   The ultimate AIM is break down barriers between developers, QAs and operators.
 
 * DevOps will eventually rotate your IT organization by 90°
 
 * Traditional IT organization
-.image 2-devops-is-not-so-simple/traditional-it-organization.png _ 840
+.image devops/traditional-it-organization.png _ 840
 
 * DevOps IT organization
-.image 2-devops-is-not-so-simple/devops-it-organization.png _ 840
+.image devops/devops-it-organization.png _ 840
 
 * DevOps IT organization (optimized)
-.image 2-devops-is-not-so-simple/devops-it-organization-2.png _ 840
+.image devops/devops-it-organization-2.png _ 840
 
 * Let’s check the “DevOps bible”
-#.image 2-devops-is-not-so-simple/the-phoenix-project-1.jpg
-.image 2-devops-is-not-so-simple/the-phoenix-project-2.png 400 _
+#.image devops/the-phoenix-project-1.jpg
+.image devops/the-phoenix-project-2.png 400 _
 
   THE PHOENIX PROJECT
   A Novel About IT, DevOps, And Helping Your Business Win
@@ -101,7 +101,7 @@ http://talks.bingohuang.com
 : 持续尝试和学习的文化
 
 * 1. Maximize flow
-.image 2-devops-is-not-so-simple/system-thinking.png 240 _
+.image devops/system-thinking.png 240 _
 
 •  Maximize flow (minimize cycle times)
 
@@ -117,7 +117,7 @@ http://talks.bingohuang.com
 : 必要的做法包括持续构建、集成以及部署，按需创建环境，严控半成品，以及构建起能够顺利变更的安全系统和组织。
 
 * 2. Amplify feedback loops
-.image 2-devops-is-not-so-simple/amplify-feedback-loops.png 240 _
+.image devops/amplify-feedback-loops.png 240 _
 
 •  Facilitate constant flow of fast feedback from right-to-left
 
@@ -133,7 +133,7 @@ http://talks.bingohuang.com
 : 必要的做法包括：在部署管道中的构建和测试失败时“停止生产线”；日复一日地持续改进日常工作；创建快速的自动化测试套装软件，以确保代码总是处于可部署的状态；在开发和IT运维之间建立共同的目标和共同解决问题的机制；建立普遍的产品遥测技术，让每个人都能知道，代码和环境是否在按照设定的运行，以及是否达到了客户的目标。
 
 * 3. Continual experimentation and learning
-.image 2-devops-is-not-so-simple/continual-experimentation-and-learning.png 240 _
+.image devops/continual-experimentation-and-learning.png 240 _
 
 •  Create a culture that fosters two things
 
@@ -233,7 +233,7 @@ http://talks.bingohuang.com
 : 监控（Monitoring） 日志（Logging）
 
 * 12 Factor
-.image 2-devops-is-not-so-simple/12-factor-summary2.png 560 _
+.image devops/12-factor-summary2.png 560 _
 
 * Wrap-up
 1. Why DevOps?
