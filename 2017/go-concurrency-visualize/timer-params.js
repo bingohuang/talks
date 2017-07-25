@@ -3,7 +3,7 @@ var params = {
   "allCaps": false,
   "speed": 3.8,
   "angle": -360/24,
-  "zoom": 1.8,
+  "zoom": 1.2,
   "autoAngle": true,
   "distance": 40,
   "autoRotate": true,

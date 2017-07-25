@@ -27,11 +27,31 @@ function init() {
 	height = window.innerHeight;
 	var center = new THREE.Vector3(60, -50, -10);
 	//camera = new THREE.OrthographicCamera( width / - 2, width / 2, height / 2, height / - 2, -1000*scale, 2000*scale );
-	camera = new THREE.PerspectiveCamera(75, width / height, 1, 1000 * scale );
-	camera.position.z = 100 * scale;
-	camera.position.y = 50 * scale;
+	// camera = new THREE.PerspectiveCamera(75, width / height, 1, 1000 * scale );
+  if (params.camera == "ortho") {
+		camera = new THREE.OrthographicCamera( width/-2, width/2, height/2, height/-2, -1000, 2000 );
+	} else {
+		camera = new THREE.PerspectiveCamera( 75, width/height, 1, 1000 );
+	}
+
+	// camera.position.z = 100 * scale;
+	// camera.position.y = 50 * scale;
+  var cameraPos = {x: 0, y: 50, z: 100};
+	if (params.cameraPos != undefined) {
+		cameraPos.x = params.cameraPos.x;
+		cameraPos.y = params.cameraPos.y;
+		cameraPos.z = params.cameraPos.z;
+	}
+  camera.position.x = cameraPos.x;
+	camera.position.y = cameraPos.y;
+	camera.position.z = cameraPos.z;
+  var cameraZoom = 1;
+  if (params.zoom != undefined) {
+    cameraZoom = params.zoom;
+  }
+  camera.zoom = cameraZoom;
 	camera.updateProjectionMatrix();
-	
+
 	mat1 = new THREE.LineBasicMaterial( { color: 0x0000ff, linewidth: 4, } );
 	trace = new GoThree.Trace();
 	trace.init(scene, data, params, scale);
@@ -56,7 +76,7 @@ function init() {
 	cameraControls.panRightHanded  = true; // right-handed
 	cameraControls.panHandPosition = true; // palm position used
 	cameraControls.panStabilized   = true; // stabilized palm position used
-	
+
 	cameraControls.rotateEnabled         = true;
 	cameraControls.rotateHands           = 1;
 	cameraControls.rotateSpeed           = 0.8;
@@ -75,7 +95,12 @@ function init() {
 
 	// CONTROLS
 	orbit = new THREE.OrbitControls( camera, renderer.domElement );
-	orbit.autoRotate = false;
+	// orbit.autoRotate = false;
+	var autoRotate = false;
+  if (params.autoRotate !== undefined) {
+    autoRotate = params.autoRotate;
+	}
+  orbit.autoRotate = autoRotate;
 	orbit.autoRotateSpeed = 1.0;
 	orbit.addEventListener( 'change', function() {
 		trace.onControlsChanged(orbit.object);
