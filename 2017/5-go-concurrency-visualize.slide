@@ -1,8 +1,8 @@
 可视化学习 Go 并发编程
 
-2017.8.5
+2017.7.27
 
-黄庆兵 - 网易云
+黄庆兵 - 网易
 
 bingohuang.com
 
@@ -10,6 +10,137 @@ http://talks.bingohuang.com
 
 https://github.com/163yun
 
-* start
+* 大纲
+- 去年 meetup 分享，提到说，Go 会成为 “21世纪的 C 语言”，面向多核时代
+- 几张图，讲讲现在 CPU 的趋势
+- 在座的都是 Go 方面的专家
+- 让大家以一种新的视角来了解 Go 并发模型和编程
 
-* end
+* WHAT IS CONCURRENCY
+- a way to structure the program
+- in a decomposable way
+
+* CONCURRENCY IS NOT PARALLELISM
+- concurrency is a design technique
+- parallelism is an optimization technique
+- 视频链接 rob pike
+- 最后再来用可视化的方式解答什么是并行，什么是并发？
+
+* 多核时代
+
+* CONCURRENCY IS HARD
+- 并发本身不容易
+
+* CSP BY TONY HOARE
+- 两张图
+
+* DO NOT COMMUNICATE BY SHARING MEMORY;
+SHARE MEMORY BY COMMUNICATING.
+
+* GO CONCURRENCY
+- goroutine
+- channel
+- select{}
+: 谢大的每日新闻中，经常提及
+
+* GOROUTINE
+- is a lightweight 'process'
+- just prefix func with 'go'
+- similar to '&' in UNIX
+  go foo()
+
+* CHANNEL
+- allows passing messages between goroutines
+- similar to pipe in UNIX
+  // send 42 to channel
+  ch <- 42
+  ...
+  // read 42 from channel
+  val := <-ch
+
+* SELECT{}
+- multiplexing channels I/O
+  select {
+      case val := <-ch:
+          fmt.Println("Read from channel:", val)
+      case ch2 <- 42:
+          fmt.Println("Send 42 to channel 2")
+  }
+
+* GO CONCURRENCY
+- Run new logical 'thread' - 3 characters
+- Create pool of goroutines - 3 lines of code
+- Safety - automatically
+
+* CONCURRENT PROGRAMMING HAS NEVER BEEN EASIER
+- 并发编程从来没有这么容易
+
+* NEW QUESTIONS - 那么问题来了
+- How do we teach it?
+- How we build more complex abstractions?
+- How we build concurrent pipelines?
+- How do we understand it, after all?
+
+* GOTRACE
+- Tool for visualizing Go concurrency using WebGL:
+- github.com/divan/gotrace
+
+* 可视化并发编程
+: 可运行，可视化
+
+* HELLO, WORLD!
+  package main
+
+  func main() {
+      ch := make(chan int)
+
+      go func() {
+          ch <- 42
+      }()
+
+      <-ch
+  }
+* TIMER
+* PING-PONG #2
+- 附带一张搞笑的图
+* PING-PONG #3
+* PING-PONG #36
+
+* CONCURRENT PRIME SIEVE
+
+* MESSAGING PATTERNS
+* FAN-IN
+* SERVERS
+* WORKERS / FAN-OUT / SUBWORKERS
+* SERVER+WORKER
+
+* GOMAXPROCS
+- go doc runtime GOMAXPROCS
+* GOMAXPROCS = 1
+* GOMAXPROCS = 24
+
+* GOROUTINES LEAK
+
+* CONCURRENCY VS PARALLELISM
+- 可视化并行
+- 可视化并发
+
+* GOTRACE
+- GO CONCURRENCY TRACER
+- It's open-source
+- github.com/divan/gotrace
+- Uses go execution tracer (go tool trace)
+- Requires patched Go (or pre-made docker images) - 最新版好像可以去掉
+- (Kind of) language agnostic
+- 简单介绍这些是怎么做出来的
+
+* GOTRACE - 早期
+- GO CONCURRENCY TRACER
+- Uses go execution tracer (go tool trace)
+- Rewrites your code and runs it
+- Collect the trace
+- Analyze and correlate events
+- Start web-server serving WebGL visualization
+- Requires patched Go (or pre-made docker images)
+
+: 回过头来，我们再介绍一下 divan 大神的这款工具
