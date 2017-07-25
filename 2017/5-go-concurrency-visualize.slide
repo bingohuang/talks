@@ -16,28 +16,39 @@ https://github.com/163yun
 - 在座的都是 Go 方面的专家
 - 让大家以一种新的视角来了解 Go 并发模型和编程
 
-* WHAT IS CONCURRENCY
+* 什么是并发？
 - a way to structure the program
+- 一种构造程序的方式
 - in a decomposable way
+- 以一种可分解的方式
+- 专业定义：
 
-* CONCURRENCY IS NOT PARALLELISM
+* CONCURRENCY IS NOT PARALLELISM - 并发不是并行 - Rob Pike
 - concurrency is a design technique
+- 并发是一种设计技术
 - parallelism is an optimization technique
+- 并行是一种优化技术
+- Parallelism is simply running things in parallel.
+- Concurrent program can run either on single core or multiple cores.
 - 视频链接 rob pike
 - 最后再来用可视化的方式解答什么是并行，什么是并发？
+- 中文容易混淆，但是英文单词就区分的非常明显
 
-* 多核时代
+
+
+* 当今是并发的世界，多核的时代
+
+* 软件不应该是这样子
+图-TODO
+
+* 而是这样子
+图-TODO
 
 * CONCURRENCY IS HARD
-- 并发本身不容易
+- 并发本身不容易，但是 Go 让并发变的有趣
 
-* CSP BY TONY HOARE
-- 两张图
 
-* DO NOT COMMUNICATE BY SHARING MEMORY;
-SHARE MEMORY BY COMMUNICATING.
-
-* GO CONCURRENCY
+* GO CONCURRENCY - Go 语言中的并发
 - goroutine
 - channel
 - select{}
@@ -45,13 +56,18 @@ SHARE MEMORY BY COMMUNICATING.
 
 * GOROUTINE
 - is a lightweight 'process'
+- 一个轻量级的线程？
 - just prefix func with 'go'
+- 只需要在函数前缀加上 `go`
 - similar to '&' in UNIX
+- 类似于 UNIX 中的 `&`
   go foo()
 
 * CHANNEL
 - allows passing messages between goroutines
+- 允许在 goroutines 之间传递消息
 - similar to pipe in UNIX
+- 类似于 UNIX 中的管道
   // send 42 to channel
   ch <- 42
   ...
@@ -60,6 +76,7 @@ SHARE MEMORY BY COMMUNICATING.
 
 * SELECT{}
 - multiplexing channels I/O
+- 多 channles I/O
   select {
       case val := <-ch:
           fmt.Println("Read from channel:", val)
@@ -67,28 +84,38 @@ SHARE MEMORY BY COMMUNICATING.
           fmt.Println("Send 42 to channel 2")
   }
 
-* GO CONCURRENCY
+* GO CONCURRENCY - 总结一下
 - Run new logical 'thread' - 3 characters
+- 运行一个新的逻辑线程 - 只需 1 个关键字
 - Create pool of goroutines - 3 lines of code
+- 创建一个 goroutine 池 - 3行代码
 - Safety - automatically
+- 保证安全 - 自动的
 
 * CONCURRENT PROGRAMMING HAS NEVER BEEN EASIER
-- 并发编程从来没有这么容易
+- 并发编程好像从来没有这么容易
 
 * NEW QUESTIONS - 那么问题来了
 - How do we teach it?
+- 我们怎样去学习它？
 - How we build more complex abstractions?
+- 我们怎样构建更复杂的抽象概念？
 - How we build concurrent pipelines?
+- 我们怎样构建并发流水线？
 - How do we understand it, after all?
+- 最重要的，我们该怎样理解它？
 
-* GOTRACE
+* GOTRACE - 祭出法宝 GOTRACE
 - Tool for visualizing Go concurrency using WebGL:
-- github.com/divan/gotrace
+- 一种将 Go 并发过程可视化的开源工具，基于 WebGL
+: 该工具非常强大
+: 具体的用法，可以看工程，后面也会有简单介绍
 
-* 可视化并发编程
-: 可运行，可视化
+* 耳听为虚，眼见为实
+: 话不多说，让我们来看一个个实例
+# 可运行，可视化
 
-* HELLO, WORLD!
+* 一、HELLO, WORLD!
   package main
 
   func main() {
@@ -100,6 +127,7 @@ SHARE MEMORY BY COMMUNICATING.
 
       <-ch
   }
+
 * TIMER
 * PING-PONG #2
 - 附带一张搞笑的图
