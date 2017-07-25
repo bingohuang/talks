@@ -44,11 +44,10 @@ https://github.com/163yun
 * 而是这样子
 图-TODO
 
-* CONCURRENCY IS HARD
-- 并发本身不容易，但是 Go 让并发变的有趣
+* 并发本身不容易，但 Go 让并发变的有趣
 
 
-* GO CONCURRENCY - Go 语言中的并发
+* Go 语言中的并发
 - goroutine
 - channel
 - select{}
@@ -84,28 +83,22 @@ https://github.com/163yun
           fmt.Println("Send 42 to channel 2")
   }
 
-* GO CONCURRENCY - 总结一下
+* 总结一下
 - Run new logical 'thread' - 3 characters
 - 运行一个新的逻辑线程 - 只需 1 个关键字
 - Create pool of goroutines - 3 lines of code
 - 创建一个 goroutine 池 - 3行代码
 - Safety - automatically
-- 保证安全 - 自动的
+- 安全 - 自动的
 
-* CONCURRENT PROGRAMMING HAS NEVER BEEN EASIER
-- 并发编程好像从来没有这么容易
+* 感概：并发编程好像从来没有这么容易
 
-* NEW QUESTIONS - 那么问题来了
-- How do we teach it?
-- 我们怎样去学习它？
-- How we build more complex abstractions?
-- 我们怎样构建更复杂的抽象概念？
-- How we build concurrent pipelines?
-- 我们怎样构建并发流水线？
-- How do we understand it, after all?
-- 最重要的，我们该怎样理解它？
+* 但是问题来了
+- 我们怎样去学习 Go 并发？
+- 我们怎样构建 Go 并发流水线？
+- 最终，我们该怎样更好的理解 Go 并发？
 
-* GOTRACE - 祭出法宝 GOTRACE
+* 祭出法宝 - GOTRACE
 - Tool for visualizing Go concurrency using WebGL:
 - 一种将 Go 并发过程可视化的开源工具，基于 WebGL
 : 该工具非常强大
@@ -115,23 +108,23 @@ https://github.com/163yun
 : 话不多说，让我们来看一个个实例
 # 可运行，可视化
 
-* 一、HELLO, WORLD!
-  package main
+* 1. HELLO, WORLD!
+.link /2017/go-concurrency-visualize/helloworld.html *Go并发可视化*
+.code go-concurrency-visualize/helloworld.go /START/,/STOP/
 
-  func main() {
-      ch := make(chan int)
+* 2. TIMER
+.link /2017/go-concurrency-visualize/timer.html *Go并发可视化*
+.code go-concurrency-visualize/timer.go /START/,/STOP/
 
-      go func() {
-          ch <- 42
-      }()
+* 3. PING-PONG - 2 Players
+.link /2017/go-concurrency-visualize/pingpong2.html *Go并发可视化*
+.code go-concurrency-visualize/pingpong2.go /START/,/STOP/
+# 是否附带一张搞笑的图
 
-      <-ch
-  }
+* 4. PING-PONG - 3 Players
+.link /2017/go-concurrency-visualize/pingpong3.html *Go并发可视化*
+.code go-concurrency-visualize/pingpong3.go /START/,/STOP/
 
-* TIMER
-* PING-PONG #2
-- 附带一张搞笑的图
-* PING-PONG #3
 * PING-PONG #36
 
 * CONCURRENT PRIME SIEVE
