@@ -1,4 +1,4 @@
-可视化学习 Go 并发编程
+Go 并发编程可视化
 
 2017.7.27
 
@@ -10,66 +10,67 @@ http://talks.bingohuang.com
 
 https://github.com/163yun
 
-* 大纲
-- 去年 meetup 分享，提到说，Go 会成为 “21世纪的 C 语言”，面向多核时代
-- 几张图，讲讲现在 CPU 的趋势
-- 在座的都是 Go 方面的专家
-- 让大家以一种新的视角来了解 Go 并发模型和编程
-
 * 什么是并发？
-- a way to structure the program
-- 一种构造程序的方式
-- in a decomposable way
-- 以一种可分解的方式
-- 专业定义：
+- 并发是一种构造程序的方式，事关设计
 
-* CONCURRENCY IS NOT PARALLELISM - 并发不是并行 - Rob Pike
-- concurrency is a design technique
-- 并发是一种设计技术
-- parallelism is an optimization technique
-- 并行是一种优化技术
-- Parallelism is simply running things in parallel.
-- Concurrent program can run either on single core or multiple cores.
-- 视频链接 rob pike
-- 最后再来用可视化的方式解答什么是并行，什么是并发？
-- 中文容易混淆，但是英文单词就区分的非常明显
+* Concurrency is not parallelism
+.link https://talks.golang.org/2012/waza.slide *Rob* *Pike* *Talk*
+.video http://bingohuang.nos-eastchina1.126.net/Concurrencyisnotparallelism-RobPike.mp4 video/mp4 500 _
 
-* 并发(CONCURRENCY) VS 并行(PARALLELISM)
+
+* Concurrency is not parallelism
+并发:
+
+  - 将相互独立的执行过程综合到一起的编程技术。
+  - 并发是指两个或多个事件在同一时间间隔内发生
+  - 并发即可以运行在单核，也可以运行在多核上
+
+并行：
+
+  - 同时执行(通常是相关的)计算任务的编程技术。
+  - 并行是指两个或者多个事件在同一时刻发生
+  - 并行需要运行在多核上
+
+总结：
+
+  两者不同，但相关。
+  一个重点是组合，一个重点是执行。
+  并发提供了一种方式让我们能够设计一种方案将问题(非必须的)并行的解决。
+#视频链接 rob pike
+#最后再来用可视化的方式解答什么是并行，什么是并发？
+#中文容易混淆，但是英文单词就区分的非常明显
+
+* 可视化并发(CONCURRENCY) VS 并行(PARALLELISM)
 - 并行(PARALLELISM)
 .link /2017/go-concurrency-visualize/parallelism.html *这是并行*
 - 并发(CONCURRENCY)
 .link /2017/go-concurrency-visualize/pingpong36.html *这是并发*
 
-* 当今是并发的世界，多核的时代
+* 为什么要关注并发？当今是多核的时代，并发的世界
 
 * 软件不应该是这样子
-图-TODO
+.image go-concurrency-visualize/images/cpu.gif _ 840
 
 * 而是这样子
-图-TODO
+.image go-concurrency-visualize/images/cores.png _ 840
 
 * 并发本身不容易，但 Go 让并发变的有趣
 
 
 * Go 语言中的并发
-- goroutine
-- channel
-- select{}
+- goroutine - 并发执行
+- channel - 同步和消息传输
+- select - 多路并发控制
 : 谢大的每日新闻中，经常提及
 
 * GOROUTINE
-- is a lightweight 'process'
-- 一个轻量级的线程？
-- just prefix func with 'go'
+- 一种轻量级的"线程"
 - 只需要在函数前缀加上 `go`
-- similar to '&' in UNIX
 - 类似于 UNIX 中的 `&`
   go foo()
 
 * CHANNEL
-- allows passing messages between goroutines
 - 允许在 goroutines 之间传递消息
-- similar to pipe in UNIX
 - 类似于 UNIX 中的管道
   // send 42 to channel
   ch <- 42
@@ -78,7 +79,6 @@ https://github.com/163yun
   val := <-ch
 
 * SELECT{}
-- multiplexing channels I/O
 - 多 channles I/O
   select {
       case val := <-ch:
@@ -86,14 +86,6 @@ https://github.com/163yun
       case ch2 <- 42:
           fmt.Println("Send 42 to channel 2")
   }
-
-* 总结一下
-- Run new logical 'thread' - 3 characters
-- 运行一个新的逻辑线程 - 1 个关键字
-- Create pool of goroutines - 3 lines of code
-- 创建一个 goroutine 池 - 3 行代码
-- Safety - automatically
-- 安全 - 自动的
 
 * 感概：并发编程好像从来没有这么容易
 
@@ -103,7 +95,6 @@ https://github.com/163yun
 - 最终，我们怎样更好的实践 Go 并发编程？
 
 * 祭出法宝 - GOTRACE
-- Tool for visualizing Go concurrency using WebGL:
 - 一种将 Go 并发过程可视化的开源工具
 - https://github.com/divan/gotrace
 - gotrace（go）：分析 go tool trace 的执行结果
@@ -113,31 +104,30 @@ https://github.com/163yun
 
 * 耳听为虚，眼见为实
 : 话不多说，让我们来看多看几个实例
-# 可运行，可视化
 
 * 1. HELLO, WORLD!
 .code go-concurrency-visualize/helloworld.go /START/,/STOP/
 .link /2017/go-concurrency-visualize/helloworld.html *Go并发可视化*
 
-* 2. TIMER
+* 2. 计时器
 .code go-concurrency-visualize/timer.go /START/,/STOP/
 .link /2017/go-concurrency-visualize/timer.html *Go并发可视化*
 
-* 3. PING-PONG - 2 Players
+* 3. 乒乓 - 2 个玩家
 .code go-concurrency-visualize/pingpong2.go /START/,/STOP/
 .link /2017/go-concurrency-visualize/pingpong2.html *Go并发可视化*
 # 是否附带一张搞笑的图
 
-* 4. PING-PONG - 3 Players
+* 4. 乒乓 - 3 个玩家
 .code go-concurrency-visualize/pingpong3.go /START/,/STOP/
 .link /2017/go-concurrency-visualize/pingpong3.html *Go并发可视化*
 
-* 4. PING-PONG - 36 Players
+* 4. 乒乓 - 3 个玩家
 .code go-concurrency-visualize/pingpong36.go /START/,/STOP/
 .link /2017/go-concurrency-visualize/pingpong36.html *Go并发可视化*
 
 * 5. 素数筛
-.image go-concurrency-visualize/Sieve_of_Eratosthenes_animation.gif
+.image go-concurrency-visualize/images/Sieve_of_Eratosthenes_animation.gif
 
 素数是一个自然数，它具有两个截然不同的自然数除数：1和它本身。 要找到小于或等于给定整数n的素数，我们可以使用[[https://en.wikipedia.org/wiki/Sieve_of_Eratosthenes][Eratosthenes' sieve(埃拉托斯特尼)算法]]。
 
@@ -148,20 +138,6 @@ https://github.com/163yun
 .code go-concurrency-visualize/primesieve.go /START/,/STOP/
 
 * 5. 素数筛
-.link /2017/go-concurrency-visualize/primesieve.html *Go并发可视化*
-
-* MESSAGING PATTERNS - 这个先不讲
-* FAN-IN
-* SERVERS
-* WORKERS / FAN-OUT / SUBWORKERS
-* SERVER+WORKER
-
-* GOMAXPROCS - 这个可以考虑下
-- go doc runtime GOMAXPROCS
-* GOMAXPROCS = 1
-.link /2017/go-concurrency-visualize/primesieve.html *Go并发可视化*
-
-* GOMAXPROCS = 24
 .link /2017/go-concurrency-visualize/primesieve.html *Go并发可视化*
 
 * 6. GOROUTINES 泄露
