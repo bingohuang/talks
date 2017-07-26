@@ -10,32 +10,29 @@ http://talks.bingohuang.com
 
 https://github.com/163yun
 
-* 什么是并发？
-- 并发是一种构造程序的方式，事关设计
+* 并发
+是一种构造程序的方式，事关设计及编程
+.video http://bingohuang.nos-eastchina1.126.net/Concurrencyisnotparallelism-RobPike.mp4 video/mp4 400 _
+  1. 并发很强大
+  2. 并发帮助实现并行，使并行(扩展等)变得容易
+  3. 并发不是并行
 
-* Concurrency is not parallelism
-.link https://talks.golang.org/2012/waza.slide *Rob* *Pike* *Talk*
-.video http://bingohuang.nos-eastchina1.126.net/Concurrencyisnotparallelism-RobPike.mp4 video/mp4 500 _
 
-
-* Concurrency is not parallelism
+* Concurrency VS Parallelism
 并发:
 
   - 将相互独立的执行过程综合到一起的编程技术。
-  - 并发是指两个或多个事件在同一时间间隔内发生
   - 并发即可以运行在单核，也可以运行在多核上
 
 并行：
 
   - 同时执行(通常是相关的)计算任务的编程技术。
-  - 并行是指两个或者多个事件在同一时刻发生
   - 并行需要运行在多核上
 
 总结：
 
-  两者不同，但相关。
-  一个重点是组合，一个重点是执行。
-  并发提供了一种方式让我们能够设计一种方案将问题(非必须的)并行的解决。
+  - 两者不同，但相关，一个重点是组合，一个重点是执行。
+  - 并发提供了一种方式让我们能够设计一种方案将问题(非必须的)并行的解决。
 #视频链接 rob pike
 #最后再来用可视化的方式解答什么是并行，什么是并发？
 #中文容易混淆，但是英文单词就区分的非常明显
@@ -51,11 +48,10 @@ https://github.com/163yun
 * 软件不应该是这样子
 .image go-concurrency-visualize/images/cpu.gif _ 840
 
-* 而是这样子
+* 而是这个样子
 .image go-concurrency-visualize/images/cores.png _ 840
 
-* 并发本身不容易，但 Go 让并发变的有趣
-
+* 并发实现并不容易，但 Go 对并发有很好的支持
 
 * Go 语言中的并发
 - goroutine - 并发执行
@@ -87,22 +83,24 @@ https://github.com/163yun
           fmt.Println("Send 42 to channel 2")
   }
 
-* 感概：并发编程好像从来没有这么容易
+* 感概： Go 让并发编程变的简单了
 
 * 但是问题来了
-- 我们怎样去学习 Go 并发？
-- 我们怎样思考 Go 的并发过程？
+- 我们怎样去解说 Go 的并发？
+- 我们怎样构建 Go 的并发过程？
 - 最终，我们怎样更好的实践 Go 并发编程？
 
 * 祭出法宝 - GOTRACE
-- 一种将 Go 并发过程可视化的开源工具
-- https://github.com/divan/gotrace
-- gotrace（go）：分析 go tool trace 的执行结果
-- gothree.js: 基于 Three.js 和 WebGL 生成 3D 图像
+一种将 Go 并发过程可视化的[[https://github.com/divan/gotrace][开源]]工具
+
+出自 [[https://github.com/divan][divan]] 大神，主要包含两个程序：
+
+- gotrace(go)：分析 go tool trace 的执行结果
+- gothree(js): 基于 Three.js 和 WebGL 生成 3D 图像
 : 该工具非常强大
 : 具体的用法，可以看工程，后面也会有简单介绍
 
-* 耳听为虚，眼见为实
+* 说了这么多，耳听为虚，眼见为实
 : 话不多说，让我们来看多看几个实例
 
 * 1. HELLO, WORLD!
@@ -118,15 +116,15 @@ https://github.com/163yun
 .link /2017/go-concurrency-visualize/pingpong2.html *Go并发可视化*
 # 是否附带一张搞笑的图
 
-* 4. 乒乓 - 3 个玩家
+* 3. 乒乓 - 3 个玩家
 .code go-concurrency-visualize/pingpong3.go /START/,/STOP/
 .link /2017/go-concurrency-visualize/pingpong3.html *Go并发可视化*
 
-* 4. 乒乓 - 3 个玩家
+* 3. 乒乓 - 36 个玩家
 .code go-concurrency-visualize/pingpong36.go /START/,/STOP/
 .link /2017/go-concurrency-visualize/pingpong36.html *Go并发可视化*
 
-* 5. 素数筛
+* 4. 素数筛
 .image go-concurrency-visualize/images/Sieve_of_Eratosthenes_animation.gif
 
 素数是一个自然数，它具有两个截然不同的自然数除数：1和它本身。 要找到小于或等于给定整数n的素数，我们可以使用[[https://en.wikipedia.org/wiki/Sieve_of_Eratosthenes][Eratosthenes' sieve(埃拉托斯特尼)算法]]。
@@ -134,13 +132,13 @@ https://github.com/163yun
   算法描述：先用最小的素数2去筛，把2的倍数剔除掉；下一个未筛除的数就是素数(这里是3)。
   再用这个素数3去筛，筛除掉3的倍数... 这样不断重复下去，直到筛完为止。
 
-* 5. 素数筛
+* 4. 素数筛
 .code go-concurrency-visualize/primesieve.go /START/,/STOP/
 
-* 5. 素数筛
+* 4. 素数筛
 .link /2017/go-concurrency-visualize/primesieve.html *Go并发可视化*
 
-* 6. GOROUTINES 泄露
+* 5. GOROUTINES 泄露
 .code go-concurrency-visualize/leak.go /START/,/STOP/
 .link /2017/go-concurrency-visualize/leak.html *Go并发可视化*
 
@@ -160,6 +158,7 @@ https://github.com/163yun
 - 自动打开浏览器，可调整视角、缩放、旋转以及线条加粗等
 : 回过头来，我们再介绍一下 divan 大神的这款工具
 
-* 总结
-- 用处
-- 场景
+* 场景
+- 学习 Go 的并发模式
+- 可视化 Go 的并发过程
+- 非常酷！
