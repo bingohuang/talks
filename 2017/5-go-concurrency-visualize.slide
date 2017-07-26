@@ -104,7 +104,10 @@ https://github.com/163yun
 
 * 祭出法宝 - GOTRACE
 - Tool for visualizing Go concurrency using WebGL:
-- 一种将 Go 并发过程可视化的开源工具，基于 WebGL
+- 一种将 Go 并发过程可视化的开源工具
+- https://github.com/divan/gotrace
+- gotrace（go）：分析 go tool trace 的执行结果
+- gothree.js: 基于 Three.js 和 WebGL 生成 3D 图像
 : 该工具非常强大
 : 具体的用法，可以看工程，后面也会有简单介绍
 
@@ -161,24 +164,26 @@ https://github.com/163yun
 * GOMAXPROCS = 24
 .link /2017/go-concurrency-visualize/primesieve.html *Go并发可视化*
 
-* GOROUTINES LEAK
+* 6. GOROUTINES 泄露
+.code go-concurrency-visualize/leak.go /START/,/STOP/
+.link /2017/go-concurrency-visualize/leak.html *Go并发可视化*
 
-* GOTRACE
-- GO CONCURRENCY TRACER
-- It's open-source
-- github.com/divan/gotrace
-- Uses go execution tracer (go tool trace)
-- Requires patched Go (or pre-made docker images) - 最新版好像可以去掉
-- (Kind of) language agnostic
-- 简单介绍这些是怎么做出来的
-
-* GOTRACE - 早期
-- GO CONCURRENCY TRACER
-- Uses go execution tracer (go tool trace)
-- Rewrites your code and runs it
-- Collect the trace
-- Analyze and correlate events
-- Start web-server serving WebGL visualization
-- Requires patched Go (or pre-made docker images)
-
+* GOTRACE 用法简介
+- go get -v -u github.com/divan/gotrace
+- 默认使用 go1.6，推荐切换到 go18 分支，支持 go1.8.1，再重新构建 go install
+  Usage: gotrace [trace.out] or [main.go]
+         (if you pass .go file to gotrace, it will modify code on the fly,
+         adding tracing, run it and collect the trace automagically)
+- 直接运行 go 文件的效果并不好，推荐生成 trace，可以用以下脚本：
+  docker run --rm -it \
+    -e GOOS=darwin \
+    -v $(pwd):/src hub.c.163.com/bingohuang/gotrace:go1.8.1 \
+        go build -o /src/binary /src/main.go
+  ./binary 2> ./trace.out
+  gotrace ./trace.out
+- 自动打开浏览器，可调整视角、缩放、旋转以及线条加粗等
 : 回过头来，我们再介绍一下 divan 大神的这款工具
+
+* 总结
+- 用处
+- 场景
