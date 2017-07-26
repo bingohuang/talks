@@ -95,8 +95,8 @@ https://github.com/163yun
 
 * 但是问题来了
 - 我们怎样去学习 Go 并发？
-- 我们怎样构建 Go 并发流水线？
-- 最终，我们该怎样更好的理解 Go 并发？
+- 我们怎样思考 Go 的并发过程？
+- 最终，我们怎样更好的实践 Go 并发编程？
 
 * 祭出法宝 - GOTRACE
 - Tool for visualizing Go concurrency using WebGL:
@@ -109,25 +109,39 @@ https://github.com/163yun
 # 可运行，可视化
 
 * 1. HELLO, WORLD!
-.link /2017/go-concurrency-visualize/helloworld.html *Go并发可视化*
 .code go-concurrency-visualize/helloworld.go /START/,/STOP/
+.link /2017/go-concurrency-visualize/helloworld.html *Go并发可视化*
 
 * 2. TIMER
-.link /2017/go-concurrency-visualize/timer.html *Go并发可视化*
 .code go-concurrency-visualize/timer.go /START/,/STOP/
+.link /2017/go-concurrency-visualize/timer.html *Go并发可视化*
 
 * 3. PING-PONG - 2 Players
-.link /2017/go-concurrency-visualize/pingpong2.html *Go并发可视化*
 .code go-concurrency-visualize/pingpong2.go /START/,/STOP/
+.link /2017/go-concurrency-visualize/pingpong2.html *Go并发可视化*
 # 是否附带一张搞笑的图
 
 * 4. PING-PONG - 3 Players
-.link /2017/go-concurrency-visualize/pingpong3.html *Go并发可视化*
 .code go-concurrency-visualize/pingpong3.go /START/,/STOP/
+.link /2017/go-concurrency-visualize/pingpong3.html *Go并发可视化*
 
-* PING-PONG #36
+* 4. PING-PONG - 36 Players
+.code go-concurrency-visualize/pingpong36.go /START/,/STOP/
+.link /2017/go-concurrency-visualize/pingpong36.html *Go并发可视化*
 
-* CONCURRENT PRIME SIEVE
+* 5. 素数筛
+.image go-concurrency-visualize/Sieve_of_Eratosthenes_animation.gif
+
+素数是一个自然数，它具有两个截然不同的自然数除数：1和它本身。 要找到小于或等于给定整数n的素数，我们可以使用[[https://en.wikipedia.org/wiki/Sieve_of_Eratosthenes][Eratosthenes' sieve(埃拉托斯特尼)算法]]。
+
+  算法描述：先用最小的素数2去筛，把2的倍数剔除掉；下一个未筛除的数就是素数(这里是3)。
+  再用这个素数3去筛，筛除掉3的倍数... 这样不断重复下去，直到筛完为止。
+
+* 5. 素数筛
+.code go-concurrency-visualize/primesieve.go /START/,/STOP/
+
+* 5. 素数筛
+.link /2017/go-concurrency-visualize/primesieve.html *Go并发可视化*
 
 * MESSAGING PATTERNS
 * FAN-IN
@@ -138,7 +152,10 @@ https://github.com/163yun
 * GOMAXPROCS
 - go doc runtime GOMAXPROCS
 * GOMAXPROCS = 1
+.link /2017/go-concurrency-visualize/primesieve.html *Go并发可视化*
+
 * GOMAXPROCS = 24
+.link /2017/go-concurrency-visualize/primesieve.html *Go并发可视化*
 
 * GOROUTINES LEAK
 
