@@ -34,7 +34,11 @@ https://github.com/163yun
 - 最后再来用可视化的方式解答什么是并行，什么是并发？
 - 中文容易混淆，但是英文单词就区分的非常明显
 
-
+* 并发(CONCURRENCY) VS 并行(PARALLELISM)
+- 并行(PARALLELISM)
+.link /2017/go-concurrency-visualize/parallelism.html *这是并行*
+- 并发(CONCURRENCY)
+.link /2017/go-concurrency-visualize/pingpong36.html *这是并发*
 
 * 当今是并发的世界，多核的时代
 
@@ -85,9 +89,9 @@ https://github.com/163yun
 
 * 总结一下
 - Run new logical 'thread' - 3 characters
-- 运行一个新的逻辑线程 - 只需 1 个关键字
+- 运行一个新的逻辑线程 - 1 个关键字
 - Create pool of goroutines - 3 lines of code
-- 创建一个 goroutine 池 - 3行代码
+- 创建一个 goroutine 池 - 3 行代码
 - Safety - automatically
 - 安全 - 自动的
 
@@ -105,7 +109,7 @@ https://github.com/163yun
 : 具体的用法，可以看工程，后面也会有简单介绍
 
 * 耳听为虚，眼见为实
-: 话不多说，让我们来看一个个实例
+: 话不多说，让我们来看多看几个实例
 # 可运行，可视化
 
 * 1. HELLO, WORLD!
@@ -143,13 +147,13 @@ https://github.com/163yun
 * 5. 素数筛
 .link /2017/go-concurrency-visualize/primesieve.html *Go并发可视化*
 
-* MESSAGING PATTERNS
+* MESSAGING PATTERNS - 这个先不讲
 * FAN-IN
 * SERVERS
 * WORKERS / FAN-OUT / SUBWORKERS
 * SERVER+WORKER
 
-* GOMAXPROCS
+* GOMAXPROCS - 这个可以考虑下
 - go doc runtime GOMAXPROCS
 * GOMAXPROCS = 1
 .link /2017/go-concurrency-visualize/primesieve.html *Go并发可视化*
@@ -158,10 +162,6 @@ https://github.com/163yun
 .link /2017/go-concurrency-visualize/primesieve.html *Go并发可视化*
 
 * GOROUTINES LEAK
-
-* CONCURRENCY VS PARALLELISM
-- 可视化并行
-- 可视化并发
 
 * GOTRACE
 - GO CONCURRENCY TRACER
