@@ -25,14 +25,17 @@ Dockerfile如下：
 ```dockerfile
 FROM hub.c.163.com/bingohuang/go-present:1.7.3
 MAINTAINER Bingo Huang<me@bingohaung.com>
-COPY . /slides
-WORKDIR /slides
+COPY dir.tmpl /go/src/golang.org/x/tools/cmd/present/templates/dir.tmpl
+COPY . /talks
+WORKDIR /talks
 EXPOSE 1989
 ENTRYPOINT ["/go/bin/present"]
 CMD ["-http", "0.0.0.0:1989"]
 ```
 
-docker.sh脚本如下：
+其中 `dir.tmpl` 是自定义页面
+
+打包和推送脚本如下(docker.sh)：
 ```shell
 #!/usr/bin/env bash
 
@@ -41,8 +44,9 @@ function docker-build() {
         echo "build $1"
         docker build -t hub.c.163.com/bingohuang/talks:$1 .
     else
-        echo "build latest"
-        docker build -t hub.c.163.com/bingohuang/talks:latest .
+        version=`cat VERSION`
+        echo "build $version"
+        docker build -t hub.c.163.com/bingohuang/talks:$version .
     fi
 }
 
@@ -51,8 +55,9 @@ function docker-push() {
         echo "push $1"
         docker push hub.c.163.com/bingohuang/talks:$1
     else
-        echo "push latest"
-        docker push hub.c.163.com/bingohuang/talks:latest
+        version=`cat VERSION`
+        echo "push $version"
+        docker push hub.c.163.com/bingohuang/talks:$version
     fi
 }
 
