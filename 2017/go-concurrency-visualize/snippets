@@ -1,0 +1,23 @@
+f("hello", "world") // f runs; we wait
+
+go f("hello", "world") // f starts running
+g() // does not wait for f to return
+
+timerChan := make(chan time.Time)
+go func() {
+    time.Sleep(deltaT)
+    timerChan <- time.Now() // send time on timerChan
+}()
+// Do something else; when ready, receive.
+// Receive will block until timerChan delivers.
+// Value sent is other goroutine's completion time.
+completedAt := <-timerChan
+
+select {
+case v := <-ch1:
+    fmt.Println("channel 1 sends", v)
+case v := <-ch2:
+    fmt.Println("channel 2 sends", v)
+default: // optional
+    fmt.Println("neither channel was ready")
+}

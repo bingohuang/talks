@@ -68,34 +68,23 @@ Go 并发编程可视化
 - 很像线程，但更轻量
 - 一个 goroutine 就是一个独立运行的函数，和其他 goroutine 在同一地址空间
 - 当一个 goroutine 阻塞时，所在的线程会阻塞，但其它 goroutine 不受影响
-  f("hello", "world") // f runs; we wait
-  go f("hello", "world") // f starts running
-  g() // does not wait for f to return
+
+.code go-concurrency-visualize/snippets /f.runs/
+
+.code go-concurrency-visualize/snippets /f.starts.running/,/return/
 
 * CHANNEL
 - 类似于 UNIX 中的 `管道`
 - 允许在 goroutines 之间传递消息
   timerChan := make(chan time.Time)
-  go func() {
-      time.Sleep(deltaT)
-      timerChan <- time.Now() // send time on timerChan
-  }()
-  // Do something else; when ready, receive.
-  // Receive will block until timerChan delivers.
-  // Value sent is other goroutine's completion time.
-  completedAt := <-timerChan
+
+.code go-concurrency-visualize/snippets /make.*chan/,/completedAt/
 
 * SELECT
 - 类似于 switch
 - 但它的判断条件是基于通信，而不是基于值的等量匹配
-  select {
-  case v := <-ch1:
-      fmt.Println("channel 1 sends", v)
-  case v := <-ch2:
-      fmt.Println("channel 2 sends", v)
-  default: // optional
-      fmt.Println("neither channel was ready")
-  }
+
+.code go-concurrency-visualize/snippets /select/,/}/
 
 * Go 让并发编程变的简单起来
 : 一个程序里产生成千上万个Go例程很正常。
@@ -124,14 +113,14 @@ Go 并发编程可视化
 : 代码非常简单 - 单 channel，单 goroutine，一次写，一次读
 : 这里蓝色的线表示 goroutine 随着时间运行。细的蓝线连接了 ‘main’ 和 ‘go #20’，标志着 goroutine 的启动和停止，揭示了它们的父子关系。
 : 最后，红色箭头给我们展示了‘发送/接受’的动作。实际上它是两个独立的动作
-: Goroutine 名称中的的 “#19”，是实际的 goroutine 内部 ID，从运行时获取
+: Goroutine 名称中的的 “#20”，是实际的 goroutine 内部 ID，从运行时获取
 
 * 2. 计时器
 .code go-concurrency-visualize/timer.go /START/,/STOP/
 .link /2017/go-concurrency-visualize/timer.html *Go并发可视化*
-: 一个简单的计时器 - 创建一个 channel，启动一个 goroutine，在给定的时间间隔之后向这个 channle 写入数据，之后将这个 channel 返回给函数的调用着。
+: 一个简单的计时器 - 创建一个 channel，启动一个 goroutine，在给定的时间间隔之后向这个 channle 写入数据，之后将这个 channel 返回给函数的调用者。
 
-* 3. 乒乓 - 2 个玩家
+* 3. 乒乓球 - 2 个玩家
 .code go-concurrency-visualize/pingpong2.go /START/,/STOP/
 .link /2017/go-concurrency-visualize/pingpong2.html *Go并发可视化*
 : Google 员工 Sameer Ajmani 在 “Advanced Go Concurrency Patterns” 的精彩分享中提出
@@ -140,13 +129,13 @@ Go 并发编程可视化
 # 是否附带一张搞笑的图
 : 在这个点上，我建议你点击上面的链接，可以和 WebGL 动画交互，玩玩看。你可以放慢、加快，从不同的角度观察它
 
-* 3. 乒乓 - 3 个玩家
+* 3. 乒乓球 - 3 个玩家
 .code go-concurrency-visualize/pingpong3.go /START/,/STOP/
 .link /2017/go-concurrency-visualize/pingpong3.html *Go并发可视化*
 : 每个运动员都是轮流依次进行
 : 因为 Go 运行时给接受者（准备从特定的 channel 接收消息的 goroutines）保持一个先进先出（FIFO）的队列
 
-* 3. 乒乓 - 36 个玩家
+* 3. 乒乓球 - 36 个玩家
 .code go-concurrency-visualize/pingpong36.go /START/,/STOP/
 .link /2017/go-concurrency-visualize/pingpong36.html *Go并发可视化*
 : 让我们来看一个更复杂的例子
@@ -164,12 +153,13 @@ Go 并发编程可视化
 .code go-concurrency-visualize/primesieve.go /START/,/STOP/
 
 * 4. 素数筛
-.image go-concurrency-visualize/images/primesieve.gif
+#.image go-concurrency-visualize/images/primesieve.gif
 .link /2017/go-concurrency-visualize/primesieve.html *更立体的Go并发可视化*
 
 * 5. GOROUTINES 泄露
 .code go-concurrency-visualize/leak.go /START/,/STOP/
 .link /2017/go-concurrency-visualize/leak.html *Go并发可视化*
+: 泄露发生的场景:你只是简单的忘记添加终止添加，而运行了一个 for{} 循环。
 
 * GOTRACE 用法简介
 - go get -v -u github.com/divan/gotrace
