@@ -1,11 +1,11 @@
 var params = {
   camera: "perspective",
   allCaps: false,
-  speed: 2.8,
+  speed: 10,
   angle: 10,
-  zoom: 1.0,
-  autoRotate: 36,
-  cameraPos: {x: 120, y: 60, z: 120}
+  zoom: 3.0,
+  autoRotate: false,
+  cameraPos: {x: 220, y: 60, z: 120}
 }
 
 // var params = {

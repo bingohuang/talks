@@ -31,7 +31,7 @@ Go 并发编程可视化
 
 总结：
 
-  - 两者不同，但相关，并发重点是组合，并行重点是执行。
+  - 两者不同，但相关，并发重点是架构，并行重点是执行。
   - 并发提供了一种方式让我们能够设计一种方案将问题(非必须的)并行的解决。
 #最后再来用可视化的方式解答什么是并行，什么是并发？
 #中文容易混淆，但是英文单词就区分的非常明显
@@ -41,6 +41,7 @@ Go 并发编程可视化
 .link /2017/go-concurrency-visualize/parallelism.html *这是并行*
 - 并发(CONCURRENCY)
 .link /2017/go-concurrency-visualize/pingpong36.html *这是并发*
+: 一图胜千言
 
 * 为什么要关注并发？当今是多核的时代，并发的世界
 
@@ -120,23 +121,36 @@ Go 并发编程可视化
 * 1. HELLO, WORLD!
 .code go-concurrency-visualize/helloworld.go /START/,/STOP/
 .link /2017/go-concurrency-visualize/helloworld.html *Go并发可视化*
+: 代码非常简单 - 单 channel，单 goroutine，一次写，一次读
+: 这里蓝色的线表示 goroutine 随着时间运行。细的蓝线连接了 ‘main’ 和 ‘go #20’，标志着 goroutine 的启动和停止，揭示了它们的父子关系。
+: 最后，红色箭头给我们展示了‘发送/接受’的动作。实际上它是两个独立的动作
+: Goroutine 名称中的的 “#19”，是实际的 goroutine 内部 ID，从运行时获取
 
 * 2. 计时器
 .code go-concurrency-visualize/timer.go /START/,/STOP/
 .link /2017/go-concurrency-visualize/timer.html *Go并发可视化*
+: 一个简单的计时器 - 创建一个 channel，启动一个 goroutine，在给定的时间间隔之后向这个 channle 写入数据，之后将这个 channel 返回给函数的调用着。
 
 * 3. 乒乓 - 2 个玩家
 .code go-concurrency-visualize/pingpong2.go /START/,/STOP/
 .link /2017/go-concurrency-visualize/pingpong2.html *Go并发可视化*
+: Google 员工 Sameer Ajmani 在 “Advanced Go Concurrency Patterns” 的精彩分享中提出
+: 首先我们有一个 channel，作为打乒乓球的桌子。
+: 乒乓球是一个整型变量，有两个 goroutine 运动员在击球，每击打一次会增加乒乓球的数字（击打统计）。
 # 是否附带一张搞笑的图
+: 在这个点上，我建议你点击上面的链接，可以和 WebGL 动画交互，玩玩看。你可以放慢、加快，从不同的角度观察它
 
 * 3. 乒乓 - 3 个玩家
 .code go-concurrency-visualize/pingpong3.go /START/,/STOP/
 .link /2017/go-concurrency-visualize/pingpong3.html *Go并发可视化*
+: 每个运动员都是轮流依次进行
+: 因为 Go 运行时给接受者（准备从特定的 channel 接收消息的 goroutines）保持一个先进先出（FIFO）的队列
 
 * 3. 乒乓 - 36 个玩家
 .code go-concurrency-visualize/pingpong36.go /START/,/STOP/
 .link /2017/go-concurrency-visualize/pingpong36.html *Go并发可视化*
+: 让我们来看一个更复杂的例子
+: 就好像有一张圆形的乒乓球桌，每个人都把球打向你的相邻运动员，再接球，再打球
 
 * 4. 素数筛
 .image go-concurrency-visualize/images/Sieve_of_Eratosthenes_animation.gif
