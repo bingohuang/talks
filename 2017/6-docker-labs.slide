@@ -18,16 +18,16 @@ http://www.bagevent.com/event/668296
 
 * Docker在线实验室 - 简介
 - 一个运行在浏览器中的Docker Playground，无需安装任何环境，就可以在线体验 Docker
-- 官方体验：http://labs.play-with-docker.com/
-- 官方开源：https://github.com/play-with-docker/play-with-docker
 - 网易云体验：http://labs.bingohuang.com/
 - 网易云开源：https://github.com/bingohuang/docker-labs
+- 官方体验：http://labs.play-with-docker.com/
+- 官方开源：https://github.com/play-with-docker/play-with-docker
 - 博文介绍：Play with Docker | 非常酷的Docker在线实验室
   - http://bingohuang.com/docker-labs-1 - 简介、用处、特性及使用
   - http://bingohuang.com/docker-labs-2 - 安装部署 - 可能要更新了
 - 视频：https://www.youtube.com/watch?v=-h2VTE9WnZs
 
-* Docker在线实验室 - 几个有意思的特性
+* Docker在线实验室 - 博文中提到的几个特性
 - 每次开启实验室，相当于一个独立的Session，当前以 URL 唯一标识（新版中好像带 alias）
 - 实验室中的工作台就是一个独立的Docker容器，用到 DIND 技术
 - 每一个工作台有一个交互终端(Terminal)，用于远程操作和实验，简洁实用
@@ -57,7 +57,7 @@ http://www.bagevent.com/event/668296
 * Docker在线实验室 - 使用场景
 博文中提到：
 
-  1. 现成的环境
+  1. 提供环境
   2. 节约时间
   3. 节约资源
 
@@ -67,19 +67,19 @@ http://www.bagevent.com/event/668296
   2. 快速部署一个集群服务
   3. 快速做实验、排查问题
   4. 分享或活动演示
-  5. 配合交互式学习室，做更复杂的实验
+  5. 配合交互式学习室，做更复杂的交互练习
 
 * Docker在线学习室
 - 结合 Docker 在线实验室，提供在线教程及环境，让你轻松练习
-- 官方体验：http://training.play-with-docker.com/
-- 官方开源：https://github.com/play-with-docker/play-with-docker.github.io
 - 网易云体验：http://study.bingohuang.com/
 - 网易云开源：https://github.com/bingohuang/docker-classroom
+- 官方体验：http://training.play-with-docker.com/
+- 官方开源：https://github.com/play-with-docker/play-with-docker.github.io
 - 可自己写实验文章，自定义实验步骤，支持点击自动输入
 
 * 其他 - 基于开源版本
 - http://go.bingohuang.com/
   Go 语言游乐场，支持在线运行、格式化和分享
-  
+
 - http://k8s.bingohuang.com
   K8S训练营: 你将会学到什么是Kubernetes，学会如何在Kubernetes集群上部署、扩容、更新和调试你的容器化应用
