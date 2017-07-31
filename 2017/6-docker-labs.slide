@@ -1,0 +1,85 @@
+交流会-Docker 在线实验室
+
+2017.7.31
+
+黄庆兵
+
+网易云 • 基础设施 • 容器服务
+
+http://talks.bingohuang.com
+http://www.bagevent.com/event/668296
+
+* 目录
+- Docker在线实验室 - Play with docker
+
+- Docker在线学习室 - Training
+
+- 其它: Go-Playground\K8S-Bootcamp
+
+* Docker在线实验室 - 简介
+- 一个运行在浏览器中的Docker Playground，无需安装任何环境，就可以在线体验 Docker
+- 官方体验：http://labs.play-with-docker.com/
+- 官方开源：https://github.com/play-with-docker/play-with-docker
+- 网易云体验：http://labs.bingohuang.com/
+- 网易云开源：https://github.com/bingohuang/docker-labs
+- 博文介绍：Play with Docker | 非常酷的Docker在线实验室
+  - http://bingohuang.com/docker-labs-1 - 简介、用处、特性及使用
+  - http://bingohuang.com/docker-labs-2 - 安装部署 - 可能要更新了
+- 视频：https://www.youtube.com/watch?v=-h2VTE9WnZs
+
+* Docker在线实验室 - 几个有意思的特性
+- 每次开启实验室，相当于一个独立的Session，当前以 URL 唯一标识（新版中好像带 alias）
+- 实验室中的工作台就是一个独立的Docker容器，用到 DIND 技术
+- 每一个工作台有一个交互终端(Terminal)，用于远程操作和实验，简洁实用
+- 终端可以切换全屏(快捷键Alt+Enter)，可以调整字体大小(见设置)，方便演示
+- 每个工作台会提供IP信息，以及内存和CPU的使用率，用的是docker stats接口
+- 支持 Web 应用在线部署和访问，部署 nginx 示例
+- 工作台之间的IP是联通的，支持集群管理，比如用Swarm管理Docker集群
+
+* Docker在线实验室 - 新特性1
+- 提供 Docker Machine Driver 和 SSH 支持：可以在本地管理云环境、SSH 登录
+.image docker-labs/docker-machine-driver-ssh.gif 420 _
+  https://github.com/play-with-docker/docker-machine-driver-pwd
+
+* Docker在线实验室 - 新特性2
+- 提供文件上传功能：通过拖拽就可以将 Dokcerfile 文件直接上传到实验环境当中
+.image docker-labs/pwd_upload.gif 450 _
+
+* Docker在线实验室 - 新特性3
+- 提供预定义模板功能：可以快速创建 5 个 swarm 节点
+.image docker-labs/templated-session.gif 450 _
+
+* Docker在线实验室 - 新特性4
+- 一键部署 docker-hub 镜像：chrome 插件、compose stack文件
+.image docker-labs/deploy-stack.gif 420 _
+  https://github.com/play-with-docker/chrome-extension
+
+* Docker在线实验室 - 使用场景
+博文中提到：
+
+  1. 现成的环境
+  2. 节约时间
+  3. 节约资源
+
+其他场景：
+
+  1. 体验最新 docker 版本
+  2. 快速部署一个集群服务
+  3. 快速做实验、排查问题
+  4. 分享或活动演示
+  5. 配合交互式学习室，做更复杂的实验
+
+* Docker在线学习室
+- 结合 Docker 在线实验室，提供在线教程及环境，让你轻松练习
+- 官方体验：http://training.play-with-docker.com/
+- 官方开源：https://github.com/play-with-docker/play-with-docker.github.io
+- 网易云体验：http://study.bingohuang.com/
+- 网易云开源：https://github.com/bingohuang/docker-classroom
+- 可自己写实验文章，自定义实验步骤，支持点击自动输入
+
+* 其他 - 基于开源版本
+- http://go.bingohuang.com/
+  Go 语言游乐场，支持在线运行、格式化和分享
+  
+- http://k8s.bingohuang.com
+  K8S训练营: 你将会学到什么是Kubernetes，学会如何在Kubernetes集群上部署、扩容、更新和调试你的容器化应用
