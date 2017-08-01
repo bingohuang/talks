@@ -6,19 +6,19 @@ import "fmt"
 
 // START OMIT
 func main() {
-	ch := make(chan int)
-	go Generate(ch)
+	in := make(chan int)
+	go Generate(in)
 	for i := 0; i < 10; i++ {
-		prime := <-ch
+		prime := <-in
 		fmt.Println(prime)
 		out := make(chan int)
-		go Filter(ch, out, prime)
-		ch = out
+		go Filter(in, out, prime)
+		in = out
 	}
 }
-func Generate(ch chan<- int) {
+func Generate(in chan<- int) {
 	for i := 2; ; i++ {
-		ch <- i
+		in <- i
 	}
 }
 func Filter(in <-chan int, out chan<- int, prime int) {

@@ -5,7 +5,7 @@ Go 并发编程可视化
 黄庆兵 - 网易
 
 *  并发
-是一种构造程序的方式，事关设计及编程
+是一种构造程序的方式
 .image go-concurrency-visualize/images/gophercomplex6.jpg
 
 * Concurrency is not Parallelism - 并发不是并行
@@ -48,39 +48,41 @@ Go 并发编程可视化
 * 软件不应该是这样子
 .image go-concurrency-visualize/images/cpu2.gif _ 840
 
-* 而是这个样子
+* 而是这个趋势
 .image go-concurrency-visualize/images/cores.png _ 840
 
-* 并发实现并不容易，但 Go 对并发有很好的支持
+* 并发编程并不容易，但 Go 对并发有很好的支持
 
 * Go 语言中的并发
 - goroutine - 并发执行
 - channel - 同步和消息传输
 - select - 多路并发控制
 
-*Go* *非常支持并发*
+: *Go* *非常支持并发*
 
 : 谢大的每日新闻中，经常提及
 : Go 是为并发而设计的，说到 Go 的并发，没有不提以下几个关键字的
 
-* GOROUTINE
+* Goroutine
 - 类似于 UNIX 中的 `&`
 - 很像线程，但更轻量
 - 一个 goroutine 就是一个独立运行的函数，和其他 goroutine 在同一地址空间
 - 当一个 goroutine 阻塞时，所在的线程会阻塞，但其它 goroutine 不受影响
+: 入口的 main 函数也是一个 goroutine
 
 .code go-concurrency-visualize/snippets /f.runs/
 
 .code go-concurrency-visualize/snippets /f.starts.running/,/return/
 
-* CHANNEL
+* Channel
 - 类似于 UNIX 中的 `管道`
 - 允许在 goroutines 之间传递消息
-  timerChan := make(chan time.Time)
 
 .code go-concurrency-visualize/snippets /make.*chan/,/completedAt/
 
-* SELECT
+: 这就是一个简单的计时器，将在后面的可视化过程中演示
+
+* Select
 - 类似于 switch
 - 但它的判断条件是基于通信，而不是基于值的等量匹配
 
@@ -90,7 +92,7 @@ Go 并发编程可视化
 : 一个程序里产生成千上万个Go例程很正常。
 
 * 但是问题来了
-- 我们怎样去解说 Go 的并发？
+- 我们怎样去讲解 Go 的并发？
 - 我们怎样思考 Go 的并发过程？
 - 最终，我们怎样更好的实践 Go 并发编程？
 
@@ -100,7 +102,7 @@ Go 并发编程可视化
 出自 [[https://github.com/divan][divan]] 大神，主要包含两个程序：
 
 - gotrace(go)：分析 go tool trace 的执行结果
-- gothree(js): 基于 Three.js 和 WebGL 生成 3D 图像
+- gothree(js): 基于 ThreeJs 和 WebGL 生成 3D 图像
 : 该工具非常强大
 : 具体的用法，可以看工程，后面也会有简单介绍
 
@@ -118,35 +120,40 @@ Go 并发编程可视化
 * 2. 计时器
 .code go-concurrency-visualize/timer.go /START/,/STOP/
 .link /2017/go-concurrency-visualize/timer.html *Go并发可视化*
-: 一个简单的计时器 - 创建一个 channel，启动一个 goroutine，在给定的时间间隔之后向这个 channle 写入数据，之后将这个 channel 返回给函数的调用者。
+: 之前 channel 举的例子，一个简单的计时器 - 创建一个 channel，启动一个 goroutine，在给定的时间间隔之后向这个 channle 写入数据，之后将这个 channel 返回给函数的调用者。
 
 * 3. 乒乓球 - 2 个玩家
 .code go-concurrency-visualize/pingpong2.go /START/,/STOP/
-.link /2017/go-concurrency-visualize/pingpong2.html *Go并发可视化*
+#.link /2017/go-concurrency-visualize/pingpong2.html *Go并发可视化*
 : Google 员工 Sameer Ajmani 在 “Advanced Go Concurrency Patterns” 的精彩分享中提出
 : 首先我们有一个 channel，作为打乒乓球的桌子。
 : 乒乓球是一个整型变量，有两个 goroutine 运动员在击球，每击打一次会增加乒乓球的数字（击打统计）。
 # 是否附带一张搞笑的图
 : 在这个点上，我建议你点击上面的链接，可以和 WebGL 动画交互，玩玩看。你可以放慢、加快，从不同的角度观察它
 
+* 3. 乒乓球 - 2 个玩家
+.image go-concurrency-visualize/images/pingpong.gif _ 640
+.link /2017/go-concurrency-visualize/pingpong2.html *Go并发可视化*
+
 * 3. 乒乓球 - 3 个玩家
 .code go-concurrency-visualize/pingpong3.go /START/,/STOP/
 .link /2017/go-concurrency-visualize/pingpong3.html *Go并发可视化*
-: 每个运动员都是轮流依次进行
+: 这里有人就要问了，为什么每个运动员都是那么有序的依次进行
 : 因为 Go 运行时给接受者（准备从特定的 channel 接收消息的 goroutines）保持一个先进先出（FIFO）的队列
 
 * 3. 乒乓球 - 36 个玩家
 .code go-concurrency-visualize/pingpong36.go /START/,/STOP/
 .link /2017/go-concurrency-visualize/pingpong36.html *Go并发可视化*
-: 让我们来看一个更复杂的例子
+: 让我们扩充到36了玩家，看一个更酷炫的例子
 : 就好像有一张圆形的乒乓球桌，每个人都把球打向你的相邻运动员，再接球，再打球
+: 这就是我们之前比较并发和并行的可视化示例图了
 
 * 4. 素数筛
 .image go-concurrency-visualize/images/Sieve_of_Eratosthenes_animation.gif
 
 素数是一个自然数，它具有两个截然不同的自然数除数：1和它本身。 要找到小于或等于给定整数n的素数，我们可以使用[[https://en.wikipedia.org/wiki/Sieve_of_Eratosthenes][Eratosthenes' sieve(埃拉托斯特尼)算法]]。
 
-  算法描述：先用最小的素数2去筛，把2的倍数剔除掉；下一个未筛除的数就是素数(这里是3)。
+  算法核心思想：先用最小的素数2去筛，把2的倍数剔除掉；下一个未筛除的数就是素数(这里是3)。
   再用这个素数3去筛，筛除掉3的倍数... 这样不断重复下去，直到筛完为止。
 
 * 4. 素数筛
@@ -154,27 +161,28 @@ Go 并发编程可视化
 
 * 4. 素数筛
 #.image go-concurrency-visualize/images/primesieve.gif
-.link /2017/go-concurrency-visualize/primesieve.html *更立体的Go并发可视化*
+一图胜千言
+.link /2017/go-concurrency-visualize/primesieve.html *Go并发可视化*
 
-* 5. GOROUTINES 泄露
+* 5. Goroutines 泄露
 .code go-concurrency-visualize/leak.go /START/,/STOP/
 .link /2017/go-concurrency-visualize/leak.html *Go并发可视化*
 : 泄露发生的场景:你只是简单的忘记添加终止添加，而运行了一个 for{} 循环。
 
 * GOTRACE 用法简介
 - go get -v -u github.com/divan/gotrace
-- 默认使用 go1.6，推荐切换到 go18 分支，支持 go1.8.1，再重新构建 go install
+- 默认使用 go1.6，推荐切换到 go18 分支，支持 go1.8.1
   Usage: gotrace [trace.out] or [main.go]
          (if you pass .go file to gotrace, it will modify code on the fly,
          adding tracing, run it and collect the trace automagically)
-- 直接运行 go 文件的效果并不好，推荐生成 trace，可以用以下脚本：
+- 直接运行 go 文件的效果并不好，推荐生成 trace，结合 docker，可以用以下脚本：
   docker run --rm -it \
     -e GOOS=darwin \
     -v $(pwd):/src hub.c.163.com/bingohuang/gotrace:go1.8.1 \
         go build -o /src/binary /src/main.go
   ./binary 2> ./trace.out
   gotrace ./trace.out
-- 自动打开浏览器，可调整视角、缩放、旋转以及线条加粗等
+- 会自动打开浏览器，你可调整视角、缩放、旋转以及加粗线条来改变图像
 : 回过头来，我们再介绍一下 divan 大神的这款工具
 
 * 场景
