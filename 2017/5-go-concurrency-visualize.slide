@@ -96,7 +96,7 @@ Go 并发编程可视化
 - 我们怎样思考 Go 的并发过程？
 - 最终，我们怎样更好的实践 Go 并发编程？
 
-* 祭出法宝 - GOTRACE
+* 祭出法宝 - GoTrace
 一种将 Go 并发过程可视化的[[https://github.com/divan/gotrace][开源]]工具
 
 出自 [[https://github.com/divan][divan]] 大神，主要包含两个程序：
@@ -148,7 +148,7 @@ Go 并发编程可视化
 : 就好像有一张圆形的乒乓球桌，每个人都把球打向你的相邻运动员，再接球，再打球
 : 这就是我们之前比较并发和并行的可视化示例图了
 
-* 4. 素数筛
+* 4. 素数筛-算法
 .image go-concurrency-visualize/images/Sieve_of_Eratosthenes_animation.gif
 
 素数是一个自然数，它具有两个截然不同的自然数除数：1和它本身。 要找到小于或等于给定整数n的素数，我们可以使用[[https://en.wikipedia.org/wiki/Sieve_of_Eratosthenes][Eratosthenes' sieve(埃拉托斯特尼)算法]]。
@@ -156,10 +156,10 @@ Go 并发编程可视化
   算法核心思想：先用最小的素数2去筛，把2的倍数剔除掉；下一个未筛除的数就是素数(这里是3)。
   再用这个素数3去筛，筛除掉3的倍数... 这样不断重复下去，直到筛完为止。
 
-* 4. 素数筛
+* 4. 素数筛-实现
 .code go-concurrency-visualize/primesieve.go /START/,/STOP/
 
-* 4. 素数筛
+* 4. 素数筛-可视化
 #.image go-concurrency-visualize/images/primesieve.gif
 一图胜千言
 .link /2017/go-concurrency-visualize/primesieve.html *Go并发可视化*
@@ -169,7 +169,7 @@ Go 并发编程可视化
 .link /2017/go-concurrency-visualize/leak.html *Go并发可视化*
 : 泄露发生的场景:你只是简单的忘记添加终止添加，而运行了一个 for{} 循环。
 
-* GOTRACE 用法简介
+* GoTrace 用法简介
 - go get -v -u github.com/divan/gotrace
 - 默认使用 go1.6，推荐切换到 go18 分支，支持 go1.8.1
   Usage: gotrace [trace.out] or [main.go]
