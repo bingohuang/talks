@@ -10,10 +10,10 @@ func main() {
 	var Ball int
 	table := make(chan int)
 
-	// 3个玩家
-	go player(table)
-	go player(table)
-	go player(table)
+	// 36个玩家
+	for i := 0; i < 36; i++ {
+			go player(table)
+	}
 
 	table <- Ball
 	time.Sleep(1 * time.Second)
