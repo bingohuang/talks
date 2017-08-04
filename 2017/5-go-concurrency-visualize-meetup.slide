@@ -25,18 +25,16 @@ http://talks.bingohuang.com
 :  说到并发，不得不提Rob Pike 在  Heroku 上分享的一场 talk
 
 * 可视化 并发(Concurrency) & 并行(Parallelism)
+一图胜千言！
+
 - 并行(PARALLELISM)
 .link /2017/go-concurrency-visualize/parallelism.html *这是并行*
 - 并发(CONCURRENCY)
 .link /2017/go-concurrency-visualize/pingpong36.html *这是并发*
-: 一图胜千言
 
 * 为什么要关注并发？当今是多核的时代，并发的世界
 
-* 当今不再是单核的时代
-.image go-concurrency-visualize/images/cpu2.gif _ 840
-
-* 而是多核的趋势
+* 多核的时代
 .image go-concurrency-visualize/images/cores.png _ 840
 
 * 并发编程并不容易，但 Go 对并发有很好的支持
@@ -104,8 +102,11 @@ http://talks.bingohuang.com
 .code go-concurrency-visualize/helloworld.go /START/,/STOP/
 .link /2017/go-concurrency-visualize/helloworld.html *Go并发可视化*
 : 代码非常简单 - 单 channel，单 goroutine，一次写，一次读
-: 这里蓝色的线表示 goroutine 随着时间运行。细的蓝线连接了 ‘main’ 和 ‘go #20’，标志着 goroutine 的启动和停止，揭示了它们的父子关系。
-: 最后，红色箭头给我们展示了‘发送/接受’的动作。实际上它是两个独立的动作
+: red - 阻塞的状态
+: green - 非阻塞状态
+: yellow - 非阻塞并且在用 CPU
+: 运动线表示 goroutine 随着时间运行。细的蓝线连接了 ‘main’ 和 ‘go #20’，标志着 goroutine 的启动和停止，揭示了它们的父子关系。
+: 最后，箭头给我们展示了‘发送/接受’的动作。实际上它是两个独立的动作
 : Goroutine 名称中的的 “#20”，是实际的 goroutine 内部 ID，从运行时获取
 
 * 2. 计时器
@@ -151,11 +152,15 @@ http://talks.bingohuang.com
 
 * 4. 素数筛-实现
 .code go-concurrency-visualize/primesieve.go /START/,/STOP/
+: 可以在 rob pike 的talks 中找到
 
 * 4. 素数筛-可视化
-#.image go-concurrency-visualize/images/primesieve.gif
+原型是 Daisy-Chain 模式，由 [[https://github.com/robpike][Rob Pike]] 在 2012年 的 [[https://talks.golang.org/2012/concurrency.slide#39][golang talks]] 中提出的
+.image go-concurrency-visualize/images/gophereartrumpet.jpg
 .link /2017/go-concurrency-visualize/primesieve.html *Go并发可视化*
-一图胜千言
+
+: daisy chain会创建很多channel，然后把这些channel首尾相接级联起来，组成一条单向链，每个channel都在处理不同的子任务，直至结束。
+
 
 * 5. 其它-Goroutines 泄露
 .code go-concurrency-visualize/leak.go /START/,/STOP/
