@@ -1,16 +1,16 @@
-f("hello", "world") // f runs; we wait
+f("hello", "world") // f 运行; 等待
 
-go f("hello", "world") // f starts running
-g() // does not wait for f to return
+go f("hello", "world") // f 开始运行
+g() // 不用等待 f 返回
 
 timerChan := make(chan time.Time)
 go func() {
     time.Sleep(deltaT)
-    timerChan <- time.Now() // send time on timerChan
+    timerChan <- time.Now() // 将时间发送给timerChan
 }()
-// Do something else; when ready, receive.
-// Receive will block until timerChan delivers.
-// Value sent is other goroutine's completion time.
+// 做一些其它事情；准备接收
+// 接收会阻塞，直到 timerChan 传送值
+// 值的发送是另上个 goroutine 结束的时间
 completedAt := <-timerChan
 
 select {
@@ -18,6 +18,6 @@ case v := <-ch1:
     fmt.Println("channel 1 sends", v)
 case v := <-ch2:
     fmt.Println("channel 2 sends", v)
-default: // optional
+default: // 可选
     fmt.Println("neither channel was ready")
 }

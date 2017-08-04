@@ -52,13 +52,13 @@ http://talks.bingohuang.com
 * Goroutine
 - 类似于 UNIX 中的 `&`
 - 很像线程，但更轻量
-- 一个 goroutine 就是一个独立运行的函数，和其他 goroutine 在同一地址空间
+- 一个 goroutine 就是一个独立运行的函数
 - 当一个 goroutine 阻塞时，所在的线程会阻塞，但其它 goroutine 不受影响
 : 入口的 main 函数也是一个 goroutine
 
-.code go-concurrency-visualize/snippets /f.runs/
+.code go-concurrency-visualize/snippets /f.运行/
 
-.code go-concurrency-visualize/snippets /f.starts.running/,/return/
+.code go-concurrency-visualize/snippets /f.开始运行/,/返回/
 
 * Channel
 - 类似于 UNIX 中的 `管道`
