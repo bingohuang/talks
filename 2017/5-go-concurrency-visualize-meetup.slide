@@ -8,9 +8,8 @@ bingohuang.com
 
 https://c.163yun.com
 
+https://github.com/bingohuang
 http://talks.bingohuang.com
-
-
 
 *  并发
 简单来说，并发是一种构造程序的方式
@@ -21,7 +20,7 @@ http://talks.bingohuang.com
 .video http://bingohuang.nos-eastchina1.126.net/Concurrencyisnotparallelism-RobPike.mp4 video/mp4 350 _
   1. 并发很强大
   2. 并发帮助实现并行，使并行(扩展等)变得容易
-  3. 并发不是并行，两者不同，但相关，并发重点是架构，并行重点是执行。
+  3. 并发不是并行，并发重点是架构，并行重点是执行，两者不同，但相关。
 :  说到并发，不得不提Rob Pike 在  Heroku 上分享的一场 talk
 
 * 可视化 并发(Concurrency) & 并行(Parallelism)
@@ -155,7 +154,7 @@ http://talks.bingohuang.com
 : 可以在 rob pike 的talks 中找到
 
 * 4. 素数筛-可视化
-原型是 Daisy-Chain 模式，由 [[https://github.com/robpike][Rob Pike]] 在 2012年 的 [[https://talks.golang.org/2012/concurrency.slide#39][golang talks]] 中提出的
+原型是 Daisy-Chain 模式，[[https://github.com/robpike][Rob Pike]] 在他 2012年 的 [[https://talks.golang.org/2012/concurrency.slide#39][golang talks]] 中有提到
 .image go-concurrency-visualize/images/gophereartrumpet.jpg
 .link /2017/go-concurrency-visualize/primesieve.html *Go并发可视化*
 
@@ -174,7 +173,7 @@ http://talks.bingohuang.com
   Usage: gotrace [trace.out] or [main.go]
          (if you pass .go file to gotrace, it will modify code on the fly,
          adding tracing, run it and collect the trace automagically)
-- 直接运行 go 代码的效果并不好，推荐生成 trace，需加上如下代码：
+- 直接运行 go 代码的效果并不好，推荐生成 trace，需在执行的代码上前后加上：
   trace.Start(os.Stderr)
   trace.Stop()
 - 结合 docker，可以用以下脚本：
@@ -186,7 +185,7 @@ http://talks.bingohuang.com
 - 会自动打开浏览器，你可调整视角、缩放、旋转以及加粗线条来改变图像
 : 回过头来，我们再介绍一下 divan 大神的这款工具
 
-* 场景
+* 使用场景
 - 非常酷！
 - 学习 Go 的并发模式
 - 探究 Go 的并发过程
